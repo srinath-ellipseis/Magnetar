@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+.dx-invalid-message > .dx-overlay-content {
+  width: 100% !important;
+  text-align: center;
+}
+
+.padding0 {
+  padding: 0px !important;
+}
+
+.textCenter {
+  text-align: center !important;
+}
+
+.width100 {
+  width: 100% !important;
+}
+.floatRight{
+  float: right;
+}
+.textEnd{
+  text-align: end;
+}

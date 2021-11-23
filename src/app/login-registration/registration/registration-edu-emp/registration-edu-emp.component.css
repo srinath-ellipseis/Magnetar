@@ -1,0 +1,92 @@
+.bgImg {
+  background: url('~src/assets/images/img-login.jpg') no-repeat 0 0 rgba(0, 0, 0, 0);
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 10px;
+  position: fixed;
+  height: -webkit-fill-available;
+  overflow: overlay;
+}
+
+.eduForm {
+  height: auto;
+  background: rgba(255, 255, 255, 0.5);
+  color: #FFF;
+  border-radius: 0px 0px 6px 6px;
+  padding: 15px;
+}
+
+.padding-b {
+  padding-bottom: 20px;
+}
+
+.formHeader {
+  height: 60px;
+  text-align: center;
+  font-size: 25px;
+  line-height: 60px;
+  color: #FFF;
+  font-weight: bold;
+  font-style: italic;
+  background-color: #14B1BB;
+  border-radius: 6px 6px 0 0;
+  letter-spacing: 5px;
+}
+
+.formHeader img {
+  margin-left: 20px;
+}
+
+.margin {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.borderRadius5 {
+  border-radius: 5px;
+}
+
+.margin-b-10 {
+  margin-bottom: 10px;
+}
+
+.margin-b-5 {
+  margin-bottom: 5px;
+}
+
+.margin-r-5 {
+  margin-right: 5px;
+}
+
+.bgStyle {
+  background-color: #fff;
+  padding: 10px;
+  color: #000;
+  margin-left: 5px;
+  width: 95%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+hr {
+  margin: 0px;
+  color: inherit;
+  background-color: currentColor;
+  border: 0;
+  opacity: .25;
+}
+
+::ng-deep .dx-list .dx-empty-message {
+  text-align: center;
+}
+
+.padding5 {
+  padding: 5px;
+}
+.closeBtn{
+  background-color: #556069;
+  color: white;
+  border: unset;
+  height: 100%;
+}
