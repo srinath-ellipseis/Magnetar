@@ -16,7 +16,7 @@
     </div>
     <div class="row padding0">
       <div class="formHeader">
-        Details... <img src="assets/images/hello.png"/>
+        Details... <img src="assets/images/hello.png" />
       </div>
     </div>
     <div class="row detForm">
@@ -28,8 +28,13 @@
           <div class="row margin-b-15">
             <div class="col-md-6">
               <div class="dx-field-value width100">
-                <dx-text-box placeholder="First Name" valueChangeEvent="keyup" [value]="detailsData.firstName"
-                             (onValueChanged)="valueChanged($event,'firstName')" autocomplete="off">
+                <dx-text-box
+                  placeholder="First Name"
+                  valueChangeEvent="keyup"
+                  [value]="detailsData.firstName"
+                  (onValueChanged)="valueChanged($event, 'firstName')"
+                  autocomplete="off"
+                >
                   <dx-validator>
                     <dxi-validation-rule
                       type="required"
@@ -46,8 +51,13 @@
             </div>
             <div class="col-md-6">
               <div class="dx-field-value width100">
-                <dx-text-box placeholder="Last Name" valueChangeEvent="keyup" [value]="detailsData.lastName"
-                             (onValueChanged)="valueChanged($event,'lastName')" autocomplete="off">
+                <dx-text-box
+                  placeholder="Last Name"
+                  valueChangeEvent="keyup"
+                  [value]="detailsData.lastName"
+                  (onValueChanged)="valueChanged($event, 'lastName')"
+                  autocomplete="off"
+                >
                   <dx-validator>
                     <dxi-validation-rule
                       type="required"
@@ -67,8 +77,13 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
-                  <dx-text-box placeholder="Enter Email" valueChangeEvent="keyup" [value]="detailsData.email"
-                               (onValueChanged)="valueChanged($event,'email')" autocomplete="off">
+                  <dx-text-box
+                    placeholder="Enter Email"
+                    valueChangeEvent="keyup"
+                    [value]="detailsData.email"
+                    (onValueChanged)="valueChanged($event, 'email')"
+                    autocomplete="off"
+                  >
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
@@ -86,19 +101,27 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
-                  <dx-text-box placeholder="Enter Mobile Number" [value]="detailsData.mobileNumber"
-                  mask="+1 (X00) 000-0000"
-                  [maskRules]="phoneRules" valueChangeEvent="keyup" [maxLength]="10"
-                               (onValueChanged)="valueChanged($event,'mobileNumber')" autocomplete="off">
+                  <dx-text-box
+                    placeholder="Enter Mobile Number"
+                    [value]="detailsData.mobileNumber"
+                    mask="+1 (X00) 000-0000"
+                    [maskRules]="phoneRules"
+                    valueChangeEvent="keyup"
+                    [maxLength]="10"
+                    (onValueChanged)="valueChanged($event, 'mobileNumber')"
+                    autocomplete="off"
+                  >
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.mobileNumberRequired">
+                        [message]="COMMON_MSG.mobileNumberRequired"
+                      >
                       </dxi-validation-rule>
                       <dxi-validation-rule
                         type="pattern"
                         [pattern]="phonePattern"
-                        [message]="COMMON_MSG.mobileNumber">
+                        [message]="COMMON_MSG.mobileNumber"
+                      >
                       </dxi-validation-rule>
                     </dx-validator>
                   </dx-text-box>
@@ -109,38 +132,44 @@
           <div class="row margin-b-15">
             <div class="col-md-6">
               <div class="dx-field">
-                <div class=" row dx-field-value width100">
+                <div class="row dx-field-value width100">
                   <div class="col-md-11 padding0">
-                    <dx-text-box [(mode)]="passwordMode" [value]="detailsData.password" placeholder="Enter Password"
-                               valueChangeEvent="keyup" (onValueChanged)="valueChanged($event,'password')"
-                               autocomplete="off">
-                    <dx-validator>
-                      <dxi-validation-rule
-                        type="required"
-                        [message]="COMMON_MSG.passwordRequired"
-                      ></dxi-validation-rule>
-                      <dxi-validation-rule
-                        type="pattern"
-                        [pattern]="passwordPattern"
-                        [message]="COMMON_MSG.strongPassword">
-                      </dxi-validation-rule>
-                    </dx-validator>
-                  </dx-text-box>
+                    <dx-text-box
+                      [(mode)]="passwordMode"
+                      [value]="detailsData.password"
+                      placeholder="Enter Password"
+                      valueChangeEvent="keyup"
+                      (onValueChanged)="valueChanged($event, 'password')"
+                      autocomplete="off"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="COMMON_MSG.passwordRequired"
+                        ></dxi-validation-rule>
+                        <dxi-validation-rule
+                          type="pattern"
+                          [pattern]="passwordPattern"
+                          [message]="COMMON_MSG.strongPassword"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-box>
                   </div>
                   <div class="col-md-1 padding0">
                     <dx-button
                       *ngIf="passwordMode === 'password'"
                       id="eye"
                       (onClick)="passwordBtn()"
-                      class="eyeIcon"
-                      ><i class="far fa-eye-slash"></i>
+                      class="eyeIconBtn"
+                      ><i class="far fa-eye-slash eyeIcon"></i>
                     </dx-button>
                     <dx-button
                       *ngIf="passwordMode === 'text'"
                       id="slasheye"
                       (onClick)="hidePasswordBtn()"
-                      class="eyeIcon"
-                      ><i class="far fa-eye"></i>
+                      class="eyeIconBtn"
+                      ><i class="far fa-eye eyeIcon"></i>
                     </dx-button>
                   </div>
                 </div>
@@ -150,36 +179,41 @@
               <div class="dx-field">
                 <div class="row dx-field-value width100">
                   <div class="col-md-11 padding0">
-                    <dx-text-box [(mode)]="changePasswordMode" placeholder="Enter Confirm Password"
-                               [value]="detailsData.rePassword" autocomplete="off"
-                               valueChangeEvent="keyup" (onValueChanged)="valueChanged($event,'confirmPassword')">
-                    <dx-validator>
-                      <dxi-validation-rule
-                        type="required"
-                        [message]="COMMON_MSG.confirmPasswordRequired"
-                      ></dxi-validation-rule>
-                      <dxi-validation-rule
-                        type="compare"
-                        [comparisonTarget]="passwordComparison"
-                        [message]="COMMON_MSG.rePassword"
-                      ></dxi-validation-rule>
-                    </dx-validator>
-                  </dx-text-box>
+                    <dx-text-box
+                      [(mode)]="changePasswordMode"
+                      placeholder="Enter Confirm Password"
+                      [value]="detailsData.rePassword"
+                      autocomplete="off"
+                      valueChangeEvent="keyup"
+                      (onValueChanged)="valueChanged($event, 'confirmPassword')"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="COMMON_MSG.confirmPasswordRequired"
+                        ></dxi-validation-rule>
+                        <dxi-validation-rule
+                          type="compare"
+                          [comparisonTarget]="passwordComparison"
+                          [message]="COMMON_MSG.rePassword"
+                        ></dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-box>
                   </div>
                   <div class="col-md-1 padding0">
                     <dx-button
                       *ngIf="changePasswordMode === 'password'"
                       id="eye"
                       (onClick)="changePasswordBtn()"
-                      class="eyeIcon"
-                      ><i class="far fa-eye-slash"></i>
+                      class="eyeIconBtn"
+                      ><i class="far fa-eye-slash eyeIcon"></i>
                     </dx-button>
                     <dx-button
                       *ngIf="changePasswordMode === 'text'"
                       id="slasheye"
                       (onClick)="hideChangePasswordBtn()"
-                      class="eyeIcon"
-                      ><i class="far fa-eye"></i>
+                      class="eyeIconBtn"
+                      ><i class="far fa-eye eyeIcon"></i>
                     </dx-button>
                   </div>
                 </div>
@@ -190,19 +224,24 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
-                  <dx-date-box placeholder="DD/MM/YYY"
-                               invalidDateMessage="The date must have the following format: MM/dd/yyyy"
-                               valueChangeEvent="keyup" autocomplete="off"
-                               (onValueChanged)="valueChanged($event,'dob')">
+                  <dx-date-box
+                    placeholder="DD/MM/YYY"
+                    invalidDateMessage="The date must have the following format: MM/dd/yyyy"
+                    valueChangeEvent="keyup"
+                    autocomplete="off"
+                    (onValueChanged)="valueChanged($event, 'dob')"
+                  >
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.dobRequired">
+                        [message]="COMMON_MSG.dobRequired"
+                      >
                       </dxi-validation-rule>
                       <dxi-validation-rule
                         type="range"
                         [max]="maxDate"
-                        [message]="COMMON_MSG.dob">
+                        [message]="COMMON_MSG.dob"
+                      >
                       </dxi-validation-rule>
                     </dx-validator>
                   </dx-date-box>
@@ -212,9 +251,14 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
-                  <dx-select-box [dataSource]="genders" placeholder="Select Gender" [value]="detailsData.gender"
-                                 valueChangeEvent="keyup" (onValueChanged)="valueChanged($event,'genders')"
-                                 [searchEnabled]="true">
+                  <dx-select-box
+                    [dataSource]="genders"
+                    placeholder="Select Gender"
+                    [value]="detailsData.gender"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="valueChanged($event, 'genders')"
+                    [searchEnabled]="true"
+                  >
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
@@ -230,9 +274,14 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
-                  <dx-select-box [dataSource]="countries" placeholder="Select Country" [value]="detailsData.country"
-                                 valueChangeEvent="keyup" (onValueChanged)="valueChanged($event,'country')"
-                                 [searchEnabled]="true">
+                  <dx-select-box
+                    [dataSource]="countries"
+                    placeholder="Select Country"
+                    [value]="detailsData.country"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="valueChanged($event, 'country')"
+                    [searchEnabled]="true"
+                  >
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
@@ -246,9 +295,14 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
-                  <dx-select-box [dataSource]="states" placeholder="Select State" [value]="detailsData.state"
-                                 valueChangeEvent="keyup" (onValueChanged)="valueChanged($event,'states')"
-                                 [searchEnabled]="true">
+                  <dx-select-box
+                    [dataSource]="states"
+                    placeholder="Select State"
+                    [value]="detailsData.state"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="valueChanged($event, 'states')"
+                    [searchEnabled]="true"
+                  >
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
@@ -264,13 +318,19 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
-                  <dx-select-box [dataSource]="cities" placeholder="Select City" [value]="detailsData.city"
-                                 valueChangeEvent="keyup" (onValueChanged)="valueChanged($event,'city')"
-                                 [searchEnabled]="true">
+                  <dx-select-box
+                    [dataSource]="cities"
+                    placeholder="Select City"
+                    [value]="detailsData.city"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="valueChanged($event, 'city')"
+                    [searchEnabled]="true"
+                  >
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.cityRequired">
+                        [message]="COMMON_MSG.cityRequired"
+                      >
                       </dxi-validation-rule>
                     </dx-validator>
                   </dx-select-box>
@@ -280,14 +340,20 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
-                  <dx-text-box placeholder="Enter Zipcode" mask="00000"
-                   valueChangeEvent="keyup" [maxLength]="5"
-                               [value]="detailsData.zipcode" (onValueChanged)="valueChanged($event,'zipcode')"
-                               autocomplete="off">
+                  <dx-text-box
+                    placeholder="Enter Zipcode"
+                    mask="00000"
+                    valueChangeEvent="keyup"
+                    [maxLength]="5"
+                    [value]="detailsData.zipcode"
+                    (onValueChanged)="valueChanged($event, 'zipcode')"
+                    autocomplete="off"
+                  >
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.zipcodeRequired">
+                        [message]="COMMON_MSG.zipcodeRequired"
+                      >
                       </dxi-validation-rule>
                       <dxi-validation-rule
                         type="pattern"
@@ -328,7 +394,8 @@
                 id="button"
                 text="Next"
                 type="success"
-                [useSubmitBehavior]="true">
+                [useSubmitBehavior]="true"
+              >
               </dx-button>
             </div>
             <div class="col-md-4"></div>

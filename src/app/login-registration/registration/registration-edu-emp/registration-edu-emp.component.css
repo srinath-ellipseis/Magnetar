@@ -1,5 +1,6 @@
 .bgImg {
-  background: url('~src/assets/images/img-login.jpg') no-repeat 0 0 rgba(0, 0, 0, 0);
+  background: url("~src/assets/images/img-login.jpg") no-repeat 0 0
+    rgba(0, 0, 0, 0);
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
@@ -12,39 +13,29 @@
 .eduForm {
   height: auto;
   background: rgba(255, 255, 255, 0.5);
-  color: #FFF;
+  color: #fff;
   border-radius: 0px 0px 6px 6px;
-  padding: 15px;
+  padding-left: 31px;
+  padding-top: 15px;
 }
 
-.padding-b {
-  padding-bottom: 20px;
-}
-
-.formHeader {
+.eduEmpHeader {
   height: 60px;
-  text-align: center;
-  font-size: 25px;
-  line-height: 60px;
-  color: #FFF;
-  font-weight: bold;
-  font-style: italic;
-  background-color: #14B1BB;
+  background-color: #14b1bb;
   border-radius: 6px 6px 0 0;
-  letter-spacing: 5px;
 }
 
-.formHeader img {
-  margin-left: 20px;
+.headerText {
+  text-align: center;
+  color: #fff;
+  padding-top: 15px;
+  font-style: italic;
+  letter-spacing: 5px;
 }
 
 .margin {
   width: 70%;
   margin-left: 15%;
-}
-
-.borderRadius5 {
-  border-radius: 5px;
 }
 
 .margin-b-10 {
@@ -63,8 +54,6 @@
   background-color: #fff;
   padding: 10px;
   color: #000;
-  margin-left: 5px;
-  width: 95%;
   margin-bottom: 10px;
   border-radius: 5px;
 }
@@ -74,7 +63,7 @@ hr {
   color: inherit;
   background-color: currentColor;
   border: 0;
-  opacity: .25;
+  opacity: 0.25;
 }
 
 ::ng-deep .dx-list .dx-empty-message {
@@ -84,9 +73,12 @@ hr {
 .padding5 {
   padding: 5px;
 }
-.closeBtn{
+.closeBtn {
   background-color: #556069;
   color: white;
   border: unset;
   height: 100%;
+}
+.padding-t-10{
+  padding-top: 10px;
 }

@@ -4,6 +4,7 @@ import {
   DxAccordionModule,
   DxButtonModule,
   DxCheckBoxModule,
+  DxDataGridModule,
   DxDateBoxModule,
   DxFormModule, DxListModule, DxLoadIndicatorModule, DxLoadPanelModule, DxNumberBoxModule, DxPopupModule, DxScrollViewModule,
   DxSelectBoxModule, DxSliderModule, DxTagBoxModule, DxTemplateModule,
@@ -33,7 +34,8 @@ import {
     DxScrollViewModule,
     DxListModule,
     DxNumberBoxModule,
-    DxTooltipModule
+    DxTooltipModule,
+    DxDataGridModule,
   ],
   exports: [
     DxButtonModule,
@@ -55,7 +57,8 @@ import {
     DxScrollViewModule,
     DxListModule,
     DxNumberBoxModule,
-    DxTooltipModule
+    DxTooltipModule,
+    DxDataGridModule,
   ],
   providers: [],
   bootstrap: []

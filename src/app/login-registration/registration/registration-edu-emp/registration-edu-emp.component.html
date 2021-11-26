@@ -14,8 +14,44 @@
       >
       </dx-load-panel>
     </div>
-    <div class="row padding0">
-      <div class="formHeader">Education & Employee</div>
+    <div class="row padding0 eduEmpHeader">
+      <div class="col-md-2 padding-t-10">
+        <dx-button
+          id="backIcon"
+          icon="arrowleft"
+          (onClick)="backPage()"
+          (mouseenter)="toggleBackBtn()"
+          (mouseleave)="toggleBackBtn()"
+        >
+        </dx-button>
+        <dx-tooltip
+          target="#backIcon"
+          [(visible)]="backBtnTooltip"
+          [closeOnOutsideClick]="false"
+        >
+          <div *dxTemplate="let data = data; of: 'content'">Back Button</div>
+        </dx-tooltip>
+      </div>
+      <div class="col-md-8 headerText">
+        <h3>Education & Employee</h3>
+      </div>
+      <div class="col-md-2 padding-t-10 textEnd">
+        <dx-button
+          icon="arrowright"
+          (onClick)="nextPage()"
+          id="nextIcon"
+          (mouseenter)="toggleNextBtn()"
+          (mouseleave)="toggleNextBtn()"
+        >
+        </dx-button>
+        <dx-tooltip
+          target="#nextIcon"
+          [(visible)]="nextBtnTooltip"
+          [closeOnOutsideClick]="false"
+        >
+          <div *dxTemplate="let data = data; of: 'content'">Next Button</div>
+        </dx-tooltip>
+      </div>
     </div>
     <div class="row eduForm">
       <div class="row bgStyle">
@@ -104,7 +140,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="container">
     <dx-popup
@@ -385,7 +420,6 @@
     </dx-popup>
   </div>
 
-
   <div class="container">
     <dx-popup
       [width]="500"
@@ -617,7 +651,6 @@
     </dx-popup>
   </div>
 
-
   <div class="container">
     <dx-popup
       [width]="300"
@@ -653,7 +686,6 @@
       </div>
     </dx-popup>
   </div>
-
 
   <div class="container">
     <dx-popup
@@ -691,5 +723,4 @@
       </div>
     </dx-popup>
   </div>
-
 </div>
