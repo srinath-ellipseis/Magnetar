@@ -121,7 +121,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  
+
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
@@ -232,6 +232,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   }
   closeEmpForm() {
     this.empFormVisible = false;
+    localStorage.removeItem("editEmpData");
     window.location.reload();
   }
   goToEmpDeletePopup(e: any) {
@@ -351,6 +352,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   }
   closeEduForm() {
     this.eduFormVisible = false;
+    localStorage.removeItem("editEduData");
     window.location.reload();
   }
   goToDeletePopup(e: any) {
@@ -362,7 +364,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.eduDeletePopup = false;
   }
 
-  backPage(){
+  backPage() {
     this.router.navigate(["/registration-details"]);
   }
 
@@ -370,10 +372,10 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.router.navigate(["/registration-preview"]);
   }
 
-  toggleBackBtn(){
+  toggleBackBtn() {
     this.backBtnTooltip = !this.backBtnTooltip;
   }
-  toggleNextBtn(){
+  toggleNextBtn() {
     this.nextBtnTooltip = !this.nextBtnTooltip;
   }
 }
