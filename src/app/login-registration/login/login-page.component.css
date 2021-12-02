@@ -54,9 +54,13 @@
 .padding0 {
   padding: 0px;
 }
-.eyeIcon {
+.eyeIconBtn {
   background-color: #337ab7;
   color: white;
   border: unset;
   height: 100%;
+}
+.eyeIcon {
+  margin-left: -2px;
+  margin-top: 2px;
 }

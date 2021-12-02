@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import * as dayjs from "dayjs";
+import { ActivatedRoute, Router } from "@angular/router";
 import { COMMON_MSG } from "../../../common/messages/common-msg";
 
 @Component({
@@ -64,7 +64,11 @@ export class RegistrationEduEmpComponent implements OnInit {
   viewTooltipVisible = false;
   editTooltipVisible = false;
   deleteTooltipVisible = false;
-  constructor() {
+  editEduData: any;
+  editEmpData: any;
+  backBtnTooltip: boolean = false;
+  nextBtnTooltip: boolean = false;
+  constructor(private router: Router, private activeRoute: ActivatedRoute) {
     this.employeeData = JSON.parse(localStorage.getItem("employeeForm")!);
     this.educationData = JSON.parse(localStorage.getItem("educationForm")!);
     if (this.employeeData) {
@@ -106,10 +110,18 @@ export class RegistrationEduEmpComponent implements OnInit {
         }
       }
     }
+    this.editEduData = JSON.parse(localStorage.getItem("editEduData")!);
+    this.editEmpData = JSON.parse(localStorage.getItem("editEmpData")!);
+    if (this.editEduData) {
+      this.goToEduForm(this.editEduData, "edit");
+    }
+    if (this.editEmpData) {
+      this.goToEmpForm(this.editEmpData, "edit");
+    }
   }
 
   ngOnInit(): void {}
-
+  
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
@@ -189,6 +201,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.loadingVisible = true;
     this.empFormData.push(this.empForm);
     localStorage.setItem("employeeForm", JSON.stringify(this.empFormData));
+    localStorage.removeItem("editEmpData");
     window.location.reload();
     this.empFormVisible = false;
     setTimeout(() => {
@@ -287,6 +300,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.loadingVisible = true;
     this.eduFormData.push(this.eduForm);
     localStorage.setItem("educationForm", JSON.stringify(this.eduFormData));
+    localStorage.removeItem("editEduData");
     window.location.reload();
     this.eduFormVisible = false;
     setTimeout(() => {
@@ -346,5 +360,20 @@ export class RegistrationEduEmpComponent implements OnInit {
 
   cancelEduDeletePopup() {
     this.eduDeletePopup = false;
+  }
+
+  backPage(){
+    this.router.navigate(["/registration-details"]);
+  }
+
+  nextPage() {
+    this.router.navigate(["/registration-preview"]);
+  }
+
+  toggleBackBtn(){
+    this.backBtnTooltip = !this.backBtnTooltip;
+  }
+  toggleNextBtn(){
+    this.nextBtnTooltip = !this.nextBtnTooltip;
   }
 }
