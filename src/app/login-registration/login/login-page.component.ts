@@ -18,6 +18,20 @@ export class LoginPageComponent implements OnInit {
   hidePasswordButton: any;
   constructor(private router: Router) {
     this.passwordMode = "password";
+    this.passwordButton = {
+      icon: "assets/images/eye-icon-slash.svg",
+      type: "default",
+      onClick: () => {
+        this.passwordMode = this.passwordMode === "text" ? "password" : "text";
+      },
+    };
+    this.hidePasswordButton = {
+      icon: "assets/images/eye-icon.svg",
+      type: "default",
+      onClick: () => {
+        this.passwordMode = this.passwordMode === "text" ? "password" : "text";
+      },
+    };
   }
 
   ngOnInit(): void {}
@@ -31,11 +45,5 @@ export class LoginPageComponent implements OnInit {
     } else {
       this.loginData.Password = event.value;
     }
-  }
-  passwordBtn() {
-    this.passwordMode = this.passwordMode === "text" ? "password" : "text";
-  }
-  hidePasswordBtn() {
-    this.passwordMode = this.passwordMode === "text" ? "password" : "text";
   }
 }
