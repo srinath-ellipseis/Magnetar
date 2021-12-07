@@ -38,7 +38,7 @@
             <div class="row margin-b-15">
               <div class="dx-field">
                 <div class="row dx-field-value width100">
-                  <div class="col-md-11 padding0">
+                  <div class="col-md-12 padding0">
                     <dx-text-box
                       [(mode)]="passwordMode"
                       placeholder="Enter Password"
@@ -46,6 +46,18 @@
                       (onValueChanged)="valueChanged($event, 'password')"
                       autocomplete="off"
                     >
+                    <dxi-button
+                        *ngIf="passwordMode === 'password'"
+                        name="today"
+                        location="after"
+                        [options]="passwordButton"
+                      ></dxi-button>
+                      <dxi-button
+                        *ngIf="passwordMode === 'text'"
+                        name="today"
+                        location="after"
+                        [options]="hidePasswordButton"
+                      ></dxi-button>
                       <dx-validator>
                         <dxi-validation-rule
                           type="required"
@@ -53,22 +65,6 @@
                         ></dxi-validation-rule>
                       </dx-validator>
                     </dx-text-box>
-                  </div>
-                  <div class="col-md-1 padding0">
-                    <dx-button
-                      *ngIf="passwordMode === 'password'"
-                      id="eye"
-                      (onClick)="passwordBtn()"
-                      class="eyeIconBtn"
-                      ><i class="far fa-eye-slash eyeIcon"></i>
-                    </dx-button>
-                    <dx-button
-                      *ngIf="passwordMode === 'text'"
-                      id="slasheye"
-                      (onClick)="hidePasswordBtn()"
-                      class="eyeIconBtn"
-                      ><i class="far fa-eye eyeIcon"></i>
-                    </dx-button>
                   </div>
                 </div>
               </div>

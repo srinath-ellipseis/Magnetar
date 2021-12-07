@@ -14,13 +14,34 @@
       >
       </dx-load-panel>
     </div>
-    <div class="row padding0">
-      <div class="formHeader">
-        Details... <img src="assets/images/hello.png" />
-      </div>
-    </div>
+
     <div class="row detForm">
       <form action="your-action" (submit)="onFormSubmit($event)">
+        <div class="row padding0 formHeader">
+          <div class="col-md-2"></div>
+          <div class="col-md-8 headerText">
+            <h3>Details</h3>
+          </div>
+          <div class="col-md-2 padding-t-10 textEnd">
+            <dx-button
+              icon="arrowright"
+              [useSubmitBehavior]="true"
+              id="nextIcon"
+              (mouseenter)="toggleNextBtn()"
+              (mouseleave)="toggleNextBtn()"
+            >
+            </dx-button>
+            <dx-tooltip
+              target="#nextIcon"
+              [(visible)]="nextBtnTooltip"
+              [closeOnOutsideClick]="false"
+            >
+              <div *dxTemplate="let data = data; of: 'content'">
+                Next Button
+              </div>
+            </dx-tooltip>
+          </div>
+        </div>
         <div class="dx-fieldset">
           <dx-validation-summary id="summary"></dx-validation-summary>
         </div>
@@ -104,7 +125,7 @@
                   <dx-text-box
                     placeholder="Enter Mobile Number"
                     [value]="detailsData.mobileNumber"
-                    mask="+1 (X00) 000-0000"
+                    mask="(X00) 000-0000"
                     [maskRules]="phoneRules"
                     valueChangeEvent="keyup"
                     [maxLength]="10"
@@ -133,7 +154,7 @@
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="row dx-field-value width100">
-                  <div class="col-md-11 padding0">
+                  <div class="col-md-12 padding0">
                     <dx-text-box
                       [(mode)]="passwordMode"
                       [value]="detailsData.password"
@@ -142,6 +163,18 @@
                       (onValueChanged)="valueChanged($event, 'password')"
                       autocomplete="off"
                     >
+                      <dxi-button
+                        *ngIf="passwordMode === 'password'"
+                        name="today"
+                        location="after"
+                        [options]="passwordButton"
+                      ></dxi-button>
+                      <dxi-button
+                        *ngIf="passwordMode === 'text'"
+                        name="today"
+                        location="after"
+                        [options]="hidePasswordBtn"
+                      ></dxi-button>
                       <dx-validator>
                         <dxi-validation-rule
                           type="required"
@@ -156,29 +189,13 @@
                       </dx-validator>
                     </dx-text-box>
                   </div>
-                  <div class="col-md-1 padding0">
-                    <dx-button
-                      *ngIf="passwordMode === 'password'"
-                      id="eye"
-                      (onClick)="passwordBtn()"
-                      class="eyeIconBtn"
-                      ><i class="far fa-eye-slash eyeIcon"></i>
-                    </dx-button>
-                    <dx-button
-                      *ngIf="passwordMode === 'text'"
-                      id="slasheye"
-                      (onClick)="hidePasswordBtn()"
-                      class="eyeIconBtn"
-                      ><i class="far fa-eye eyeIcon"></i>
-                    </dx-button>
-                  </div>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="row dx-field-value width100">
-                  <div class="col-md-11 padding0">
+                  <div class="col-md-12 padding0">
                     <dx-text-box
                       [(mode)]="changePasswordMode"
                       placeholder="Enter Confirm Password"
@@ -187,6 +204,18 @@
                       valueChangeEvent="keyup"
                       (onValueChanged)="valueChanged($event, 'confirmPassword')"
                     >
+                      <dxi-button
+                        *ngIf="changePasswordMode === 'password'"
+                        name="today"
+                        location="after"
+                        [options]="changePasswordBtn"
+                      ></dxi-button>
+                      <dxi-button
+                        *ngIf="changePasswordMode === 'text'"
+                        name="today"
+                        location="after"
+                        [options]="hideChangePasswordBtn"
+                      ></dxi-button>
                       <dx-validator>
                         <dxi-validation-rule
                           type="required"
@@ -199,22 +228,6 @@
                         ></dxi-validation-rule>
                       </dx-validator>
                     </dx-text-box>
-                  </div>
-                  <div class="col-md-1 padding0">
-                    <dx-button
-                      *ngIf="changePasswordMode === 'password'"
-                      id="eye"
-                      (onClick)="changePasswordBtn()"
-                      class="eyeIconBtn"
-                      ><i class="far fa-eye-slash eyeIcon"></i>
-                    </dx-button>
-                    <dx-button
-                      *ngIf="changePasswordMode === 'text'"
-                      id="slasheye"
-                      (onClick)="hideChangePasswordBtn()"
-                      class="eyeIconBtn"
-                      ><i class="far fa-eye eyeIcon"></i>
-                    </dx-button>
                   </div>
                 </div>
               </div>
@@ -357,7 +370,7 @@
                       </dxi-validation-rule>
                       <dxi-validation-rule
                         type="pattern"
-                        pattern="[0-9]{5}"
+                        pattern="[1-9][0-9]{3}\s?"
                         [message]="COMMON_MSG.zipcode"
                       ></dxi-validation-rule>
                     </dx-validator>
@@ -377,28 +390,15 @@
                     type="required"
                     [message]="COMMON_MSG.teamsCheck"
                   ></dxi-validation-rule>
-                  <!--                <dxi-validation-rule-->
-                  <!--                  type="compare"-->
-                  <!--                  [comparisonTarget]="checkComparison"-->
-                  <!--                  [message]="COMMON_MSG.teamsCheck"-->
-                  <!--                ></dxi-validation-rule>-->
+                  <!-- <dxi-validation-rule
+                                   type="compare"
+                                   [comparisonTarget]="checkComparison"
+                                   [message]="COMMON_MSG.teamsCheck"
+                                 ></dxi-validation-rule> -->
                 </dx-validator>
               </dx-check-box>
             </div>
             <div class="col-md-6"></div>
-          </div>
-          <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 textCenter">
-              <dx-button
-                id="button"
-                text="Next"
-                type="success"
-                [useSubmitBehavior]="true"
-              >
-              </dx-button>
-            </div>
-            <div class="col-md-4"></div>
           </div>
         </div>
       </form>

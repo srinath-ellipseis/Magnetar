@@ -58,7 +58,7 @@
         <div class="row margin-b-5">
           <div class="col-md-4"></div>
           <div class="col-md-4 textCenter">
-            <h3>Education</h3>
+            <h3>Education Details</h3>
           </div>
           <div class="col-md-4">
             <div class="textEnd">
@@ -100,7 +100,7 @@
         <div class="row margin-b-5">
           <div class="col-md-4"></div>
           <div class="col-md-4 textCenter">
-            <h3>Employee</h3>
+            <h3>Employee Details</h3>
           </div>
           <div class="col-md-4">
             <div class="textEnd">
@@ -156,20 +156,15 @@
     >
       <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
-          <div class="row">
+          <div class="row padding10">
             <div class="col-md-10">
               <h3>Education Form</h3>
             </div>
-            <div class="col-md-2">
-              <dx-button
-                id="clear"
-                text=""
-                icon="clear"
-                (onClick)="closeEduForm()"
-              >
-              </dx-button>
+            <div class="col-md-2 cancelIcon">
+              <i class="fas fa-times" (click)="closeEduForm()"></i>
             </div>
           </div>
+          <hr />
           <div class="row">
             <form action="your-action" (submit)="eduFormSubmit($event)">
               <div class="dx-fieldset">
@@ -406,7 +401,7 @@
                             </dxi-validation-rule>
                             <dxi-validation-rule
                               type="pattern"
-                              pattern="[0-9]{5}"
+                              pattern="[1-9][0-9]{3}\s?"
                               [message]="COMMON_MSG.zipcode"
                             >
                             </dxi-validation-rule>
@@ -441,11 +436,11 @@
   <div class="container">
     <dx-popup
       [width]="500"
-      [showTitle]="true"
+      [showTitle]="false"
       title="Employee Form"
       [dragEnabled]="false"
       [closeOnOutsideClick]="false"
-      [showCloseButton]="true"
+      [showCloseButton]="false"
       container=".dx-viewport"
       [(visible)]="empFormVisible"
       [shading]="true"
@@ -453,219 +448,230 @@
     >
       <div *dxTemplate="let data of 'content'">
         <dx-scroll-view width="100%" height="100%">
-          <form action="your-action" (submit)="empFormSubmit($event)">
-            <div class="dx-fieldset">
-              <dx-validation-summary id="summary"></dx-validation-summary>
+          <div class="row padding10">
+            <div class="col-md-10">
+              <h3>Employee Form</h3>
             </div>
-            <div class="dx-fieldset">
-              <div class="row margin-b-10">
-                <div class="dx-field-value width100">
-                  <dx-text-box
-                    placeholder="Enter Company Name"
-                    valueChangeEvent="keyup"
-                    [value]="empCurrentData.companyName"
-                    [disabled]="empFormDisable"
-                    (onValueChanged)="empValueChanged($event, 'companyName')"
-                    autocomplete="off"
-                  >
-                    <dx-validator>
-                      <dxi-validation-rule
-                        type="required"
-                        [message]="COMMON_MSG.companyNameRequired"
-                      >
-                      </dxi-validation-rule>
-                    </dx-validator>
-                  </dx-text-box>
-                </div>
-              </div>
-              <div class="row margin-b-10">
-                <div class="dx-field-value width100">
-                  <dx-text-box
-                    placeholder="Enter Description"
-                    valueChangeEvent="keyup"
-                    [value]="empCurrentData.description"
-                    [disabled]="empFormDisable"
-                    (onValueChanged)="empValueChanged($event, 'description')"
-                    autocomplete="off"
-                  >
-                    <dx-validator>
-                      <dxi-validation-rule
-                        type="required"
-                        [message]="COMMON_MSG.descriptionRequired"
-                      >
-                      </dxi-validation-rule>
-                    </dx-validator>
-                  </dx-text-box>
-                </div>
-              </div>
-              <div class="row margin-b-10">
-                <div class="col-md-6">
-                  <div class="dx-field">
-                    <div class="dx-field-value width100">
-                      <dx-date-box
-                        placeholder="DD/MM/YYY"
-                        [value]="empCurrentData.formDate"
-                        [disabled]="empFormDisable"
-                        invalidDateMessage="The date must have the following format: MM/dd/yyyy"
-                        valueChangeEvent="keyup"
-                        autocomplete="off"
-                        [max]="empFromMaxDate"
-                        (onValueChanged)="empValueChanged($event, 'formDate')"
-                      >
-                        <dx-validator>
-                          <dxi-validation-rule
-                            type="required"
-                            [message]="COMMON_MSG.formDateRequired"
-                          >
-                          </dxi-validation-rule>
-                        </dx-validator>
-                      </dx-date-box>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="dx-field">
-                    <div class="dx-field-value width100">
-                      <dx-date-box
-                        placeholder="DD/MM/YYY"
-                        [value]="empCurrentData.toDate"
-                        [disabled]="empFormDisable"
-                        invalidDateMessage="The date must have the following format: MM/dd/yyyy"
-                        valueChangeEvent="keyup"
-                        autocomplete="off"
-                        [min]="empToMinDate"
-                        (onValueChanged)="empValueChanged($event, 'toDate')"
-                      >
-                        <dx-validator>
-                          <dxi-validation-rule
-                            type="required"
-                            [message]="COMMON_MSG.toDateRequired"
-                          >
-                          </dxi-validation-rule>
-                        </dx-validator>
-                      </dx-date-box>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row margin-b-10">
-                <div class="col-md-6">
-                  <div class="dx-field">
-                    <div class="dx-field-value width100">
-                      <dx-select-box
-                        [dataSource]="countries"
-                        placeholder="Select Country"
-                        [value]="empCurrentData.country"
-                        [disabled]="empFormDisable"
-                        valueChangeEvent="keyup"
-                        (onValueChanged)="empValueChanged($event, 'country')"
-                        [searchEnabled]="true"
-                      >
-                        <dx-validator>
-                          <dxi-validation-rule
-                            type="required"
-                            [message]="COMMON_MSG.countryRequired"
-                          >
-                          </dxi-validation-rule>
-                        </dx-validator>
-                      </dx-select-box>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="dx-field">
-                    <div class="dx-field-value width100">
-                      <dx-select-box
-                        [dataSource]="states"
-                        placeholder="Select State"
-                        [value]="empCurrentData.state"
-                        valueChangeEvent="keyup"
-                        (onValueChanged)="empValueChanged($event, 'state')"
-                        [searchEnabled]="true"
-                        [disabled]="empFormDisable"
-                      >
-                        <dx-validator>
-                          <dxi-validation-rule
-                            type="required"
-                            [message]="COMMON_MSG.stateRequired"
-                          >
-                          </dxi-validation-rule>
-                        </dx-validator>
-                      </dx-select-box>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row margin-b-10">
-                <div class="col-md-6">
-                  <div class="dx-field">
-                    <div class="dx-field-value width100">
-                      <dx-select-box
-                        [dataSource]="cities"
-                        placeholder="Select City"
-                        [value]="empCurrentData.city"
-                        valueChangeEvent="keyup"
-                        (onValueChanged)="empValueChanged($event, 'city')"
-                        [searchEnabled]="true"
-                        [disabled]="empFormDisable"
-                      >
-                        <dx-validator>
-                          <dxi-validation-rule
-                            type="required"
-                            [message]="COMMON_MSG.cityRequired"
-                          >
-                          </dxi-validation-rule>
-                        </dx-validator>
-                      </dx-select-box>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="dx-field">
-                    <div class="dx-field-value width100">
-                      <dx-text-box
-                        placeholder="Enter Zipcode"
-                        mask="00000"
-                        valueChangeEvent="keyup"
-                        [disabled]="empFormDisable"
-                        [value]="empCurrentData.zipcode"
-                        (onValueChanged)="empValueChanged($event, 'zipcode')"
-                        autocomplete="off"
-                      >
-                        <dx-validator>
-                          <dxi-validation-rule
-                            type="required"
-                            [message]="COMMON_MSG.zipcodeRequired"
-                          >
-                          </dxi-validation-rule>
-                          <dxi-validation-rule
-                            type="pattern"
-                            pattern="[0-9]{5}"
-                            [message]="COMMON_MSG.zipcode"
-                          >
-                          </dxi-validation-rule>
-                        </dx-validator>
-                      </dx-text-box>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4 textCenter"></div>
-                <div class="col-md-4 textCenter">
-                  <dx-button
-                    id="button"
-                    text="Save"
-                    type="success"
-                    [useSubmitBehavior]="true"
-                    [disabled]="empFormDisable"
-                  >
-                  </dx-button>
-                </div>
-                <div class="col-md-4 textCenter"></div>
-              </div>
+            <div class="col-md-2 cancelIcon">
+              <i class="fas fa-times" (click)="closeEmpForm()"></i>
             </div>
-          </form>
+          </div>
+          <hr />
+          <div class="row">
+            <form action="your-action" (submit)="empFormSubmit($event)">
+              <div class="dx-fieldset">
+                <dx-validation-summary id="summary"></dx-validation-summary>
+              </div>
+              <div class="dx-fieldset">
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      placeholder="Enter Company Name"
+                      valueChangeEvent="keyup"
+                      [value]="empCurrentData.companyName"
+                      [disabled]="empFormDisable"
+                      (onValueChanged)="empValueChanged($event, 'companyName')"
+                      autocomplete="off"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="COMMON_MSG.companyNameRequired"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-box>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      placeholder="Enter Description"
+                      valueChangeEvent="keyup"
+                      [value]="empCurrentData.description"
+                      [disabled]="empFormDisable"
+                      (onValueChanged)="empValueChanged($event, 'description')"
+                      autocomplete="off"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="COMMON_MSG.descriptionRequired"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-box>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-date-box
+                          placeholder="DD/MM/YYY"
+                          [value]="empCurrentData.formDate"
+                          [disabled]="empFormDisable"
+                          invalidDateMessage="The date must have the following format: MM/dd/yyyy"
+                          valueChangeEvent="keyup"
+                          autocomplete="off"
+                          [max]="empFromMaxDate"
+                          (onValueChanged)="empValueChanged($event, 'formDate')"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="COMMON_MSG.formDateRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-date-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-date-box
+                          placeholder="DD/MM/YYY"
+                          [value]="empCurrentData.toDate"
+                          [disabled]="empFormDisable"
+                          invalidDateMessage="The date must have the following format: MM/dd/yyyy"
+                          valueChangeEvent="keyup"
+                          autocomplete="off"
+                          [min]="empToMinDate"
+                          (onValueChanged)="empValueChanged($event, 'toDate')"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="COMMON_MSG.toDateRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-date-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="countries"
+                          placeholder="Select Country"
+                          [value]="empCurrentData.country"
+                          [disabled]="empFormDisable"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="empValueChanged($event, 'country')"
+                          [searchEnabled]="true"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="COMMON_MSG.countryRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="states"
+                          placeholder="Select State"
+                          [value]="empCurrentData.state"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="empValueChanged($event, 'state')"
+                          [searchEnabled]="true"
+                          [disabled]="empFormDisable"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="COMMON_MSG.stateRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="cities"
+                          placeholder="Select City"
+                          [value]="empCurrentData.city"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="empValueChanged($event, 'city')"
+                          [searchEnabled]="true"
+                          [disabled]="empFormDisable"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="COMMON_MSG.cityRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-text-box
+                          placeholder="Enter Zipcode"
+                          mask="00000"
+                          valueChangeEvent="keyup"
+                          [disabled]="empFormDisable"
+                          [value]="empCurrentData.zipcode"
+                          (onValueChanged)="empValueChanged($event, 'zipcode')"
+                          autocomplete="off"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="COMMON_MSG.zipcodeRequired"
+                            >
+                            </dxi-validation-rule>
+                            <dxi-validation-rule
+                              type="pattern"
+                              pattern="[1-9][0-9]{3}\s?"
+                              [message]="COMMON_MSG.zipcode"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-text-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4 textCenter"></div>
+                  <div class="col-md-4 textCenter">
+                    <dx-button
+                      id="button"
+                      text="Save"
+                      type="success"
+                      [useSubmitBehavior]="true"
+                      [disabled]="empFormDisable"
+                    >
+                    </dx-button>
+                  </div>
+                  <div class="col-md-4 textCenter"></div>
+                </div>
+              </div>
+            </form>
+          </div>
         </dx-scroll-view>
       </div>
     </dx-popup>
@@ -685,7 +691,7 @@
       shadingColor="rgba(0, 0, 0, 0.2)"
       class="padding5"
     >
-      <div *dxTemplate="let data of 'content'">
+      <div *dxTemplate="let data of 'content'" class="padding10">
         <div class="row">
           <p>
             Are sure you want delete this <b>{{ eduCurrentDelete.levelEdu }}</b>
@@ -723,7 +729,7 @@
       shadingColor="rgba(0, 0, 0, 0.2)"
       class="padding5"
     >
-      <div *dxTemplate="let data of 'content'">
+      <div *dxTemplate="let data of 'content'" class="padding10">
         <div class="row">
           <p>
             Are sure you want delete this
