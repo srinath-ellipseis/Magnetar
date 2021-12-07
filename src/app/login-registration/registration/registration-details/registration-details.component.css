@@ -1,5 +1,6 @@
 .bgImg {
-  background: url('~src/assets/images/img-login.jpg') no-repeat 0 0 rgba(0, 0, 0, 0);
+  background: url("~src/assets/images/img-login.jpg") no-repeat 0 0
+    rgba(0, 0, 0, 0);
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
@@ -12,8 +13,9 @@
 .detForm {
   height: auto;
   background: rgba(255, 255, 255, 0.5);
-  color: #FFF;
+  color: #fff;
   border-radius: 0px 0px 6px 6px;
+  padding: 0px;
 }
 
 .padding-b {
@@ -22,19 +24,16 @@
 
 .formHeader {
   height: 60px;
-  text-align: center;
-  font-size: 25px;
-  line-height: 60px;
-  color: #FFF;
-  font-weight: bold;
-  font-style: italic;
-  background-color: #14B1BB;
+  background-color: #14b1bb;
   border-radius: 6px 6px 0 0;
-  letter-spacing: 5px;
 }
 
-.formHeader img {
-  margin-left: 20px;
+.headerText {
+  text-align: center;
+  color: #fff;
+  padding-top: 15px;
+  font-style: italic;
+  letter-spacing: 5px;
 }
 
 .margin {
@@ -46,12 +45,29 @@
   margin-bottom: 15px;
 }
 
-.padding0{
+.padding0 {
   padding: 0px;
 }
-.eyeIcon{
+.eyeIconBtn {
   background-color: #337ab7;
   color: white;
   border: unset;
   height: 100%;
+  border-radius: 0px 4px 4px 0px;
+}
+.eyeIcon {
+  margin-left: -2px;
+  margin-top: 2px;
+}
+.padding-t-10 {
+  padding-top: 10px;
+}
+::ng-deep .dx-button-mode-contained.dx-button-default {
+  background-color: unset;
+}
+::ng-deep .dx-button-mode-contained.dx-button-default.dx-state-hover {
+  background-color: unset;
+}
+::ng-deep .dx-button-mode-contained.dx-button-default.dx-state-focused {
+  background-color: unset;
 }
