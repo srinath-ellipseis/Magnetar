@@ -30,7 +30,10 @@
   font-weight: bold;
   font-style: italic;
   letter-spacing: 5px;
-  padding-top: 15px;
+  padding-top: 10px;
+}
+.previewHeader .headerText img {
+  width: 38px;
 }
 
 .margin {
@@ -60,4 +63,8 @@ a {
 }
 td{
   text-align: center;
+}
+.registeBtn{
+  text-align: center;
+  margin-top: 10px;
 }

@@ -28,9 +28,13 @@
 .headerText {
   text-align: center;
   color: #fff;
-  padding-top: 15px;
+  padding-top: 10px;
   font-style: italic;
   letter-spacing: 5px;
+}
+
+.eduEmpHeader .headerText img {
+  width: 38px;
 }
 
 .margin {
@@ -94,4 +98,11 @@ hr {
 }
 .padding10 {
   padding: 10px;
+}
+.padding-x-30{
+  padding: 10px 30px;
+}
+::ng-deep .dx-popup-wrapper > .dx-overlay-content {
+  height: auto !important;
+  top: 85px !important;
 }

@@ -48,4 +48,7 @@ export class RegistrationPreviewComponent implements OnInit {
   toggleBackBtn() {
     this.backBtnTooltip = !this.backBtnTooltip;
   }
+  registrationBtn(){
+    alert('Success');
+  }
 }

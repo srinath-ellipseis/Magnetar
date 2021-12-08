@@ -68,6 +68,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   editEmpData: any;
   backBtnTooltip: boolean = false;
   nextBtnTooltip: boolean = false;
+  fromDate: Date = new Date();
   constructor(private router: Router, private activeRoute: ActivatedRoute) {
     this.employeeData = JSON.parse(localStorage.getItem("employeeForm")!);
     this.educationData = JSON.parse(localStorage.getItem("educationForm")!);
@@ -335,6 +336,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     } else if (text === "formDate") {
       this.eduToMinDate = event.value;
       this.eduForm.formDate = event.value;
+      this.dateRange(event.value);
     } else if (text === "toDate") {
       this.eduFromMaxDate = event.value;
       this.eduForm.toDate = event.value;
@@ -349,6 +351,9 @@ export class RegistrationEduEmpComponent implements OnInit {
     } else if (text === "zipcode") {
       this.eduForm.zipcode = event.value;
     }
+  }
+  dateRange(date: any) {
+    this.fromDate = new Date(date.setFullYear(date.getFullYear() + 4));
   }
   closeEduForm() {
     this.eduFormVisible = false;

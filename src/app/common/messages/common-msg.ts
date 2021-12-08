@@ -33,5 +33,6 @@ export const COMMON_MSG = {
   'gpaRequired':'GPA is required',
   'companyNameRequired':'Company Name is required',
   'descriptionRequired':'Description is required',
-  'strongPassword':'Please choose a strong password'
+  'strongPassword':'Please choose a strong password',
+  'dateRange': 'Please enter correct Date',
 }
