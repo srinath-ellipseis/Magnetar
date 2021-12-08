@@ -18,6 +18,18 @@
   padding: 0px;
 }
 
+.headerText {
+  text-align: center;
+  color: #fff;
+  padding-top: 10px;
+  font-style: italic;
+  letter-spacing: 5px;
+}
+
+.detForm .headerText img {
+  width: 38px;
+}
+
 .padding-b {
   padding-bottom: 20px;
 }
@@ -26,14 +38,6 @@
   height: 60px;
   background-color: #14b1bb;
   border-radius: 6px 6px 0 0;
-}
-
-.headerText {
-  text-align: center;
-  color: #fff;
-  padding-top: 15px;
-  font-style: italic;
-  letter-spacing: 5px;
 }
 
 .margin {

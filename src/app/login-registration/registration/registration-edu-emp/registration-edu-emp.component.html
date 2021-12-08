@@ -33,7 +33,7 @@
         </dx-tooltip>
       </div>
       <div class="col-md-8 headerText">
-        <h3>Education & Employee</h3>
+        <img src="assets/images/magnetar.png" />
       </div>
       <div class="col-md-2 padding-t-10 textEnd">
         <dx-button
@@ -42,6 +42,7 @@
           id="nextIcon"
           (mouseenter)="toggleNextBtn()"
           (mouseleave)="toggleNextBtn()"
+          [disabled]="educationData.length > 0 ? false : true"
         >
         </dx-button>
         <dx-tooltip
@@ -196,7 +197,7 @@
                     <div class="dx-field">
                       <div class="dx-field-value width100">
                         <dx-text-box
-                          placeholder="Enter Major"
+                          placeholder="Enter Specialization"
                           valueChangeEvent="keyup"
                           [value]="eduCurrentData.major"
                           [disabled]="eduFormDisable"
@@ -245,14 +246,13 @@
                     <div class="dx-field">
                       <div class="dx-field-value width100">
                         <dx-date-box
-                          placeholder="DD/MM/YYY"
+                          placeholder="Start Date"
                           [value]="eduCurrentData.formDate"
                           invalidDateMessage="The date must have the following format: MM/dd/yyyy"
                           valueChangeEvent="keyup"
                           autocomplete="off"
                           [disabled]="eduFormDisable"
                           (onValueChanged)="eduValueChanged($event, 'formDate')"
-                          [max]="eduFromMaxDate"
                         >
                           <dx-validator>
                             <dxi-validation-rule
@@ -269,19 +269,24 @@
                     <div class="dx-field">
                       <div class="dx-field-value width100">
                         <dx-date-box
-                          placeholder="DD/MM/YYY"
+                          placeholder="End Date"
                           [value]="eduCurrentData.toDate"
                           [disabled]="eduFormDisable"
                           invalidDateMessage="The date must have the following format: MM/dd/yyyy"
                           valueChangeEvent="keyup"
                           autocomplete="off"
-                          [min]="eduToMinDate"
                           (onValueChanged)="eduValueChanged($event, 'toDate')"
                         >
                           <dx-validator>
                             <dxi-validation-rule
                               type="required"
                               [message]="COMMON_MSG.toDateRequired"
+                            >
+                            </dxi-validation-rule>
+                            <dxi-validation-rule
+                              type="range"
+                              [min]="fromDate"
+                              [message]="COMMON_MSG.dob"
                             >
                             </dxi-validation-rule>
                           </dx-validator>
@@ -386,10 +391,10 @@
                       <div class="dx-field-value width100">
                         <dx-text-box
                           placeholder="Enter Zipcode"
-                          mask="00000"
                           valueChangeEvent="keyup"
                           [disabled]="eduFormDisable"
                           [value]="eduCurrentData.zipcode"
+                          [maxLength]="5"
                           (onValueChanged)="eduValueChanged($event, 'zipcode')"
                           autocomplete="off"
                         >
@@ -401,7 +406,7 @@
                             </dxi-validation-rule>
                             <dxi-validation-rule
                               type="pattern"
-                              pattern="[1-9][0-9]{3}\s?"
+                              pattern="^(?!0+$)\d{5,}$"
                               [message]="COMMON_MSG.zipcode"
                             >
                             </dxi-validation-rule>
@@ -486,7 +491,7 @@
                 <div class="row margin-b-10">
                   <div class="dx-field-value width100">
                     <dx-text-box
-                      placeholder="Enter Description"
+                      placeholder="Enter Designation"
                       valueChangeEvent="keyup"
                       [value]="empCurrentData.description"
                       [disabled]="empFormDisable"
@@ -508,7 +513,7 @@
                     <div class="dx-field">
                       <div class="dx-field-value width100">
                         <dx-date-box
-                          placeholder="DD/MM/YYY"
+                          placeholder="Start Date"
                           [value]="empCurrentData.formDate"
                           [disabled]="empFormDisable"
                           invalidDateMessage="The date must have the following format: MM/dd/yyyy"
@@ -532,7 +537,7 @@
                     <div class="dx-field">
                       <div class="dx-field-value width100">
                         <dx-date-box
-                          placeholder="DD/MM/YYY"
+                          placeholder="End Date"
                           [value]="empCurrentData.toDate"
                           [disabled]="empFormDisable"
                           invalidDateMessage="The date must have the following format: MM/dd/yyyy"
@@ -630,10 +635,10 @@
                       <div class="dx-field-value width100">
                         <dx-text-box
                           placeholder="Enter Zipcode"
-                          mask="00000"
                           valueChangeEvent="keyup"
                           [disabled]="empFormDisable"
                           [value]="empCurrentData.zipcode"
+                          [maxLength]="5"
                           (onValueChanged)="empValueChanged($event, 'zipcode')"
                           autocomplete="off"
                         >
@@ -645,7 +650,7 @@
                             </dxi-validation-rule>
                             <dxi-validation-rule
                               type="pattern"
-                              pattern="[1-9][0-9]{3}\s?"
+                              pattern="^(?!0+$)\d{5,}$"
                               [message]="COMMON_MSG.zipcode"
                             >
                             </dxi-validation-rule>
@@ -679,8 +684,7 @@
 
   <div class="container">
     <dx-popup
-      [width]="300"
-      [height]="125"
+      [width]="400"
       [showTitle]="false"
       [dragEnabled]="false"
       [closeOnOutsideClick]="true"
@@ -689,9 +693,8 @@
       [(visible)]="eduDeletePopup"
       [shading]="true"
       shadingColor="rgba(0, 0, 0, 0.2)"
-      class="padding5"
     >
-      <div *dxTemplate="let data of 'content'" class="padding10">
+      <div *dxTemplate="let data of 'content'" class="padding-x-30">
         <div class="row">
           <p>
             Are sure you want delete this <b>{{ eduCurrentDelete.levelEdu }}</b>
@@ -701,12 +704,14 @@
           <div class="col-md-6">
             <dx-button
               text="Cancel"
+              type="default"
               (onClick)="cancelEduDeletePopup()"
             ></dx-button>
           </div>
           <div class="col-md-6 textEnd">
             <dx-button
               text="Ok"
+              type="success"
               (onClick)="deleteEduForm(eduCurrentDelete)"
             ></dx-button>
           </div>
@@ -717,8 +722,7 @@
 
   <div class="container">
     <dx-popup
-      [width]="300"
-      [height]="125"
+      [width]="400"
       [showTitle]="false"
       [dragEnabled]="false"
       [closeOnOutsideClick]="true"
@@ -727,9 +731,8 @@
       [(visible)]="empDeletePopup"
       [shading]="true"
       shadingColor="rgba(0, 0, 0, 0.2)"
-      class="padding5"
     >
-      <div *dxTemplate="let data of 'content'" class="padding10">
+      <div *dxTemplate="let data of 'content'" class="padding-x-30">
         <div class="row">
           <p>
             Are sure you want delete this
@@ -740,12 +743,14 @@
           <div class="col-md-6">
             <dx-button
               text="Cancel"
+              type="defualt"
               (onClick)="cancelEmpDeletePopup()"
             ></dx-button>
           </div>
           <div class="col-md-6 textEnd">
             <dx-button
               text="Ok"
+              type="success"
               (onClick)="deleteEmpForm(empCurrentDelete)"
             ></dx-button>
           </div>

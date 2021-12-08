@@ -21,3 +21,27 @@
 .textEnd{
   text-align: end;
 }
+.dx-icon-arrowleft::before {
+  color: #14b1bb;
+}
+.dx-icon-arrowright::before {
+  color: #14b1bb;
+}
+.dx-datebox-calendar .dx-dropdowneditor-icon::before {
+  color: #14b1bb;
+}
+.dx-dropdowneditor-icon::before {
+  color: #14b1bb;
+}
+.dx-icon-plus::before {
+  color: #14b1bb;
+}
+.fa-eye:before {
+  color: #14b1bb;
+}
+.dx-icon-edit::before {
+  color: #14b1bb;
+}
+.dx-icon-trash::before {
+  color: #14b1bb;
+}

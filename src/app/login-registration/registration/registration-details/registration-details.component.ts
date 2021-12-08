@@ -42,7 +42,7 @@ export class RegistrationDetailsComponent implements OnInit {
   };
   detailsForm: any;
   namePattern: any = /^[^0-9]+$/;
-  phonePattern: any = /^[6-9][0-9]{9}$/;
+  phonePattern: any = /^(?!0+$)\d{8,}$/;
   phoneRules: any = {
     X: /[02-9]/,
   };

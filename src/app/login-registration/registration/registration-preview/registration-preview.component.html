@@ -1,39 +1,21 @@
 <div class="container-fluid bgImg">
   <div class="row margin">
     <div class="row">
-      <dx-load-panel
-        #loadPanel
-        shadingColor="rgba(0,0,0,0.4)"
-        [(visible)]="loadingVisible"
-        [showIndicator]="true"
-        [showPane]="true"
-        [shading]="true"
-        [closeOnOutsideClick]="false"
-        (onShown)="onShown()"
-        (onHidden)="onHidden()"
-      >
+      <dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [(visible)]="loadingVisible" [showIndicator]="true"
+        [showPane]="true" [shading]="true" [closeOnOutsideClick]="false" (onShown)="onShown()" (onHidden)="onHidden()">
       </dx-load-panel>
     </div>
     <div class="row padding0 previewHeader">
       <div class="col-md-2 padding-t-10">
-        <dx-button
-          id="backIcon"
-          icon="arrowleft"
-          (onClick)="backPage()"
-          (mouseenter)="toggleBackBtn()"
-          (mouseleave)="toggleBackBtn()"
-        >
+        <dx-button id="backIcon" icon="arrowleft" (onClick)="backPage()" (mouseenter)="toggleBackBtn()"
+          (mouseleave)="toggleBackBtn()">
         </dx-button>
-        <dx-tooltip
-          target="#backIcon"
-          [(visible)]="backBtnTooltip"
-          [closeOnOutsideClick]="false"
-        >
+        <dx-tooltip target="#backIcon" [(visible)]="backBtnTooltip" [closeOnOutsideClick]="false">
           <div *dxTemplate="let data = data; of: 'content'">Back Button</div>
         </dx-tooltip>
       </div>
       <div class="col-md-8 headerText">
-        <h3>Pre-view</h3>
+        <img src="assets/images/magnetar.png" />
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -48,18 +30,11 @@
                 </a>
               </div>
               <div class="col-md-1">
-                <dx-button
-                  icon="edit"
-                  (onClick)="goToDetailsPage()"
-                ></dx-button>
+                <dx-button icon="edit" (onClick)="goToDetailsPage()"></dx-button>
               </div>
             </div>
           </div>
-          <div
-            id="collapseDetails"
-            class="collapse show"
-            data-bs-parent="#mainAccordion"
-          >
+          <div id="collapseDetails" class="collapse show" data-bs-parent="#mainAccordion">
             <div class="card-body">
               <table class="table table-striped table-bordered">
                 <tbody>
@@ -116,11 +91,7 @@
           <div class="card-header textCenter">
             <div class="row">
               <div class="col-md-11 padding-t-5">
-                <a
-                  class="collapsed"
-                  data-bs-toggle="collapse"
-                  href="#collapseEducation"
-                >
+                <a class="collapsed" data-bs-toggle="collapse" href="#collapseEducation">
                   <h4>Education Details</h4>
                 </a>
               </div>
@@ -129,11 +100,7 @@
               </div>
             </div>
           </div>
-          <div
-            id="collapseEducation"
-            class="collapse"
-            data-bs-parent="#mainAccordion"
-          >
+          <div id="collapseEducation" class="collapse" data-bs-parent="#mainAccordion">
             <div class="card-body">
               <div id="EducationAccordion">
                 <div class="row noDataText" *ngIf="!educationData">
@@ -143,28 +110,18 @@
                   <div class="card-header textCenter">
                     <div class="row">
                       <div class="col-md-11 padding-t-5">
-                        <a
-                          data-bs-toggle="collapse"
-                          href="#tab_{{ edu.levelEdu }}"
-                        >
+                        <a data-bs-toggle="collapse" href="#tab_{{ edu.levelEdu }}">
                           <h5>
                             {{ edu.levelEdu }}
                           </h5>
                         </a>
                       </div>
                       <div class="col-md-1">
-                        <dx-button
-                          icon="edit"
-                          (onClick)="editEduForm(edu)"
-                        ></dx-button>
+                        <dx-button icon="edit" (onClick)="editEduForm(edu)"></dx-button>
                       </div>
                     </div>
                   </div>
-                  <div
-                    id="tab_{{ edu.levelEdu }}"
-                    class="collapse"
-                    data-bs-parent="#EducationAccordion"
-                  >
+                  <div id="tab_{{ edu.levelEdu }}" class="collapse" data-bs-parent="#EducationAccordion">
                     <div class="card-body">
                       <table class="table table-striped table-bordered">
                         <tbody>
@@ -217,15 +174,11 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <div class="card" *ngIf="employeeData.length > 0">
           <div class="card-header textCenter">
             <div class="row">
               <div class="col-md-11 padding-t-5">
-                <a
-                  class="collapsed"
-                  data-bs-toggle="collapse"
-                  href="#collapseEmployee"
-                >
+                <a class="collapsed" data-bs-toggle="collapse" href="#collapseEmployee">
                   <h4>Employee Details</h4>
                 </a>
               </div>
@@ -234,42 +187,25 @@
               </div>
             </div>
           </div>
-          <div
-            id="collapseEmployee"
-            class="collapse"
-            data-bs-parent="#mainAccordion"
-          >
+          <div id="collapseEmployee" class="collapse" data-bs-parent="#mainAccordion">
             <div class="card-body">
               <div id="EmployeeAccordion">
-                <div class="row noDataText" *ngIf="!employeeData">
-                  <p>No data to display</p>
-                </div>
                 <div class="card" *ngFor="let emp of employeeData">
                   <div class="card-header textCenter">
                     <div class="row">
                       <div class="col-md-11 padding-t-5">
-                        <a
-                          data-bs-toggle="collapse"
-                          href="#tab_{{ emp.companyName }}"
-                        >
+                        <a data-bs-toggle="collapse" href="#tab_{{ emp.companyName }}">
                           <h5>
                             {{ emp.companyName }}
                           </h5>
                         </a>
                       </div>
                       <div class="col-md-1">
-                        <dx-button
-                          icon="edit"
-                          (onClick)="editEmpForm(emp)"
-                        ></dx-button>
+                        <dx-button icon="edit" (onClick)="editEmpForm(emp)"></dx-button>
                       </div>
                     </div>
                   </div>
-                  <div
-                    id="tab_{{ emp.companyName }}"
-                    class="collapse"
-                    data-bs-parent="#EmployeeAccordion"
-                  >
+                  <div id="tab_{{ emp.companyName }}" class="collapse" data-bs-parent="#EmployeeAccordion">
                     <div class="card-body">
                       <table class="table table-striped table-bordered">
                         <tbody>
@@ -314,6 +250,13 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 registeBtn">
+          <dx-button text="Register" type="success" (onClick)="registrationBtn()"></dx-button>
+        </div>
+        <div class="col-md-4"></div>
       </div>
     </div>
   </div>

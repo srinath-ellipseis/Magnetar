@@ -2,7 +2,7 @@
   <div class="row margin">
     <div class="row padding0">
       <div class="login-header">
-        Hello... <img src="assets/images/hello.png" />
+        <img src="assets/images/magnetar.png" />
       </div>
     </div>
     <div class="row login">
@@ -47,13 +47,13 @@
                       autocomplete="off"
                     >
                     <dxi-button
-                        *ngIf="passwordMode === 'password'"
+                        *ngIf="passwordMode === 'password' && this.loginData.Password"
                         name="today"
                         location="after"
                         [options]="passwordButton"
                       ></dxi-button>
                       <dxi-button
-                        *ngIf="passwordMode === 'text'"
+                        *ngIf="passwordMode === 'text' && this.loginData.Password"
                         name="today"
                         location="after"
                         [options]="hidePasswordButton"
