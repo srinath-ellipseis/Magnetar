@@ -99,10 +99,19 @@ hr {
 .padding10 {
   padding: 10px;
 }
-.padding-x-30{
+.padding-x-30 {
   padding: 10px 30px;
 }
 ::ng-deep .dx-popup-wrapper > .dx-overlay-content {
   height: auto !important;
   top: 85px !important;
+}
+.padding-l-30 {
+  padding-left: 30px;
+}
+.margin-xy-0 {
+  margin: 0px 0px 0px 20px;
+}
+::ng-deep .dx-scrollable {
+  height: 95%;
 }

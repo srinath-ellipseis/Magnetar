@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { COMMON_MSG } from "../../../common/messages/common-msg";
 import { Router } from "@angular/router";
-import * as dayjs from "dayjs";
+import { formatDate } from "@angular/common";
 
 @Component({
   selector: "app-registration-details",
@@ -16,7 +16,7 @@ export class RegistrationDetailsComponent implements OnInit {
   states: any = ["Texas", "North London", "Andhra Pradesh", "British Columbia"];
   cities: any = ["Houston", "Austin", "Chittoor", "Tirupathi", "Vancouver"];
 
-  maxDate: Date = new Date();
+  maxDate: any;
   passwordMode: string;
   passwordButton: any;
   hidePasswordBtn: any;
@@ -57,9 +57,6 @@ export class RegistrationDetailsComponent implements OnInit {
   constructor(private router: Router) {
     this.passwordMode = "password";
     this.changePasswordMode = "password";
-    this.maxDate = new Date(
-      this.maxDate.setFullYear(this.maxDate.getFullYear() - 25)
-    );
     this.passwordButton = {
       icon: "assets/images/eye-icon-slash.svg",
       type: "default",
@@ -90,6 +87,9 @@ export class RegistrationDetailsComponent implements OnInit {
           this.changePasswordMode === "text" ? "password" : "text";
       },
     };
+    let date = new Date();
+    let oldDate = new Date(date.setFullYear(date.getFullYear() - 25));
+    this.maxDate = formatDate(oldDate, "yyyy-MM-dd hh:mm:ssZZZZZ", "en_US");
   }
 
   ngOnInit(): void {

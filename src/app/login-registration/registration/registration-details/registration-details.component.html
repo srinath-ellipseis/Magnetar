@@ -241,6 +241,7 @@
                     valueChangeEvent="keyup"
                     autocomplete="off"
                     (onValueChanged)="valueChanged($event, 'dob')"
+                    [value]="detailsData.dob"
                   >
                     <dx-validator>
                       <dxi-validation-rule
