@@ -51,7 +51,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   educationData: any[] = [];
   employeeData: any[] = [];
   eduFromMaxDate: any;
-  eduToMinDate: any;
+  eduToMinDate = new Date();
   empFromMaxDate: any;
   empToMinDate: any;
   eduDeletePopup: boolean = false;
@@ -68,7 +68,8 @@ export class RegistrationEduEmpComponent implements OnInit {
   editEmpData: any;
   backBtnTooltip: boolean = false;
   nextBtnTooltip: boolean = false;
-  fromDate: Date = new Date();
+  fromDate = new Date();
+  dateRangeShow: boolean = false;
   constructor(private router: Router, private activeRoute: ActivatedRoute) {
     this.employeeData = JSON.parse(localStorage.getItem("employeeForm")!);
     this.educationData = JSON.parse(localStorage.getItem("educationForm")!);
@@ -267,9 +268,6 @@ export class RegistrationEduEmpComponent implements OnInit {
         this.eduForm.state = e.state;
         this.eduForm.city = e.city;
         this.eduForm.zipcode = e.zipcode;
-
-        this.eduToMinDate = e.formDate;
-        this.eduFromMaxDate = e.toDate;
       }
       if (this.eduCurrentData) {
         let yourNewData = [];
@@ -333,9 +331,10 @@ export class RegistrationEduEmpComponent implements OnInit {
       this.eduForm.major = event.value;
     } else if (text === "levelEdu") {
       this.eduForm.levelEdu = event.value;
+      this.dateRange(this.eduToMinDate);
     } else if (text === "formDate") {
       this.eduToMinDate = event.value;
-      this.eduForm.formDate = event.value;
+      this.dateRangeShow = true;
       this.dateRange(event.value);
     } else if (text === "toDate") {
       this.eduFromMaxDate = event.value;
@@ -353,7 +352,23 @@ export class RegistrationEduEmpComponent implements OnInit {
     }
   }
   dateRange(date: any) {
-    this.fromDate = new Date(date.setFullYear(date.getFullYear() + 4));
+    if (
+      this.eduForm.levelEdu === "Sophomore" ||
+      this.eduForm.levelEdu === "Bachelor"
+    ) {
+      this.fromDate = new Date(date.setFullYear(date.getFullYear() + 4));
+      let reSet: any = new Date(date.setFullYear(date.getFullYear() - 4));
+      this.eduForm.formDate = reSet;
+    } else if (
+      this.eduForm.levelEdu === "Graduate" ||
+      this.eduForm.levelEdu === "PHD"
+    ) {
+      this.fromDate = new Date(date.setFullYear(date.getFullYear() + 3));
+      let reSet: any = new Date(date.setFullYear(date.getFullYear() - 3));
+      this.eduForm.formDate = reSet;
+    } else {
+      this.eduForm.formDate = date;
+    }
   }
   closeEduForm() {
     this.eduFormVisible = false;
