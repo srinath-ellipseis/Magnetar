@@ -7,18 +7,22 @@ import {LoginRegistrationModule} from './login-registration/login-registration.m
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {DevExtremeModuleModule} from './common/modules/dev-extreme.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { CommonComponentModule } from './common/common.module';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     LoginRegistrationModule,
     ReactiveFormsModule,
     FormsModule,
     DevExtremeModuleModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CommonComponentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

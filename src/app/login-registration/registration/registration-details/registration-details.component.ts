@@ -17,15 +17,6 @@ export class RegistrationDetailsComponent implements OnInit {
   cities: any = ["Houston", "Austin", "Chittoor", "Tirupathi", "Vancouver"];
 
   maxDate: any;
-  passwordMode: string;
-  passwordButton: any;
-  hidePasswordBtn: any;
-  changePasswordBtn: any;
-  hideChangePasswordBtn: any;
-  changePasswordMode: string;
-  changePasswordButton: any;
-  hidePasswordButton: any;
-  hideChangePasswordButton: any;
   detailsData = {
     firstName: "",
     lastName: "",
@@ -49,44 +40,10 @@ export class RegistrationDetailsComponent implements OnInit {
   zipcodeRules: any = {
     X: /[0-9]+/,
   };
-  passwordPattern: any =
-    /^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/;
   loadingVisible: boolean = true;
   checked: boolean = false;
   nextBtnTooltip: boolean = false;
   constructor(private router: Router) {
-    this.passwordMode = "password";
-    this.changePasswordMode = "password";
-    this.passwordButton = {
-      icon: "assets/images/eye-icon-slash.svg",
-      type: "default",
-      onClick: () => {
-        this.passwordMode = this.passwordMode === "text" ? "password" : "text";
-      },
-    };
-    this.hidePasswordBtn = {
-      icon: "assets/images/eye-icon.svg",
-      type: "default",
-      onClick: () => {
-        this.passwordMode = this.passwordMode === "text" ? "password" : "text";
-      },
-    };
-    this.changePasswordBtn = {
-      icon: "assets/images/eye-icon-slash.svg",
-      type: "default",
-      onClick: () => {
-        this.changePasswordMode =
-          this.changePasswordMode === "text" ? "password" : "text";
-      },
-    };
-    this.hideChangePasswordBtn = {
-      icon: "assets/images/eye-icon.svg",
-      type: "default",
-      onClick: () => {
-        this.changePasswordMode =
-          this.changePasswordMode === "text" ? "password" : "text";
-      },
-    };
     let date = new Date();
     let oldDate = new Date(date.setFullYear(date.getFullYear() - 25));
     this.maxDate = formatDate(oldDate, "yyyy-MM-dd hh:mm:ssZZZZZ", "en_US");
@@ -111,17 +68,10 @@ export class RegistrationDetailsComponent implements OnInit {
     }
   }
 
-  passwordComparison = () => this.detailsData.password;
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
     }, 2000);
-  }
-
-  onHidden() {}
-
-  checkComparison() {
-    return true;
   }
 
   submitButtonOptions = {
@@ -142,11 +92,15 @@ export class RegistrationDetailsComponent implements OnInit {
     } else if (value === "email") {
       this.detailsData.email = event.value;
     } else if (value === "password") {
-      this.detailsData.password = event.value;
+      this.detailsData.password = event;
     } else if (value === "confirmPassword") {
-      this.detailsData.rePassword = event.value;
+      this.detailsData.rePassword = event;
     } else if (value === "dob") {
-      this.detailsData.dob = event.value;
+      this.detailsData.dob = formatDate(
+        event.value,
+        "yyyy-MM-dd hh:mm:ssZZZZZ",
+        "en_US"
+      );
     } else if (value === "genders") {
       this.detailsData.gender = event.value;
     } else if (value === "country") {

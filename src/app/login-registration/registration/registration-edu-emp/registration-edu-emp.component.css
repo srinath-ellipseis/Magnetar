@@ -34,7 +34,7 @@
 }
 
 .eduEmpHeader .headerText img {
-  width: 38px;
+  width: 30%;
 }
 
 .margin {
@@ -99,9 +99,7 @@ hr {
 .padding10 {
   padding: 10px;
 }
-.padding-x-30 {
-  padding: 10px 30px;
-}
+
 ::ng-deep .dx-popup-wrapper > .dx-overlay-content {
   height: auto !important;
   top: 85px !important;
@@ -114,4 +112,7 @@ hr {
 }
 ::ng-deep .dx-scrollable {
   height: 95%;
+}
+.padding-xy{
+  padding: 10px 30px 25px 20px;
 }
