@@ -7,6 +7,7 @@ import {DevExtremeModuleModule} from '../common/modules/dev-extreme.module';
 import { RegistrationDetailsComponent } from './registration/registration-details/registration-details.component';
 import { RegistrationEduEmpComponent } from './registration/registration-edu-emp/registration-edu-emp.component';
 import { RegistrationPreviewComponent } from './registration/registration-preview/registration-preview.component';
+import { CommonComponentModule } from '../common/common.module';
 
 
 
@@ -22,7 +23,9 @@ import { RegistrationPreviewComponent } from './registration/registration-previe
     LoginRegistrationRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DevExtremeModuleModule
+    DevExtremeModuleModule,
+    CommonComponentModule,
+
   ]
 })
 export class LoginRegistrationModule { }

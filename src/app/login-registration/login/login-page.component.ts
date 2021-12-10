@@ -13,26 +13,7 @@ export class LoginPageComponent implements OnInit {
     Email: "",
     Password: "",
   };
-  passwordMode: string;
-  passwordButton: any;
-  hidePasswordButton: any;
-  constructor(private router: Router) {
-    this.passwordMode = "password";
-    this.passwordButton = {
-      icon: "assets/images/eye-icon-slash.svg",
-      type: "default",
-      onClick: () => {
-        this.passwordMode = this.passwordMode === "text" ? "password" : "text";
-      },
-    };
-    this.hidePasswordButton = {
-      icon: "assets/images/eye-icon.svg",
-      type: "default",
-      onClick: () => {
-        this.passwordMode = this.passwordMode === "text" ? "password" : "text";
-      },
-    };
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
   onFormSubmit(e: any) {

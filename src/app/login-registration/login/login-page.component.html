@@ -2,7 +2,7 @@
   <div class="row margin">
     <div class="row padding0">
       <div class="login-header">
-        <img src="assets/images/magnetar.png" />
+        <img src="assets/images/magnetar_logo.png" />
       </div>
     </div>
     <div class="row login">
@@ -36,38 +36,10 @@
               </div>
             </div>
             <div class="row margin-b-15">
-              <div class="dx-field">
-                <div class="row dx-field-value width100">
-                  <div class="col-md-12 padding0">
-                    <dx-text-box
-                      [(mode)]="passwordMode"
-                      placeholder="Enter Password"
-                      valueChangeEvent="keyup"
-                      (onValueChanged)="valueChanged($event, 'password')"
-                      autocomplete="off"
-                    >
-                    <dxi-button
-                        *ngIf="passwordMode === 'password' && this.loginData.Password"
-                        name="today"
-                        location="after"
-                        [options]="passwordButton"
-                      ></dxi-button>
-                      <dxi-button
-                        *ngIf="passwordMode === 'text' && this.loginData.Password"
-                        name="today"
-                        location="after"
-                        [options]="hidePasswordButton"
-                      ></dxi-button>
-                      <dx-validator>
-                        <dxi-validation-rule
-                          type="required"
-                          [message]="COMMON_MSG.passwordRequired"
-                        ></dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
-                </div>
-              </div>
+              <app-input-password
+                [placeholder]="COMMON_MSG.passwordPlaceholder"
+                (value)="valueChanged($event, 'password')"
+              ></app-input-password>
             </div>
             <div class="row margin-b-15">
               <div class="col-md-4"></div>

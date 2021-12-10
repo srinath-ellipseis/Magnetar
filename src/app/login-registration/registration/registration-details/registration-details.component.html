@@ -10,7 +10,6 @@
         [shading]="true"
         [closeOnOutsideClick]="false"
         (onShown)="onShown()"
-        (onHidden)="onHidden()"
       >
       </dx-load-panel>
     </div>
@@ -20,7 +19,7 @@
         <div class="row padding0 formHeader">
           <div class="col-md-2"></div>
           <div class="col-md-8 headerText">
-            <img src="assets/images/magnetar.png" />
+            <img src="assets/images/magnetar_logo.png" />
           </div>
           <div class="col-md-2 padding-t-10 textEnd">
             <dx-button
@@ -150,85 +149,21 @@
           </div>
           <div class="row margin-b-15">
             <div class="col-md-6">
-              <div class="dx-field">
-                <div class="row dx-field-value width100">
-                  <div class="col-md-12 padding0">
-                    <dx-text-box
-                      [(mode)]="passwordMode"
-                      [value]="detailsData.password"
-                      placeholder="Enter Password"
-                      valueChangeEvent="keyup"
-                      (onValueChanged)="valueChanged($event, 'password')"
-                      autocomplete="off"
-                    >
-                      <dxi-button
-                        *ngIf="passwordMode === 'password' && this.detailsData.password"
-                        name="today"
-                        location="after"
-                        [options]="passwordButton"
-                      ></dxi-button>
-                      <dxi-button
-                        *ngIf="passwordMode === 'text' && this.detailsData.password"
-                        name="today"
-                        location="after"
-                        [options]="hidePasswordBtn"
-                      ></dxi-button>
-                      <dx-validator>
-                        <dxi-validation-rule
-                          type="required"
-                          [message]="COMMON_MSG.passwordRequired"
-                        ></dxi-validation-rule>
-                        <dxi-validation-rule
-                          type="pattern"
-                          [pattern]="passwordPattern"
-                          [message]="COMMON_MSG.strongPassword"
-                        >
-                        </dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
-                </div>
-              </div>
+              <app-input-password
+                [placeholder]="COMMON_MSG.passwordPlaceholder"
+                (value)="valueChanged($event, 'password')"
+                [showPattern]="true"
+                [passwordValue]="detailsData.password"
+              ></app-input-password>
             </div>
             <div class="col-md-6">
-              <div class="dx-field">
-                <div class="row dx-field-value width100">
-                  <div class="col-md-12 padding0">
-                    <dx-text-box
-                      [(mode)]="changePasswordMode"
-                      placeholder="Enter Confirm Password"
-                      [value]="detailsData.rePassword"
-                      autocomplete="off"
-                      valueChangeEvent="keyup"
-                      (onValueChanged)="valueChanged($event, 'confirmPassword')"
-                    >
-                      <dxi-button
-                        *ngIf="changePasswordMode === 'password' && this.detailsData.rePassword"
-                        name="today"
-                        location="after"
-                        [options]="changePasswordBtn"
-                      ></dxi-button>
-                      <dxi-button
-                        *ngIf="changePasswordMode === 'text' && this.detailsData.rePassword"
-                        name="today"
-                        location="after"
-                        [options]="hideChangePasswordBtn"
-                      ></dxi-button>
-                      <dx-validator>
-                        <dxi-validation-rule
-                          type="required"
-                          [message]="COMMON_MSG.confirmPasswordRequired"
-                        ></dxi-validation-rule>
-                        <dxi-validation-rule
-                          type="compare"
-                          [comparisonTarget]="passwordComparison"
-                          [message]="COMMON_MSG.rePassword"
-                        ></dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
-                  </div>
-                </div>
-              </div>
+              <app-input-password
+                [placeholder]="COMMON_MSG.changePasswordPlaceholder"
+                (value)="valueChanged($event, 'confirmPassword')"
+                [passwordValue]="detailsData.rePassword"
+                [showCompare]="true"
+                [comparePassword]="detailsData.password"
+              ></app-input-password>
             </div>
           </div>
           <div class="row margin-b-15">

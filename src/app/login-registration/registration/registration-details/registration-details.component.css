@@ -27,7 +27,7 @@
 }
 
 .detForm .headerText img {
-  width: 38px;
+  width: 30%;
 }
 
 .padding-b {
@@ -66,12 +66,18 @@
 .padding-t-10 {
   padding-top: 10px;
 }
-::ng-deep .dx-button-mode-contained.dx-button-default {
+::ng-deep
+  .dx-texteditor.dx-editor-outlined
+  .dx-button-mode-contained.dx-button-default {
   background-color: unset;
 }
-::ng-deep .dx-button-mode-contained.dx-button-default.dx-state-hover {
+::ng-deep
+  .dx-texteditor.dx-editor-outlined
+  .dx-button-mode-contained.dx-button-default.dx-state-hover {
   background-color: unset;
 }
-::ng-deep .dx-button-mode-contained.dx-button-default.dx-state-focused {
+::ng-deep
+  .dx-texteditor.dx-editor-outlined
+  .dx-button-mode-contained.dx-button-default.dx-state-focused {
   background-color: unset;
 }
