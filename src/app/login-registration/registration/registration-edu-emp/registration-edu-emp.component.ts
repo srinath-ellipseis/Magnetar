@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { DropdownOptions } from "src/app/common/messages/drop-down-options";
 import { COMMON_MSG } from "../../../common/messages/common-msg";
 
 @Component({
@@ -9,18 +10,15 @@ import { COMMON_MSG } from "../../../common/messages/common-msg";
 })
 export class RegistrationEduEmpComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
-  countries: any = ["USA", "UK", "Canada", "India"];
-  states: any = ["Texas", "North London", "Andhra Pradesh", "British Columbia"];
-  cities: any = ["Houston", "Austin", "Chittoor", "Tirupathi", "Vancouver"];
-  levelEdu: any = [
-    { id: 1, name: "Sophomore", disabled: false },
-    { id: 2, name: "Bachelor", disabled: false },
-    { id: 3, name: "Graduate", disabled: false },
-    { id: 4, name: "PHD", disabled: false },
-  ];
+  countries: any = DropdownOptions.countries
+  states: any = DropdownOptions.states
+  cities: any = DropdownOptions.cities
+  levelEdu: any = DropdownOptions.levelEdu
+  gpaCodes: any = DropdownOptions.gpaCodes
   empForm = {
     companyName: "",
     description: "",
+    roles: "",
     toDate: "",
     formDate: "",
     country: "",
@@ -35,6 +33,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     toDate: "",
     formDate: "",
     gpa: "",
+    gpaCode:"",
     country: "",
     state: "",
     city: "",
@@ -70,6 +69,10 @@ export class RegistrationEduEmpComponent implements OnInit {
   nextBtnTooltip: boolean = false;
   fromDate = new Date();
   dateRangeShow: boolean = false;
+  gpaCodeLength: any;
+  gradePattern: any = /^[^0-9]+$/;
+  percentagePattern: any = /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/;
+  floatPattern: any = /^\d+\.\d{2}$/;
   constructor(private router: Router, private activeRoute: ActivatedRoute) {
     this.employeeData = JSON.parse(localStorage.getItem("employeeForm")!);
     this.educationData = JSON.parse(localStorage.getItem("educationForm")!);
@@ -78,6 +81,7 @@ export class RegistrationEduEmpComponent implements OnInit {
         this.empFormData.push({
           companyName: emp.companyName,
           description: emp.description,
+          roles: emp.roles,
           toDate: emp.toDate,
           formDate: emp.formDate,
           country: emp.country,
@@ -96,19 +100,16 @@ export class RegistrationEduEmpComponent implements OnInit {
           toDate: edu.toDate,
           formDate: edu.formDate,
           gpa: edu.gpa,
+          gpaCode:edu.gpaCode,
           country: edu.country,
           state: edu.state,
           city: edu.city,
           zipcode: edu.zipcode,
         });
-        if (edu.levelEdu === "Sophomore") {
+        if (edu.levelEdu === "Diploma") {
           this.levelEdu[0].disabled = true;
-        } else if (edu.levelEdu === "Bachelor") {
+        } else if (edu.levelEdu === "Bachelor Degree") {
           this.levelEdu[1].disabled = true;
-        } else if (edu.levelEdu === "Graduate") {
-          this.levelEdu[2].disabled = true;
-        } else if (edu.levelEdu === "PHD") {
-          this.levelEdu[3].disabled = true;
         }
       }
     }
@@ -146,6 +147,7 @@ export class RegistrationEduEmpComponent implements OnInit {
       if (this.empCurrentData) {
         this.empForm.companyName = this.empCurrentData.companyName;
         this.empForm.description = this.empCurrentData.description;
+        this.empForm.roles = this.empCurrentData.roles;
         this.empForm.formDate = this.empCurrentData.formDate;
         this.empForm.toDate = this.empCurrentData.toDate;
         this.empForm.country = this.empCurrentData.country;
@@ -170,6 +172,7 @@ export class RegistrationEduEmpComponent implements OnInit {
           this.empFormData.push({
             companyName: emp.companyName,
             description: emp.description,
+            roles: emp.roles,
             toDate: emp.toDate,
             formDate: emp.formDate,
             country: emp.country,
@@ -216,6 +219,8 @@ export class RegistrationEduEmpComponent implements OnInit {
       this.empForm.companyName = event.value;
     } else if (text === "description") {
       this.empForm.description = event.value;
+    } else if (text === "roles") {
+      this.empForm.roles = event.value;
     } else if (text === "formDate") {
       this.empToMinDate = event.value;
       this.empForm.formDate = event.value;
@@ -264,6 +269,7 @@ export class RegistrationEduEmpComponent implements OnInit {
         this.eduForm.formDate = e.formDate;
         this.eduForm.toDate = e.toDate;
         this.eduForm.gpa = e.gpa;
+        this.eduForm.gpaCode = e.gpaCode
         this.eduForm.country = e.country;
         this.eduForm.state = e.state;
         this.eduForm.city = e.city;
@@ -285,6 +291,7 @@ export class RegistrationEduEmpComponent implements OnInit {
             toDate: edu.toDate,
             formDate: edu.formDate,
             gpa: edu.gpa,
+            gpaCode: edu.gpaCode,
             country: edu.country,
             state: edu.state,
             city: edu.city,
@@ -341,6 +348,13 @@ export class RegistrationEduEmpComponent implements OnInit {
       this.eduForm.toDate = event.value;
     } else if (text === "gpa") {
       this.eduForm.gpa = event.value;
+    } else if (text === "gpaCode") {
+      this.eduForm.gpaCode = event.value;
+      if(this.eduForm.gpaCode === 'Float'){
+        this.gpaCodeLength = 5
+      }else{
+        this.gpaCodeLength = 3
+      }
     } else if (text === "country") {
       this.eduForm.country = event.value;
     } else if (text === "state") {
@@ -352,19 +366,17 @@ export class RegistrationEduEmpComponent implements OnInit {
     }
   }
   dateRange(date: any) {
-    if (
-      this.eduForm.levelEdu === "Sophomore" ||
-      this.eduForm.levelEdu === "Bachelor"
-    ) {
-      this.fromDate = new Date(date.setFullYear(date.getFullYear() + 4));
-      let reSet: any = new Date(date.setFullYear(date.getFullYear() - 4));
+    if (this.eduForm.levelEdu === "Diploma") {
+      this.fromDate = new Date(date.setFullYear(date.getFullYear() + 2));
+      let reSet: any = new Date(date.setFullYear(date.getFullYear() - 2));
       this.eduForm.formDate = reSet;
-    } else if (
-      this.eduForm.levelEdu === "Graduate" ||
-      this.eduForm.levelEdu === "PHD"
-    ) {
+    } else if (this.eduForm.levelEdu === "Bachelor Degree") {
       this.fromDate = new Date(date.setFullYear(date.getFullYear() + 3));
       let reSet: any = new Date(date.setFullYear(date.getFullYear() - 3));
+      this.eduForm.formDate = reSet;
+    } else if (this.eduForm.levelEdu === "Masters") {
+      this.fromDate = new Date(date.setFullYear(date.getFullYear() + 1));
+      let reSet: any = new Date(date.setFullYear(date.getFullYear() - 1));
       this.eduForm.formDate = reSet;
     } else {
       this.eduForm.formDate = date;

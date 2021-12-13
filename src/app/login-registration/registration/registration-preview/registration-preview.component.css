@@ -13,7 +13,7 @@
 .previewForm {
   height: auto;
   background: rgba(255, 255, 255, 0.5);
-  color: #fff;
+  color: #000;
   border-radius: 0px 0px 6px 6px;
   padding: 15px 0px;
 }
@@ -67,4 +67,8 @@ td{
 .registeBtn{
   text-align: center;
   margin-top: 10px;
+}
+label{
+  font-size: 18px;
+  margin: 10px;
 }
