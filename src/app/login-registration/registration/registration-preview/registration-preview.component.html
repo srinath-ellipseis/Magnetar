@@ -26,7 +26,7 @@
             <div class="row">
               <div class="col-md-11 padding-t-5">
                 <a data-bs-toggle="collapse" href="#collapseDetails">
-                  <h4>Details Data</h4>
+                  <h4>Personal Details</h4>
                 </a>
               </div>
               <div class="col-md-1">
@@ -36,7 +36,33 @@
           </div>
           <div id="collapseDetails" class="collapse show" data-bs-parent="#mainAccordion">
             <div class="card-body">
-              <table class="table table-striped table-bordered">
+              <div class="row">
+                <div class="col-md-4">
+                  <label>First Name :</label><br>
+                  <label>Last Name :</label><br>
+                  <label>Email :</label><br>
+                  <label>Mobile Number :</label><br>
+                  <label>Date of Birth :</label><br>
+                  <label>Gender :</label><br>
+                  <label>Country :</label><br>
+                  <label>State :</label><br>
+                  <label>City :</label><br>
+                  <label>zipcode :</label>
+                </div>
+                <div class="col-md-8">
+                  <label>{{ detailsData.firstName }}</label><br>
+                  <label>{{ detailsData.lastName }}</label><br>
+                  <label>{{ detailsData.email }}</label><br>
+                  <label>{{ detailsData.mobileNumber }}</label><br>
+                  <label>{{ detailsData.dob | date }}</label><br>
+                  <label>{{ detailsData.gender }}</label><br>
+                  <label>{{ detailsData.country }}</label><br>
+                  <label>{{ detailsData.state }}</label><br>
+                  <label>{{ detailsData.city }}</label><br>
+                  <label>{{ detailsData.zipcode }}</label>
+                </div>
+              </div>
+              <!-- <table class="table table-striped table-bordered">
                 <tbody>
                   <tr>
                     <td class="width48">First Name</td>
@@ -83,7 +109,7 @@
                     <td>{{ detailsData.zipcode }}</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
             </div>
           </div>
         </div>
@@ -216,6 +242,10 @@
                           <tr>
                             <td class="textCenter width48">Description</td>
                             <td>{{ emp.description }}</td>
+                          </tr>
+                          <tr>
+                            <td class="textCenter width48">Roles & Responsibilies</td>
+                            <td>{{ emp.roles }}</td>
                           </tr>
                           <tr>
                             <td class="textCenter width48">Form Date</td>

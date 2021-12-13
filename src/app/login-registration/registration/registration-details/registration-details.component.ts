@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { COMMON_MSG } from "../../../common/messages/common-msg";
 import { Router } from "@angular/router";
 import { formatDate } from "@angular/common";
+import { DropdownOptions } from "src/app/common/messages/drop-down-options";
 
 @Component({
   selector: "app-registration-details",
@@ -10,11 +11,11 @@ import { formatDate } from "@angular/common";
 })
 export class RegistrationDetailsComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
-  genders: any = ["Male", "Female", "Others"];
+  genders: any = DropdownOptions.genders;
   roles: any = ["Student", "Employee", "Client/Vendor"];
-  countries: any = ["USA", "UK", "Canada", "India"];
-  states: any = ["Texas", "North London", "Andhra Pradesh", "British Columbia"];
-  cities: any = ["Houston", "Austin", "Chittoor", "Tirupathi", "Vancouver"];
+  countries: any = DropdownOptions.countries;
+  states: any = DropdownOptions.states;
+  cities: any = DropdownOptions.cities;
 
   maxDate: any;
   detailsData = {
@@ -30,22 +31,16 @@ export class RegistrationDetailsComponent implements OnInit {
     city: "",
     zipcode: "",
     mobileNumber: "",
+    countryCode: "",
   };
   detailsForm: any;
   namePattern: any = /^[^0-9]+$/;
-  phonePattern: any = /^(?!0+$)\d{8,}$/;
-  phoneRules: any = {
-    X: /[02-9]/,
-  };
-  zipcodeRules: any = {
-    X: /[0-9]+/,
-  };
   loadingVisible: boolean = true;
   checked: boolean = false;
   nextBtnTooltip: boolean = false;
   constructor(private router: Router) {
     let date = new Date();
-    let oldDate = new Date(date.setFullYear(date.getFullYear() - 25));
+    let oldDate = new Date(date.setFullYear(date.getFullYear() - 18));
     this.maxDate = formatDate(oldDate, "yyyy-MM-dd hh:mm:ssZZZZZ", "en_US");
   }
 
@@ -64,6 +59,7 @@ export class RegistrationDetailsComponent implements OnInit {
       this.detailsData.city = this.detailsForm.city;
       this.detailsData.zipcode = this.detailsForm.zipcode;
       this.detailsData.mobileNumber = this.detailsForm.mobileNumber;
+      this.detailsData.countryCode = this.detailsForm.countryCode;
       this.checked = true;
     }
   }
@@ -112,7 +108,9 @@ export class RegistrationDetailsComponent implements OnInit {
     } else if (value === "zipcode") {
       this.detailsData.zipcode = event.value;
     } else if (value === "mobileNumber") {
-      this.detailsData.mobileNumber = event.value;
+      this.detailsData.mobileNumber = event;
+    } else if (value === "countryCode") {
+      this.detailsData.countryCode = event;
     }
   }
   toggleNextBtn() {

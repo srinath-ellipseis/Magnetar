@@ -42,7 +42,9 @@
           id="nextIcon"
           (mouseenter)="toggleNextBtn()"
           (mouseleave)="toggleNextBtn()"
-          [disabled]="educationData != null && educationData.length > 0 ? false : true"
+          [disabled]="
+            educationData != null && educationData.length > 0 ? false : true
+          "
         >
         </dx-button>
         <dx-tooltip
@@ -283,7 +285,8 @@
                               [message]="COMMON_MSG.toDateRequired"
                             >
                             </dxi-validation-rule>
-                            <dxi-validation-rule *ngIf="dateRangeShow"
+                            <dxi-validation-rule
+                              *ngIf="dateRangeShow"
                               type="range"
                               [min]="fromDate"
                               [message]="COMMON_MSG.dateRange"
@@ -296,22 +299,68 @@
                   </div>
                 </div>
                 <div class="row margin-b-10">
-                  <div class="dx-field-value width100">
-                    <dx-text-box
-                      placeholder="Enter GPA"
-                      valueChangeEvent="keyup"
-                      [value]="eduCurrentData.gpa"
-                      [disabled]="eduFormDisable"
-                      (onValueChanged)="eduValueChanged($event, 'gpa')"
-                      autocomplete="off"
-                    >
-                      <dx-validator>
-                        <dxi-validation-rule
-                          type="required"
-                          [message]="COMMON_MSG.gpaRequired"
-                        ></dxi-validation-rule>
-                      </dx-validator>
-                    </dx-text-box>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="gpaCodes"
+                          placeholder="Select GPA"
+                          [value]="eduCurrentData.gpaCode"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="eduValueChanged($event, 'gpaCode')"
+                          [searchEnabled]="true"
+
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="COMMON_MSG.gpaCodeRequired"
+                            ></dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-text-box
+                          placeholder="Enter GPA"
+                          valueChangeEvent="keyup"
+                          [value]="eduCurrentData.gpa"
+                          [disabled]="eduFormDisable"
+                          (onValueChanged)="eduValueChanged($event, 'gpa')"
+                          autocomplete="off"
+                          [maxLength]="gpaCodeLength"
+                          [disabled]="eduFormDisable"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="COMMON_MSG.gpaRequired"
+                            ></dxi-validation-rule>
+                            <dxi-validation-rule *ngIf="eduForm.gpaCode === 'Grade'"
+                              type="pattern"
+                              [pattern]="gradePattern"
+                              [message]="COMMON_MSG.grade"
+                            >
+                            </dxi-validation-rule>
+                            <dxi-validation-rule *ngIf="eduForm.gpaCode === 'Percentage'"
+                              type="pattern"
+                              [pattern]="percentagePattern"
+                              [message]="COMMON_MSG.percentage"
+                            >
+                            </dxi-validation-rule>
+                            <dxi-validation-rule *ngIf="eduForm.gpaCode === 'Float'"
+                              type="pattern"
+                              [pattern]="floatPattern"
+                              [message]="COMMON_MSG.float"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-text-box>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="row margin-b-10">
@@ -394,7 +443,7 @@
                           valueChangeEvent="keyup"
                           [disabled]="eduFormDisable"
                           [value]="eduCurrentData.zipcode"
-                          [maxLength]="5"
+                          [maxLength]="6"
                           (onValueChanged)="eduValueChanged($event, 'zipcode')"
                           autocomplete="off"
                         >
@@ -461,7 +510,7 @@
           </div>
         </div>
         <hr />
-        <dx-scroll-view width="100%"class="margin-b-10">
+        <dx-scroll-view width="100%" class="margin-b-10">
           <div class="row">
             <form action="your-action" (submit)="empFormSubmit($event)">
               <div class="dx-fieldset margin-xy-0">
@@ -506,6 +555,26 @@
                         </dxi-validation-rule>
                       </dx-validator>
                     </dx-text-box>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-area
+                      placeholder="Enter Roles and Responsibilies"
+                      [height]="90"
+                      [value]="empCurrentData.roles"
+                      valueChangeEvent="keyup"
+                      (onValueChanged)="empValueChanged($event, 'roles')"
+                      [disabled]="empFormDisable"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="COMMON_MSG.rolesRequired"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-area>
                   </div>
                 </div>
                 <div class="row margin-b-10">
@@ -638,7 +707,7 @@
                           valueChangeEvent="keyup"
                           [disabled]="empFormDisable"
                           [value]="empCurrentData.zipcode"
-                          [maxLength]="5"
+                          [maxLength]="6"
                           (onValueChanged)="empValueChanged($event, 'zipcode')"
                           autocomplete="off"
                         >

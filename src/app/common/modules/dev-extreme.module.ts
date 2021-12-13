@@ -17,6 +17,7 @@ import {
   DxSliderModule,
   DxTagBoxModule,
   DxTemplateModule,
+  DxTextAreaModule,
   DxTextBoxModule,
   DxTooltipModule,
   DxValidationSummaryModule,
@@ -47,6 +48,7 @@ import {
     DxNumberBoxModule,
     DxTooltipModule,
     DxDataGridModule,
+    DxTextAreaModule
   ],
   exports: [
     DxButtonModule,
@@ -70,6 +72,7 @@ import {
     DxNumberBoxModule,
     DxTooltipModule,
     DxDataGridModule,
+    DxTextAreaModule
   ],
   providers: [],
   bootstrap: [],

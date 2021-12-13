@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="dx-field">
+      <div class="dx-field-value width100">
+        <dx-select-box
+          [dataSource]="countryCodes"
+          placeholder="Select Code"
+          [value]="countryCode"
+          valueChangeEvent="keyup"
+          (onValueChanged)="codeValueChange($event)"
+          [searchEnabled]="true"
+        >
+          <dx-validator>
+            <dxi-validation-rule
+              type="required"
+              [message]="COMMON_MSG.countryCodeRequired"
+            ></dxi-validation-rule>
+          </dx-validator>
+        </dx-select-box>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9 padding-l-0">
+    <div class="dx-field">
+      <div class="dx-field-value width100">
+        <dx-text-box
+          placeholder="Enter Mobile Number"
+          [value]="mobileNumberValue"
+          valueChangeEvent="keyup"
+          [maxLength]="10"
+          (onValueChanged)="valueChanged($event)"
+          autocomplete="off"
+        >
+          <dx-validator>
+            <dxi-validation-rule
+              type="required"
+              [message]="COMMON_MSG.mobileNumberRequired"
+            >
+            </dxi-validation-rule>
+            <dxi-validation-rule
+              type="pattern"
+              [pattern]="phonePattern"
+              [message]="COMMON_MSG.mobileNumber"
+            >
+            </dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+  </div>
+</div>
