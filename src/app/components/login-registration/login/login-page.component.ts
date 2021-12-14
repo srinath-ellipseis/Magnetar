@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { COMMON_MSG } from "../../common/messages/common-msg";
+import { COMMON_MSG } from "src/app/common/messages/common-msg";
 
 @Component({
   selector: "app-login-page",

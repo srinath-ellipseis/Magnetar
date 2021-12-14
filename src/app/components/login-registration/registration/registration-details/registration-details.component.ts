@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { COMMON_MSG } from "../../../common/messages/common-msg";
 import { Router } from "@angular/router";
 import { formatDate } from "@angular/common";
 import { DropdownOptions } from "src/app/common/messages/drop-down-options";
+import { COMMON_MSG } from "src/app/common/messages/common-msg";
 
 @Component({
   selector: "app-registration-details",

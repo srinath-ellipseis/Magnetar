@@ -10,8 +10,10 @@ import {
   DxListModule,
   DxLoadIndicatorModule,
   DxLoadPanelModule,
+  DxMenuModule,
   DxNumberBoxModule,
   DxPopupModule,
+  DxResponsiveBoxModule,
   DxScrollViewModule,
   DxSelectBoxModule,
   DxSliderModule,
@@ -48,7 +50,8 @@ import {
     DxNumberBoxModule,
     DxTooltipModule,
     DxDataGridModule,
-    DxTextAreaModule
+    DxTextAreaModule,
+    DxResponsiveBoxModule
   ],
   exports: [
     DxButtonModule,
@@ -72,7 +75,9 @@ import {
     DxNumberBoxModule,
     DxTooltipModule,
     DxDataGridModule,
-    DxTextAreaModule
+    DxTextAreaModule,
+    DxResponsiveBoxModule,
+    DxMenuModule
   ],
   providers: [],
   bootstrap: [],

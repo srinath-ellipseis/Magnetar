@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { LoginPageComponent } from './login/login-page.component';
 import {LoginRegistrationRoutingModule} from './login-registration.routing';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DevExtremeModuleModule} from '../common/modules/dev-extreme.module';
 import { RegistrationDetailsComponent } from './registration/registration-details/registration-details.component';
 import { RegistrationEduEmpComponent } from './registration/registration-edu-emp/registration-edu-emp.component';
 import { RegistrationPreviewComponent } from './registration/registration-preview/registration-preview.component';
-import { CommonComponentModule } from '../common/common.module';
+import { DevExtremeModuleModule } from 'src/app/common/modules/dev-extreme.module';
+import { CommonComponentModule } from 'src/app/common/common.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 
@@ -20,6 +21,7 @@ import { CommonComponentModule } from '../common/common.module';
   ],
   imports: [
     CommonModule,
+    BrowserModule,
     LoginRegistrationRoutingModule,
     FormsModule,
     ReactiveFormsModule,

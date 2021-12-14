@@ -15,10 +15,10 @@
 .width100 {
   width: 100% !important;
 }
-.floatRight{
+.floatRight {
   float: right;
 }
-.textEnd{
+.textEnd {
   text-align: end;
 }
 .dx-icon-arrowleft::before {
@@ -44,4 +44,15 @@
 }
 .dx-icon-trash::before {
   color: #14b1bb;
+}
+h3,
+h5,
+.main-heading {
+  color: #14b1bb;
+  font-size: 30px;
+  text-align: center;
+  line-height: 70px;
+  font-weight: bold;
+  display: block;
+  white-space: nowrap;
 }
