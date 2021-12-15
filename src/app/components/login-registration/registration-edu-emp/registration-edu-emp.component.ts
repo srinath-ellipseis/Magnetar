@@ -4,17 +4,17 @@ import { COMMON_MSG } from "src/app/common/messages/common-msg";
 import { DropdownOptions } from "src/app/common/messages/drop-down-options";
 
 @Component({
-  selector: "app-registration-edu",
+  selector: "app-registration-edu-emp",
   templateUrl: "./registration-edu-emp.component.html",
   styleUrls: ["./registration-edu-emp.component.css"],
 })
 export class RegistrationEduEmpComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
-  countries: any = DropdownOptions.countries
-  states: any = DropdownOptions.states
-  cities: any = DropdownOptions.cities
-  levelEdu: any = DropdownOptions.levelEdu
-  gpaCodes: any = DropdownOptions.gpaCodes
+  countries: any = DropdownOptions.countries;
+  states: any = DropdownOptions.states;
+  cities: any = DropdownOptions.cities;
+  levelEdu: any = DropdownOptions.levelEdu;
+  gpaCodes: any = DropdownOptions.gpaCodes;
   empForm = {
     companyName: "",
     description: "",
@@ -33,7 +33,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     toDate: "",
     formDate: "",
     gpa: "",
-    gpaCode:"",
+    gpaCode: "",
     country: "",
     state: "",
     city: "",
@@ -71,9 +71,13 @@ export class RegistrationEduEmpComponent implements OnInit {
   dateRangeShow: boolean = false;
   gpaCodeLength: any;
   gradePattern: any = /^[^0-9]+$/;
-  percentagePattern: any = /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/;
+  percentagePattern: any =
+    /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/;
   floatPattern: any = /^\d+\.\d{2}$/;
-  constructor(private router: Router, private activeRoute: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private activeRoute: ActivatedRoute
+    ) {
     this.employeeData = JSON.parse(localStorage.getItem("employeeForm")!);
     this.educationData = JSON.parse(localStorage.getItem("educationForm")!);
     if (this.employeeData) {
@@ -100,7 +104,7 @@ export class RegistrationEduEmpComponent implements OnInit {
           toDate: edu.toDate,
           formDate: edu.formDate,
           gpa: edu.gpa,
-          gpaCode:edu.gpaCode,
+          gpaCode: edu.gpaCode,
           country: edu.country,
           state: edu.state,
           city: edu.city,
@@ -269,7 +273,7 @@ export class RegistrationEduEmpComponent implements OnInit {
         this.eduForm.formDate = e.formDate;
         this.eduForm.toDate = e.toDate;
         this.eduForm.gpa = e.gpa;
-        this.eduForm.gpaCode = e.gpaCode
+        this.eduForm.gpaCode = e.gpaCode;
         this.eduForm.country = e.country;
         this.eduForm.state = e.state;
         this.eduForm.city = e.city;
@@ -350,10 +354,10 @@ export class RegistrationEduEmpComponent implements OnInit {
       this.eduForm.gpa = event.value;
     } else if (text === "gpaCode") {
       this.eduForm.gpaCode = event.value;
-      if(this.eduForm.gpaCode === 'Float'){
-        this.gpaCodeLength = 5
-      }else{
-        this.gpaCodeLength = 3
+      if (this.eduForm.gpaCode === "Float") {
+        this.gpaCodeLength = 5;
+      } else {
+        this.gpaCodeLength = 3;
       }
     } else if (text === "country") {
       this.eduForm.country = event.value;
@@ -397,11 +401,11 @@ export class RegistrationEduEmpComponent implements OnInit {
   }
 
   backPage() {
-    this.router.navigate(["/registration-details"]);
+    this.router.navigate(["/login/registration-details"]);
   }
 
   nextPage() {
-    this.router.navigate(["/registration-preview"]);
+    this.router.navigate(["/login/registration-preview"]);
   }
 
   toggleBackBtn() {

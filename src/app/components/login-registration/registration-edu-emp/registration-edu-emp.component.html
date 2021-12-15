@@ -309,7 +309,6 @@
                           valueChangeEvent="keyup"
                           (onValueChanged)="eduValueChanged($event, 'gpaCode')"
                           [searchEnabled]="true"
-
                         >
                           <dx-validator>
                             <dxi-validation-rule
@@ -339,19 +338,22 @@
                               type="required"
                               [message]="COMMON_MSG.gpaRequired"
                             ></dxi-validation-rule>
-                            <dxi-validation-rule *ngIf="eduForm.gpaCode === 'Grade'"
+                            <dxi-validation-rule
+                              *ngIf="eduForm.gpaCode === 'Grade'"
                               type="pattern"
                               [pattern]="gradePattern"
                               [message]="COMMON_MSG.grade"
                             >
                             </dxi-validation-rule>
-                            <dxi-validation-rule *ngIf="eduForm.gpaCode === 'Percentage'"
+                            <dxi-validation-rule
+                              *ngIf="eduForm.gpaCode === 'Percentage'"
                               type="pattern"
                               [pattern]="percentagePattern"
                               [message]="COMMON_MSG.percentage"
                             >
                             </dxi-validation-rule>
-                            <dxi-validation-rule *ngIf="eduForm.gpaCode === 'Float'"
+                            <dxi-validation-rule
+                              *ngIf="eduForm.gpaCode === 'Float'"
                               type="pattern"
                               [pattern]="floatPattern"
                               [message]="COMMON_MSG.float"

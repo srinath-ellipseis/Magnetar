@@ -53,22 +53,22 @@ a {
 .padding-t-10 {
   padding-top: 10px;
 }
-.width48{
+.width48 {
   width: 48%;
 }
-.noDataText{
+.noDataText {
   color: black;
   text-align: center;
   padding-right: 50px;
 }
-td{
+td {
   text-align: center;
 }
-.registeBtn{
+.registeBtn {
   text-align: center;
   margin-top: 10px;
 }
-label{
+label {
   font-size: 18px;
   margin: 10px;
 }

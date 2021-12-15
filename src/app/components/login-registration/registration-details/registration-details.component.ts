@@ -1,8 +1,8 @@
+import { formatDate } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { formatDate } from "@angular/common";
-import { DropdownOptions } from "src/app/common/messages/drop-down-options";
 import { COMMON_MSG } from "src/app/common/messages/common-msg";
+import { DropdownOptions } from "src/app/common/messages/drop-down-options";
 
 @Component({
   selector: "app-registration-details",
@@ -77,7 +77,7 @@ export class RegistrationDetailsComponent implements OnInit {
 
   onFormSubmit(e: any) {
     localStorage.setItem("detailsForm", JSON.stringify(this.detailsData));
-    this.router.navigate(["/registration-edu-emp"]);
+    this.router.navigate(["/login/registration-edu-emp"]);
   }
 
   valueChanged(event: any, value: string) {

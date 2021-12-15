@@ -28,7 +28,6 @@ import {
 @NgModule({
   declarations: [],
   imports: [
-    BrowserModule,
     DxButtonModule,
     DxTextBoxModule,
     DxFormModule,

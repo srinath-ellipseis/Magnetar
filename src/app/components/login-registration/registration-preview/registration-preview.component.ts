@@ -19,7 +19,7 @@ export class RegistrationPreviewComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  
+
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
@@ -29,10 +29,10 @@ export class RegistrationPreviewComponent implements OnInit {
   onHidden() {}
 
   goToDetailsPage() {
-    this.router.navigate(["/registration-details"]);
+    this.router.navigate(["/login/registration-details"]);
   }
   goToEduEmpPage() {
-    this.router.navigate(["/registration-edu-emp"]);
+    this.router.navigate(["/login/registration-edu-emp"]);
   }
   editEduForm(data: any) {
     localStorage.setItem("editEduData", JSON.stringify(data));
@@ -48,7 +48,7 @@ export class RegistrationPreviewComponent implements OnInit {
   toggleBackBtn() {
     this.backBtnTooltip = !this.backBtnTooltip;
   }
-  registrationBtn(){
-    alert('Success');
+  registrationBtn() {
+    alert("Success");
   }
 }
