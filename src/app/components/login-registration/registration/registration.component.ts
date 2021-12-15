@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor(
+    private router: Router
+    ) { }
+  
+    ngOnInit(): void {
+    }
+  
+    goToDetailPage(name: string) {
+      this.router.navigate(['login/registration-details', { key: name }])
+    }
 }

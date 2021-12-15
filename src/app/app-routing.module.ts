@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 
@@ -10,6 +11,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, pathMatch: 'full' },
+      { path: 'contact-us', component: ContactUsComponent},
       {
         path: 'login',
         loadChildren: () =>import('./components/login-registration/login-registration.module').then((m) => m.LoginRegistrationModule)
@@ -22,6 +24,14 @@ const routes: Routes = [
         path: 'industries',
         loadChildren: () =>import('./components/industries/industries.module').then((m) => m.IndustriesModule)
       },
+      {
+        path: 'applications',
+        loadChildren: () =>import('./components/applications/applications.module').then((m) => m.ApplicationsModule)
+      },
+      {
+        path: 'partners',
+        loadChildren: () =>import('./components/partners/partners.module').then((m) => m.PartnersModule)
+      }
     ]
   },
 ];
