@@ -1,6 +1,6 @@
 .main-nav {
   border-top: 3px solid #14b1bb;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   background-color: #fff;
   vertical-align: middle;
 }
@@ -74,4 +74,7 @@
 .navbar-light .navbar-toggler:focus,
 .navbar-light .navbar-toggler:hover {
   color: aqua;
+}
+img{
+  width: 65%;
 }

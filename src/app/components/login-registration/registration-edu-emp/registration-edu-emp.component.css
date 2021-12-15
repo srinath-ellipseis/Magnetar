@@ -5,9 +5,7 @@
   background-attachment: fixed;
   background-size: cover;
   padding: 10px;
-  position: fixed;
-  height: -webkit-fill-available;
-  overflow: overlay;
+  min-height: 445px;
 }
 
 .eduForm {

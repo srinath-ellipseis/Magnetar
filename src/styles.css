@@ -156,3 +156,16 @@ span::after {
   width: 50%;
   height: 50%;
 }
+.link-tex{
+  float:right;
+  color:#13B1BB;
+  text-decoration: underline;
+  padding-right:20px;
+}
+h1{
+  font-size:30px;
+  color:#00285D;
+  text-align:center;
+  font-weight:700;
+  margin-bottom:20px;
+}

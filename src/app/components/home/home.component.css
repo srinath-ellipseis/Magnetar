@@ -34,6 +34,13 @@
 header {
   padding: 0 15px;
 }
+h1{
+  font-size:30px;
+  color:#00285D;
+  text-align:center;
+  font-weight:700;
+  margin-bottom:20px;
+}
 .services h2 {
   line-height: 40px;
 }
