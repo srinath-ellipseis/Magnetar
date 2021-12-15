@@ -1,0 +1,318 @@
+<div class="container-fluid bgImg">
+  <div class="row margin">
+    <div class="row">
+      <dx-load-panel
+        #loadPanel
+        shadingColor="rgba(0,0,0,0.4)"
+        [(visible)]="loadingVisible"
+        [showIndicator]="true"
+        [showPane]="true"
+        [shading]="true"
+        [closeOnOutsideClick]="false"
+        (onShown)="onShown()"
+      >
+      </dx-load-panel>
+    </div>
+
+    <div class="row detForm">
+      <form action="your-action" (submit)="onFormSubmit($event)">
+        <div class="row padding0 formHeader">
+          <div class="col-md-2"></div>
+          <div class="col-md-8 headerText">
+            <img src="assets/images/magnetar_logo.png" />
+          </div>
+          <div class="col-md-2 padding-t-10 textEnd">
+            <dx-button
+              icon="arrowright"
+              [useSubmitBehavior]="true"
+              id="nextIcon"
+              (mouseenter)="toggleNextBtn()"
+              (mouseleave)="toggleNextBtn()"
+            >
+            </dx-button>
+            <dx-tooltip
+              target="#nextIcon"
+              [(visible)]="nextBtnTooltip"
+              [closeOnOutsideClick]="false"
+            >
+              <div *dxTemplate="let data = data; of: 'content'">
+                Next Button
+              </div>
+            </dx-tooltip>
+          </div>
+        </div>
+        <div class="row headerText">
+          <label>Personal Details</label>
+        </div>
+        <div class="dx-fieldset">
+          <dx-validation-summary id="summary"></dx-validation-summary>
+        </div>
+        <div class="dx-fieldset">
+          <div class="row margin-b-15">
+            <div class="col-md-6">
+              <div class="dx-field-value width100">
+                <dx-text-box
+                  placeholder="First Name"
+                  valueChangeEvent="keyup"
+                  [value]="detailsData.firstName"
+                  (onValueChanged)="valueChanged($event, 'firstName')"
+                  autocomplete="off"
+                >
+                  <dx-validator>
+                    <dxi-validation-rule
+                      type="required"
+                      [message]="COMMON_MSG.firstNameRequired"
+                    ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="pattern"
+                      [pattern]="namePattern"
+                      [message]="COMMON_MSG.firstName"
+                    ></dxi-validation-rule>
+                  </dx-validator>
+                </dx-text-box>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="dx-field-value width100">
+                <dx-text-box
+                  placeholder="Last Name"
+                  valueChangeEvent="keyup"
+                  [value]="detailsData.lastName"
+                  (onValueChanged)="valueChanged($event, 'lastName')"
+                  autocomplete="off"
+                >
+                  <dx-validator>
+                    <dxi-validation-rule
+                      type="required"
+                      [message]="COMMON_MSG.lastNameRequired"
+                    ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="pattern"
+                      [pattern]="namePattern"
+                      [message]="COMMON_MSG.lastName"
+                    ></dxi-validation-rule>
+                  </dx-validator>
+                </dx-text-box>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-b-15">
+            <div class="col-md-6">
+              <div class="dx-field">
+                <div class="dx-field-value width100">
+                  <dx-text-box
+                    placeholder="Enter Email"
+                    valueChangeEvent="keyup"
+                    [value]="detailsData.email"
+                    (onValueChanged)="valueChanged($event, 'email')"
+                    autocomplete="off"
+                  >
+                    <dx-validator>
+                      <dxi-validation-rule
+                        type="required"
+                        [message]="COMMON_MSG.emailRequired"
+                      ></dxi-validation-rule>
+                      <dxi-validation-rule
+                        type="email"
+                        [message]="COMMON_MSG.mail"
+                      ></dxi-validation-rule>
+                    </dx-validator>
+                  </dx-text-box>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <app-mobile-number
+                (codeValue)="valueChanged($event, 'countryCode')"
+                (changeValue)="valueChanged($event, 'mobileNumber')"
+                [mobileNumberValue]="detailsData.mobileNumber"
+                [countryCode]="detailsData.countryCode"
+              ></app-mobile-number>
+            </div>
+          </div>
+          <div class="row margin-b-15">
+            <div class="col-md-6">
+              <app-input-password
+                [placeholder]="COMMON_MSG.passwordPlaceholder"
+                (value)="valueChanged($event, 'password')"
+                [showPattern]="true"
+                [passwordValue]="detailsData.password"
+              ></app-input-password>
+            </div>
+            <div class="col-md-6">
+              <app-input-password
+                [placeholder]="COMMON_MSG.changePasswordPlaceholder"
+                (value)="valueChanged($event, 'confirmPassword')"
+                [passwordValue]="detailsData.rePassword"
+                [showCompare]="true"
+                [comparePassword]="detailsData.password"
+              ></app-input-password>
+            </div>
+          </div>
+          <div class="row margin-b-15">
+            <div class="col-md-6">
+              <div class="dx-field">
+                <div class="dx-field-value width100">
+                  <dx-date-box
+                    placeholder="Enter DOB"
+                    invalidDateMessage="The date must have the following format: MM/dd/yyyy"
+                    valueChangeEvent="keyup"
+                    autocomplete="off"
+                    (onValueChanged)="valueChanged($event, 'dob')"
+                    [value]="detailsData.dob"
+                  >
+                    <dx-validator>
+                      <dxi-validation-rule
+                        type="required"
+                        [message]="COMMON_MSG.dobRequired"
+                      >
+                      </dxi-validation-rule>
+                      <dxi-validation-rule
+                        type="range"
+                        [max]="maxDate"
+                        [message]="COMMON_MSG.dob"
+                      >
+                      </dxi-validation-rule>
+                    </dx-validator>
+                  </dx-date-box>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="dx-field">
+                <div class="dx-field-value width100">
+                  <dx-select-box
+                    [dataSource]="genders"
+                    placeholder="Select Gender"
+                    [value]="detailsData.gender"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="valueChanged($event, 'genders')"
+                    [searchEnabled]="true"
+                  >
+                    <dx-validator>
+                      <dxi-validation-rule
+                        type="required"
+                        [message]="COMMON_MSG.genderRequired"
+                      ></dxi-validation-rule>
+                    </dx-validator>
+                  </dx-select-box>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-b-15">
+            <div class="col-md-6">
+              <div class="dx-field">
+                <div class="dx-field-value width100">
+                  <dx-select-box
+                    [dataSource]="countries"
+                    placeholder="Select Country"
+                    [value]="detailsData.country"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="valueChanged($event, 'country')"
+                    [searchEnabled]="true"
+                  >
+                    <dx-validator>
+                      <dxi-validation-rule
+                        type="required"
+                        [message]="COMMON_MSG.countryRequired"
+                      ></dxi-validation-rule>
+                    </dx-validator>
+                  </dx-select-box>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="dx-field">
+                <div class="dx-field-value width100">
+                  <dx-select-box
+                    [dataSource]="states"
+                    placeholder="Select State"
+                    [value]="detailsData.state"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="valueChanged($event, 'states')"
+                    [searchEnabled]="true"
+                  >
+                    <dx-validator>
+                      <dxi-validation-rule
+                        type="required"
+                        [message]="COMMON_MSG.stateRequired"
+                      ></dxi-validation-rule>
+                    </dx-validator>
+                  </dx-select-box>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-b-15">
+            <div class="col-md-6">
+              <div class="dx-field">
+                <div class="dx-field-value width100">
+                  <dx-select-box
+                    [dataSource]="cities"
+                    placeholder="Select City"
+                    [value]="detailsData.city"
+                    valueChangeEvent="keyup"
+                    (onValueChanged)="valueChanged($event, 'city')"
+                    [searchEnabled]="true"
+                  >
+                    <dx-validator>
+                      <dxi-validation-rule
+                        type="required"
+                        [message]="COMMON_MSG.cityRequired"
+                      >
+                      </dxi-validation-rule>
+                    </dx-validator>
+                  </dx-select-box>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="dx-field">
+                <div class="dx-field-value width100">
+                  <dx-text-box
+                    placeholder="Enter Zipcode"
+                    valueChangeEvent="keyup"
+                    [value]="detailsData.zipcode"
+                    [maxLength]="6"
+                    (onValueChanged)="valueChanged($event, 'zipcode')"
+                    autocomplete="off"
+                  >
+                    <dx-validator>
+                      <dxi-validation-rule
+                        type="required"
+                        [message]="COMMON_MSG.zipcodeRequired"
+                      >
+                      </dxi-validation-rule>
+                      <dxi-validation-rule
+                        type="pattern"
+                        pattern="^(?!0+$)\d{5,}$"
+                        [message]="COMMON_MSG.zipcode"
+                      ></dxi-validation-rule>
+                    </dx-validator>
+                  </dx-text-box>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-b-15">
+            <div class="col-md-6">
+              <dx-check-box
+                [value]="checked"
+                text="I agree to the Terms and Conditions"
+              >
+                <dx-validator>
+                  <dxi-validation-rule
+                    type="required"
+                    [message]="COMMON_MSG.teamsCheck"
+                  ></dxi-validation-rule>
+                </dx-validator>
+              </dx-check-box>
+            </div>
+            <div class="col-md-6"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

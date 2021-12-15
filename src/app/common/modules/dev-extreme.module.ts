@@ -1,20 +1,33 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 import {
   DxAccordionModule,
   DxButtonModule,
   DxCheckBoxModule,
   DxDataGridModule,
   DxDateBoxModule,
-  DxFormModule, DxListModule, DxLoadIndicatorModule, DxLoadPanelModule, DxNumberBoxModule, DxPopupModule, DxScrollViewModule,
-  DxSelectBoxModule, DxSliderModule, DxTagBoxModule, DxTemplateModule,
-  DxTextBoxModule, DxTooltipModule, DxValidationSummaryModule, DxValidatorModule
-} from 'devextreme-angular';
+  DxFormModule,
+  DxListModule,
+  DxLoadIndicatorModule,
+  DxLoadPanelModule,
+  DxMenuModule,
+  DxNumberBoxModule,
+  DxPopupModule,
+  DxResponsiveBoxModule,
+  DxScrollViewModule,
+  DxSelectBoxModule,
+  DxSliderModule,
+  DxTagBoxModule,
+  DxTemplateModule,
+  DxTextAreaModule,
+  DxTextBoxModule,
+  DxTooltipModule,
+  DxValidationSummaryModule,
+  DxValidatorModule,
+} from "devextreme-angular";
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
-    BrowserModule,
     DxButtonModule,
     DxTextBoxModule,
     DxFormModule,
@@ -36,6 +49,8 @@ import {
     DxNumberBoxModule,
     DxTooltipModule,
     DxDataGridModule,
+    DxTextAreaModule,
+    DxResponsiveBoxModule
   ],
   exports: [
     DxButtonModule,
@@ -59,8 +74,11 @@ import {
     DxNumberBoxModule,
     DxTooltipModule,
     DxDataGridModule,
+    DxTextAreaModule,
+    DxResponsiveBoxModule,
+    DxMenuModule
   ],
   providers: [],
-  bootstrap: []
+  bootstrap: [],
 })
-export class DevExtremeModuleModule { }
+export class DevExtremeModuleModule {}

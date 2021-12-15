@@ -1,0 +1,353 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="top-line"></div>
+  </div>
+  <div class="row main-nav fixed-top">
+    <div class="col-md-3 col-sm-3 col-xs-4">
+      <a routerLink="home">
+        <img src="../../../assets/images/magnetar_logo.png" />
+      </a>
+    </div>
+    <div class="col-md-9 col-sm-9 col-xs-8">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <button
+          class="navbar-toggler navbar-toggler-right"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="http://example.com"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Applications
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#"
+                    ><i class="fas fa-cloud"></i>Cloud Applications</a
+                  >
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        class="dropdown-item"
+                        href="#"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse.show"
+                        ><i class="fab fa-aws"></i>Amazon Web Services</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-database"></i>Data Analytics</a
+                  >
+                </li>
+                <li class="dropdown-submenu">
+                  <a
+                    class="dropdown-item dropdown-toggle"
+                    href="http://google.com"
+                    >Google</a
+                  >
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Submenu</a></li>
+                    <li><a class="dropdown-item" href="#">Submenu0</a></li>
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" href="#"
+                        >Submenu 1</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a class="dropdown-item" href="#">Subsubmenu1</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="#">Subsubmenu1</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="dropdown-submenu">
+                      <a class="dropdown-item dropdown-toggle" href="#"
+                        >Submenu 2</a
+                      >
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a class="dropdown-item" href="#">Subsubmenu2</a>
+                        </li>
+                        <li>
+                          <a class="dropdown-item" href="#">Subsubmenu2</a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="http://example.com"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Industries
+              </a>
+              <ul
+                class="dropdown-menu menu-2col"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/oil-gas"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-tint"></i>Oil & Gas</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/education"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-graduation-cap"></i>Education</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/health-care"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-medkit"></i>Health Care</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/insurance"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-umbrella"></i>Insurance</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/banking-financial"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-dollar-sign"></i>Banking & Financial
+                    Sector</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/manufacturing"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-industry"></i>Manufacturing</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/telecom"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-phone"></i>Telecom</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/cable-wire"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-plug"></i>Cable & Wire</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/sports"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-trophy"></i>Sports</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="industries/media-entertainment"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-share-alt"></i>Media & Entertainment</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="http://example.com"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Partners
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="#"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fab fa-aws"></i>Amazon Web Services</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="#"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-cloud"></i>Google Cloud</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="http://example.com"
+                id="navbarDropdownMenuLink"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Company
+              </a>
+              <ul
+                class="dropdown-menu"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="company/about"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-users"></i>About Us</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="company/careers"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-laptop-code"></i>Careers</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    routerLink="company/services"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="fas fa-user"></i>Services</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse.show"
+                    ><i class="far fa-thumbs-up"></i>Leadership</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-link">
+              <a
+                routerLink="login/login-page"
+                class="signin"
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+                >Sign in</a
+              >/
+              <a
+                routerLink="login/registration"
+                class="signup"
+                (click)="clearForms()"
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+                >Signup</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                routerLink="contactus"
+                class="nav-link"
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+                >Contact Us</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- <div class="form">
+  <div class="row">
+    <div class="col-md-3">
+
+    </div>
+    <div class="col-md-9">
+        <dx-menu
+      #menu
+      [dataSource]="products"
+      displayExpr="name"
+      showFirstSubmenuMode="onHover"
+      orientation="horizontal"
+      [hideSubmenuOnMouseLeave]="false"
+      (onItemClick)="itemClick($event)"
+    >
+    </dx-menu>
+    </div>
+  </div>
+</div> -->
