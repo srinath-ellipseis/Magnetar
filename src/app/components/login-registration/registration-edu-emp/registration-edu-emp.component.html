@@ -309,6 +309,7 @@
                           valueChangeEvent="keyup"
                           (onValueChanged)="eduValueChanged($event, 'gpaCode')"
                           [searchEnabled]="true"
+                          [disabled]="eduFormDisable"
                         >
                           <dx-validator>
                             <dxi-validation-rule
@@ -552,7 +553,7 @@
                       <dx-validator>
                         <dxi-validation-rule
                           type="required"
-                          [message]="COMMON_MSG.descriptionRequired"
+                          [message]="COMMON_MSG.designationRequired"
                         >
                         </dxi-validation-rule>
                       </dx-validator>
@@ -816,7 +817,7 @@
           <div class="col-md-6">
             <dx-button
               text="Cancel"
-              type="defualt"
+              type="default"
               (onClick)="cancelEmpDeletePopup()"
             ></dx-button>
           </div>
