@@ -10,7 +10,6 @@
         [shading]="true"
         [closeOnOutsideClick]="false"
         (onShown)="onShown()"
-        (onHidden)="onHidden()"
       >
       </dx-load-panel>
     </div>
@@ -334,6 +333,12 @@
                           [maxLength]="gpaCodeLength"
                           [disabled]="eduFormDisable"
                         >
+                          <dxi-button
+                            *ngIf="eduForm.gpaCode === 'Percentage'"
+                            name="today"
+                            location="after"
+                            [options]="percentageButton"
+                          ></dxi-button>
                           <dx-validator>
                             <dxi-validation-rule
                               type="required"
@@ -398,7 +403,7 @@
                           placeholder="Select State"
                           [value]="eduCurrentData.state"
                           valueChangeEvent="keyup"
-                          (onValueChanged)="eduValueChanged($event, 'state')"
+                          (onValueChanged)="eduValueChanged($event, 'states')"
                           [searchEnabled]="true"
                           [disabled]="eduFormDisable"
                         >
@@ -459,7 +464,7 @@
                             <dxi-validation-rule
                               type="pattern"
                               pattern="^(?!0+$)\d{5,}$"
-                              [message]="COMMON_MSG.zipcode"
+                              [message]="COMMON_MSG.zipcodeError"
                             >
                             </dxi-validation-rule>
                           </dx-validator>
@@ -545,9 +550,9 @@
                     <dx-text-box
                       placeholder="Enter Designation"
                       valueChangeEvent="keyup"
-                      [value]="empCurrentData.description"
+                      [value]="empCurrentData.designation"
                       [disabled]="empFormDisable"
-                      (onValueChanged)="empValueChanged($event, 'description')"
+                      (onValueChanged)="empValueChanged($event, 'designation')"
                       autocomplete="off"
                     >
                       <dx-validator>
@@ -662,7 +667,7 @@
                           placeholder="Select State"
                           [value]="empCurrentData.state"
                           valueChangeEvent="keyup"
-                          (onValueChanged)="empValueChanged($event, 'state')"
+                          (onValueChanged)="empValueChanged($event, 'states')"
                           [searchEnabled]="true"
                           [disabled]="empFormDisable"
                         >
@@ -723,7 +728,7 @@
                             <dxi-validation-rule
                               type="pattern"
                               pattern="^(?!0+$)\d{5,}$"
-                              [message]="COMMON_MSG.zipcode"
+                              [message]="COMMON_MSG.zipcodeError"
                             >
                             </dxi-validation-rule>
                           </dx-validator>

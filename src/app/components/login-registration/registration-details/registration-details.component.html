@@ -66,7 +66,7 @@
                     <dxi-validation-rule
                       type="pattern"
                       [pattern]="namePattern"
-                      [message]="COMMON_MSG.firstName"
+                      [message]="COMMON_MSG.firstNameError"
                     ></dxi-validation-rule>
                   </dx-validator>
                 </dx-text-box>
@@ -89,7 +89,7 @@
                     <dxi-validation-rule
                       type="pattern"
                       [pattern]="namePattern"
-                      [message]="COMMON_MSG.lastName"
+                      [message]="COMMON_MSG.lastNameError"
                     ></dxi-validation-rule>
                   </dx-validator>
                 </dx-text-box>
@@ -114,7 +114,7 @@
                       ></dxi-validation-rule>
                       <dxi-validation-rule
                         type="email"
-                        [message]="COMMON_MSG.mail"
+                        [message]="COMMON_MSG.mailError"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-text-box>
@@ -170,7 +170,7 @@
                       <dxi-validation-rule
                         type="range"
                         [max]="maxDate"
-                        [message]="COMMON_MSG.dob"
+                        [message]="COMMON_MSG.dobError"
                       >
                       </dxi-validation-rule>
                     </dx-validator>
@@ -287,7 +287,7 @@
                       <dxi-validation-rule
                         type="pattern"
                         pattern="^(?!0+$)\d{5,}$"
-                        [message]="COMMON_MSG.zipcode"
+                        [message]="COMMON_MSG.zipcodeError"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-text-box>

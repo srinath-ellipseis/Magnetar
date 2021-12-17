@@ -1,8 +1,8 @@
 import { formatDate } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { COMMON_MSG } from "src/app/common/messages/common-msg";
-import { DropdownOptions } from "src/app/common/messages/drop-down-options";
+import { COMMON_MSG, DropdownValues } from "src/app/common/messages/common-msg";
+import { PersonalDetails } from "src/app/models/login.model";
 
 @Component({
   selector: "app-registration-details",
@@ -11,41 +11,24 @@ import { DropdownOptions } from "src/app/common/messages/drop-down-options";
 })
 export class RegistrationDetailsComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
-  genders: any = DropdownOptions.genders;
-  roles: any = ["Student", "Employee", "Client/Vendor"];
-  countries: any = DropdownOptions.countries;
-  states: any = DropdownOptions.states;
-  cities: any = DropdownOptions.cities;
-
+  genders = DropdownValues.genders;
+  roles = DropdownValues.roles
+  countries = DropdownValues.countries;
+  states= DropdownValues.states;
+  cities= DropdownValues.cities;
   maxDate: any;
-  detailsData = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    rePassword: "",
-    gender: "",
-    dob: "",
-    country: "",
-    state: "",
-    city: "",
-    zipcode: "",
-    mobileNumber: "",
-    countryCode: "",
-  };
-  detailsForm: any;
+  detailsData: PersonalDetails={};
+  detailsForm: PersonalDetails;
   namePattern: any = /^[^0-9]+$/;
   loadingVisible: boolean = true;
   checked: boolean = false;
   nextBtnTooltip: boolean = false;
   constructor(private router: Router) {
     let date = new Date();
-    let oldDate = new Date(date.setFullYear(date.getFullYear() - 18));
+    let oldDate = new Date(date.setFullYear(date.getFullYear() - COMMON_MSG.dobAgeLimit));
     this.maxDate = formatDate(oldDate, "yyyy-MM-dd hh:mm:ssZZZZZ", "en_US");
-  }
 
-  ngOnInit(): void {
-    this.detailsForm = JSON.parse(localStorage.getItem("detailsForm")!);
+    this.detailsForm = JSON.parse(localStorage.getItem(COMMON_MSG.personalDetalis)!);
     if (this.detailsForm) {
       this.detailsData.firstName = this.detailsForm.firstName;
       this.detailsData.lastName = this.detailsForm.lastName;
@@ -64,52 +47,50 @@ export class RegistrationDetailsComponent implements OnInit {
     }
   }
 
+  ngOnInit(): void {
+  }
+
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 2000);
+    }, COMMON_MSG.setTimeout2);
   }
 
-  submitButtonOptions = {
-    text: "Login",
-    useSubmitBehavior: true,
-  };
-
-  onFormSubmit(e: any) {
-    localStorage.setItem("detailsForm", JSON.stringify(this.detailsData));
+  onFormSubmit(event: any) {
+    localStorage.setItem(COMMON_MSG.personalDetalis, JSON.stringify(this.detailsData));
     this.router.navigate(["/login/registration-edu-emp"]);
   }
 
   valueChanged(event: any, value: string) {
-    if (value === "firstName") {
+    if (value === COMMON_MSG.firstName) {
       this.detailsData.firstName = event.value;
-    } else if (value === "lastName") {
+    } else if (value === COMMON_MSG.lastName) {
       this.detailsData.lastName = event.value;
-    } else if (value === "email") {
+    } else if (value === COMMON_MSG.email) {
       this.detailsData.email = event.value;
-    } else if (value === "password") {
+    } else if (value === COMMON_MSG.password) {
       this.detailsData.password = event;
-    } else if (value === "confirmPassword") {
+    } else if (value === COMMON_MSG.confirmPassword) {
       this.detailsData.rePassword = event;
-    } else if (value === "dob") {
+    } else if (value === COMMON_MSG.dob) {
       this.detailsData.dob = formatDate(
         event.value,
         "yyyy-MM-dd hh:mm:ssZZZZZ",
         "en_US"
       );
-    } else if (value === "genders") {
+    } else if (value === COMMON_MSG.genders) {
       this.detailsData.gender = event.value;
-    } else if (value === "country") {
+    } else if (value === COMMON_MSG.country) {
       this.detailsData.country = event.value;
-    } else if (value === "states") {
+    } else if (value === COMMON_MSG.states) {
       this.detailsData.state = event.value;
-    } else if (value === "city") {
+    } else if (value === COMMON_MSG.city) {
       this.detailsData.city = event.value;
-    } else if (value === "zipcode") {
+    } else if (value === COMMON_MSG.zipcode) {
       this.detailsData.zipcode = event.value;
-    } else if (value === "mobileNumber") {
+    } else if (value === COMMON_MSG.mobileNumber) {
       this.detailsData.mobileNumber = event;
-    } else if (value === "countryCode") {
+    } else if (value === COMMON_MSG.countryCode) {
       this.detailsData.countryCode = event;
     }
   }
