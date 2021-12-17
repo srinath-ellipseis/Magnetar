@@ -73,7 +73,7 @@
         </div>
         <hr />
         <div class="list-container">
-          <dx-list [dataSource]="educationData" height="100%">
+          <dx-list [dataSource]="eduFormData" height="100%">
             <div *dxTemplate="let item of 'item'">
               <div class="row">
                 <div class="col-md-6">{{ item.levelEdu }}</div>
@@ -244,57 +244,23 @@
                 </div>
                 <div class="row margin-b-10">
                   <div class="col-md-6">
-                    <div class="dx-field">
-                      <div class="dx-field-value width100">
-                        <dx-date-box
-                          placeholder="Start Date"
-                          [value]="eduCurrentData.formDate"
-                          invalidDateMessage="The date must have the following format: MM/dd/yyyy"
-                          valueChangeEvent="keyup"
-                          autocomplete="off"
-                          [disabled]="eduFormDisable"
-                          (onValueChanged)="eduValueChanged($event, 'formDate')"
-                        >
-                          <dx-validator>
-                            <dxi-validation-rule
-                              type="required"
-                              [message]="COMMON_MSG.formDateRequired"
-                            >
-                            </dxi-validation-rule>
-                          </dx-validator>
-                        </dx-date-box>
-                      </div>
-                    </div>
+                    <app-date-box
+                      [placeholder]="'Start Date'"
+                      [statDateValidation]="true"
+                      (dateValue)="eduValueChanged($event, 'formDate')"
+                      [datePatchValue]="eduCurrentData.formDate"
+                      [isDisable]="eduFormDisable"
+                    ></app-date-box>
                   </div>
                   <div class="col-md-6">
-                    <div class="dx-field">
-                      <div class="dx-field-value width100">
-                        <dx-date-box
-                          placeholder="End Date"
-                          [value]="eduCurrentData.toDate"
-                          [disabled]="eduFormDisable"
-                          invalidDateMessage="The date must have the following format: MM/dd/yyyy"
-                          valueChangeEvent="keyup"
-                          autocomplete="off"
-                          (onValueChanged)="eduValueChanged($event, 'toDate')"
-                        >
-                          <dx-validator>
-                            <dxi-validation-rule
-                              type="required"
-                              [message]="COMMON_MSG.toDateRequired"
-                            >
-                            </dxi-validation-rule>
-                            <dxi-validation-rule
-                              *ngIf="dateRangeShow"
-                              type="range"
-                              [min]="fromDate"
-                              [message]="COMMON_MSG.dateRange"
-                            >
-                            </dxi-validation-rule>
-                          </dx-validator>
-                        </dx-date-box>
-                      </div>
-                    </div>
+                    <app-date-box
+                      [placeholder]="'End Date'"
+                      [endDateValidation]="true"
+                      (dateValue)="eduValueChanged($event, 'toDate')"
+                      [datePatchValue]="eduCurrentData.toDate"
+                      [startDate]="fromDate"
+                      [isDisable]="eduFormDisable"
+                    ></app-date-box>
                   </div>
                 </div>
                 <div class="row margin-b-10">
@@ -587,7 +553,14 @@
                 </div>
                 <div class="row margin-b-10">
                   <div class="col-md-6">
-                    <div class="dx-field">
+                    <app-date-box
+                      [placeholder]="'Start Date'"
+                      [statDateValidation]="true"
+                      (dateValue)="empValueChanged($event, 'formDate')"
+                      [datePatchValue]="empCurrentData.formDate"
+                      [isDisable]="empFormDisable"
+                    ></app-date-box>
+                    <!-- <div class="dx-field">
                       <div class="dx-field-value width100">
                         <dx-date-box
                           placeholder="Start Date"
@@ -602,16 +575,24 @@
                           <dx-validator>
                             <dxi-validation-rule
                               type="required"
-                              [message]="COMMON_MSG.formDateRequired"
+                              [message]="COMMON_MSG.startDateRequired"
                             >
                             </dxi-validation-rule>
                           </dx-validator>
                         </dx-date-box>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="col-md-6">
-                    <div class="dx-field">
+                    <app-date-box
+                      [placeholder]="'End Date'"
+                      [endDateValidation]="true"
+                      (dateValue)="empValueChanged($event, 'toDate')"
+                      [datePatchValue]="empCurrentData.toDate"
+                      [startDate]="empToMinDate"
+                      [isDisable]="empFormDisable"
+                    ></app-date-box>
+                    <!-- <div class="dx-field">
                       <div class="dx-field-value width100">
                         <dx-date-box
                           placeholder="End Date"
@@ -626,13 +607,13 @@
                           <dx-validator>
                             <dxi-validation-rule
                               type="required"
-                              [message]="COMMON_MSG.toDateRequired"
+                              [message]="COMMON_MSG.endDateRequired"
                             >
                             </dxi-validation-rule>
                           </dx-validator>
                         </dx-date-box>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="row margin-b-10">

@@ -16,19 +16,14 @@ export class RegistrationDetailsComponent implements OnInit {
   countries = DropdownValues.countries;
   states = DropdownValues.states;
   cities = DropdownValues.cities;
-  maxDate: any;
   detailsData: PersonalDetails = {};
   detailsForm: PersonalDetails;
   namePattern: any = /^[^0-9]+$/;
   loadingVisible: boolean = true;
   checked: boolean = false;
   nextBtnTooltip: boolean = false;
+  datePatch = new Date();
   constructor(private router: Router) {
-    let date = new Date();
-    let oldDate = new Date(
-      date.setFullYear(date.getFullYear() - COMMON_MSG.dobAgeLimit)
-    );
-    this.maxDate = formatDate(oldDate, "yyyy-MM-dd hh:mm:ssZZZZZ", "en_US");
     this.detailsForm = JSON.parse(
       localStorage.getItem(COMMON_MSG.personalDetalis)!
     );
@@ -47,6 +42,7 @@ export class RegistrationDetailsComponent implements OnInit {
       this.detailsData.mobileNumber = this.detailsForm.mobileNumber;
       this.detailsData.countryCode = this.detailsForm.countryCode;
       this.checked = true;
+      this.datePatch = new Date(this.detailsData.dob);
     }
   }
 
@@ -78,11 +74,7 @@ export class RegistrationDetailsComponent implements OnInit {
     } else if (value === COMMON_MSG.confirmPassword) {
       this.detailsData.rePassword = event;
     } else if (value === COMMON_MSG.dob) {
-      this.detailsData.dob = formatDate(
-        event.value,
-        "yyyy-MM-dd hh:mm:ssZZZZZ",
-        "en_US"
-      );
+      this.detailsData.dob = event;
     } else if (value === COMMON_MSG.genders) {
       this.detailsData.gender = event.value;
     } else if (value === COMMON_MSG.country) {

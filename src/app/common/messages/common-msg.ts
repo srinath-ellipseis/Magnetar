@@ -1,5 +1,5 @@
 export const COMMON_MSG = {
-  applicationName:"Magnetar",
+  applicationName: "Magnetar",
   required: "Enter a Value",
   firstNameRequired: "First Name is required",
   lastNameRequired: "Last Name is required",
@@ -20,6 +20,7 @@ export const COMMON_MSG = {
   passwordError: "Invalid Password",
   rePasswordError: "Password and Confirm Password do not match",
   dobError: "You must be at least 18 Years Old",
+  dobPlaceholder: "Enter DOB",
   genderSelect: "Please Select Gender",
   countrySelect: "Please Select Country",
   stateSelect: "Please Select State",
@@ -30,12 +31,12 @@ export const COMMON_MSG = {
   collegeNameRequired: "College Name is required",
   majorRequired: "Specialization is required",
   levelEduRequired: "Level of Education is required",
-  formDateRequired: "Start Date is required",
-  toDateRequired: "End Date is required",
+  startDateRequired: "Start Date is required",
+  endDateRequired: "End Date is required",
   gpaRequired: "GPA is required",
   gpaCodeRequired: "GPA Code is required",
   companyNameRequired: "Company Name is required",
-  designationRequired: "Description is required",
+  designationRequired: "Designation is required",
   rolesRequired: "Roles and Responsibilies is required",
   strongPassword: "Please choose a strong password",
   dateRange: "Please Select Vaild Date",
@@ -86,7 +87,6 @@ export const COMMON_MSG = {
   setTimeout5: 5000,
   Success: "Success",
   text: "text",
-
 };
 export const DropdownValues = {
   genders: ["Male", "Female", "Others"],

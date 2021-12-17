@@ -46,12 +46,11 @@ export class RegistrationEduEmpComponent implements OnInit {
   eduToMinDate = new Date();
   empFromMaxDate = new Date();
   empToMinDate = new Date();
-  dateRangeShow: boolean = false;
   gpaCodeLength: number = 0;
   gradePattern: any = /^[^0-9]+$/;
   percentagePattern: any =
     /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/;
-  floatPattern: any = /^\d+\.\d{2}$/;
+  floatPattern: any = /^\d+\.\d{1,2}$/;
   percentageButton: any;
   constructor(private router: Router) {
     this.employeeData = JSON.parse(
@@ -81,8 +80,8 @@ export class RegistrationEduEmpComponent implements OnInit {
           collegeName: edu.collegeName,
           major: edu.major,
           levelEdu: edu.levelEdu,
-          toDate: edu.toDate,
-          formDate: edu.formDate,
+          toDate: new Date(edu.toDate),
+          formDate: new Date(edu.formDate),
           gpa: edu.gpa,
           gpaCode: edu.gpaCode,
           country: edu.country,
@@ -177,11 +176,11 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.empFormVisible = true;
   }
 
-  deleteEmpForm(e: any) {
+  deleteEmpForm(event: any) {
     this.loadingVisible = true;
     let yourNewData = [];
     for (let i = 0; i < this.empFormData.length; i++) {
-      if (this.empFormData[i].companyName !== e.companyName) {
+      if (this.empFormData[i].companyName !== event.companyName) {
         yourNewData.push(this.empFormData[i]);
       }
     }
@@ -193,7 +192,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     }, COMMON_MSG.setTimeout5);
   }
 
-  empFormSubmit(e: any) {
+  empFormSubmit(event: any) {
     this.loadingVisible = true;
     this.empFormData.push(this.empForm);
     localStorage.setItem(
@@ -216,11 +215,11 @@ export class RegistrationEduEmpComponent implements OnInit {
     } else if (text === COMMON_MSG.roles) {
       this.empForm.roles = event.value;
     } else if (text === COMMON_MSG.formDate) {
-      this.empToMinDate = event.value;
-      this.empForm.formDate = event.value;
+      this.empToMinDate = event;
+      this.empForm.formDate = event;
     } else if (text === COMMON_MSG.toDate) {
-      this.empFromMaxDate = event.value;
-      this.empForm.toDate = event.value;
+      this.empFromMaxDate = event;
+      this.empForm.toDate = event;
     } else if (text === COMMON_MSG.country) {
       this.empForm.country = event.value;
     } else if (text === COMMON_MSG.states) {
@@ -236,43 +235,44 @@ export class RegistrationEduEmpComponent implements OnInit {
     localStorage.removeItem(COMMON_MSG.editEmpData);
     window.location.reload();
   }
-  goToEmpDeletePopup(e: any) {
+  goToEmpDeletePopup(event: any) {
     this.empDeletePopup = true;
-    this.empCurrentDelete = e;
+    this.empCurrentDelete = event;
   }
 
   cancelEmpDeletePopup() {
     this.empDeletePopup = false;
   }
 
-  goToEduForm(e: any, type: string) {
-    if (e === COMMON_MSG.new) {
+  goToEduForm(event: any, type: string) {
+    if (event === COMMON_MSG.new) {
       this.eduFormDisable = false;
       this.eduCurrentData = "";
     } else {
-      this.eduCurrentData = e;
+      this.eduCurrentData = event;
       if (type === COMMON_MSG.view) {
         this.eduFormDisable = true;
       } else {
         this.eduFormDisable = false;
       }
       if (this.eduCurrentData) {
-        this.eduForm.collegeName = e.collegeName;
-        this.eduForm.major = e.major;
-        this.eduForm.levelEdu = e.levelEdu;
-        this.eduForm.formDate = e.formDate;
-        this.eduForm.toDate = e.toDate;
-        this.eduForm.gpa = e.gpa;
-        this.eduForm.gpaCode = e.gpaCode;
-        this.eduForm.country = e.country;
-        this.eduForm.state = e.state;
-        this.eduForm.city = e.city;
-        this.eduForm.zipcode = e.zipcode;
+        this.eduForm.collegeName = event.collegeName;
+        this.eduForm.major = event.major;
+        this.eduForm.levelEdu = event.levelEdu;
+        this.eduForm.formDate = event.formDate;
+        this.eduForm.toDate = event.toDate;
+        this.eduForm.gpa = event.gpa;
+        this.eduForm.gpaCode = event.gpaCode;
+        this.eduForm.country = event.country;
+        this.eduForm.state = event.state;
+        this.eduForm.city = event.city;
+        this.eduForm.zipcode = event.zipcode;
+        this.dateRange(new Date(event.formDate));
       }
       if (this.eduCurrentData) {
         let yourNewData = [];
         for (let i = 0; i < this.eduFormData.length; i++) {
-          if (this.eduFormData[i].major !== e.major) {
+          if (this.eduFormData[i].major !== event.major) {
             yourNewData.push(this.eduFormData[i]);
           }
         }
@@ -297,7 +297,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.eduFormVisible = true;
   }
 
-  eduFormSubmit(e: any) {
+  eduFormSubmit(event: any) {
     this.loadingVisible = true;
     this.eduFormData.push(this.eduForm);
     localStorage.setItem(
@@ -312,11 +312,11 @@ export class RegistrationEduEmpComponent implements OnInit {
     }, COMMON_MSG.setTimeout5);
   }
 
-  deleteEduForm(e: any) {
+  deleteEduForm(event: any) {
     this.loadingVisible = true;
     let yourNewData = [];
     for (let i = 0; i < this.eduFormData.length; i++) {
-      if (this.eduFormData[i].levelEdu !== e.levelEdu) {
+      if (this.eduFormData[i].levelEdu !== event.levelEdu) {
         yourNewData.push(this.eduFormData[i]);
       }
     }
@@ -337,12 +337,11 @@ export class RegistrationEduEmpComponent implements OnInit {
       this.eduForm.levelEdu = event.value;
       this.dateRange(this.eduToMinDate);
     } else if (text === COMMON_MSG.formDate) {
-      this.eduToMinDate = event.value;
-      this.dateRangeShow = true;
-      this.dateRange(event.value);
+      this.eduToMinDate = event;
+      this.dateRange(event);
     } else if (text === COMMON_MSG.toDate) {
-      this.eduFromMaxDate = event.value;
-      this.eduForm.toDate = event.value;
+      this.eduFromMaxDate = event;
+      this.eduForm.toDate = event;
     } else if (text === COMMON_MSG.gpa) {
       this.eduForm.gpa = event.value;
     } else if (text === COMMON_MSG.gpaCode) {
