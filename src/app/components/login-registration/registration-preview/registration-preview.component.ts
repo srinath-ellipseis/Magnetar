@@ -1,5 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { COMMON_MSG } from "src/app/common/messages/common-msg";
+import {
+  EduDetails,
+  EmpDetails,
+  PersonalDetails,
+} from "src/app/models/login.model";
 
 @Component({
   selector: "app-registration-preview",
@@ -8,14 +14,20 @@ import { Router } from "@angular/router";
 })
 export class RegistrationPreviewComponent implements OnInit {
   loadingVisible: boolean = true;
-  detailsData: any;
-  educationData: any[];
-  employeeData: any[];
+  detailsData: PersonalDetails;
+  educationData: EduDetails[];
+  employeeData: EmpDetails[];
   backBtnTooltip: boolean = false;
   constructor(private router: Router) {
-    this.educationData = JSON.parse(localStorage.getItem("educationForm")!);
-    this.employeeData = JSON.parse(localStorage.getItem("employeeForm")!);
-    this.detailsData = JSON.parse(localStorage.getItem("detailsForm")!);
+    this.educationData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.educationForm)!
+    );
+    this.employeeData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.employeeForm)!
+    );
+    this.detailsData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.personalDetalis)!
+    );
   }
 
   ngOnInit(): void {}
@@ -23,10 +35,8 @@ export class RegistrationPreviewComponent implements OnInit {
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 2000);
+    }, COMMON_MSG.setTimeout2);
   }
-
-  onHidden() {}
 
   goToDetailsPage() {
     this.router.navigate(["/login/registration-details"]);
@@ -35,11 +45,11 @@ export class RegistrationPreviewComponent implements OnInit {
     this.router.navigate(["/login/registration-edu-emp"]);
   }
   editEduForm(data: any) {
-    localStorage.setItem("editEduData", JSON.stringify(data));
+    localStorage.setItem(COMMON_MSG.editEduData, JSON.stringify(data));
     this.goToEduEmpPage();
   }
   editEmpForm(data: any) {
-    localStorage.setItem("editEmpData", JSON.stringify(data));
+    localStorage.setItem(COMMON_MSG.editEmpData, JSON.stringify(data));
     this.goToEduEmpPage();
   }
   backPage() {
@@ -49,6 +59,6 @@ export class RegistrationPreviewComponent implements OnInit {
     this.backBtnTooltip = !this.backBtnTooltip;
   }
   registrationBtn() {
-    alert("Success");
+    alert(COMMON_MSG.Success);
   }
 }

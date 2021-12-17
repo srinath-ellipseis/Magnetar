@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { COMMON_MSG } from "../../messages/common-msg";
-import { DropdownOptions } from "../../messages/drop-down-options";
+import { COMMON_MSG, DropdownValues } from "../../messages/common-msg";
 
 @Component({
   selector: "app-mobile-number",
@@ -13,7 +12,7 @@ export class MobileNumberComponent implements OnInit {
   @Output() changeValue = new EventEmitter();
   @Output() codeValue = new EventEmitter();
   COMMON_MSG = COMMON_MSG;
-  countryCodes = DropdownOptions.countryCodes;
+  countryCodes = DropdownValues.countryCodes;
   phonePattern: any = /^(?!0+$)\d{8,}$/;
 
   constructor() {}

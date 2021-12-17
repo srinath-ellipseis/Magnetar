@@ -56,14 +56,16 @@ h5,
   display: block;
   white-space: nowrap;
 }
-h1{
-  font-size:30px;
-  color:#00285D;
-  text-align:center;
-  font-weight:700;
-  margin-bottom:20px;
+h1 {
+  font-size: 30px;
+  color: #00285d;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
-.industries h1{margin-bottom:50px;}
+.industries h1 {
+  margin-bottom: 50px;
+}
 .industries {
   background-color: #f9f7f8;
   padding: 10px 0 50px 0;
@@ -156,16 +158,16 @@ span::after {
   width: 50%;
   height: 50%;
 }
-.link-tex{
-  float:right;
-  color:#13B1BB;
+.link-tex {
+  float: right;
+  color: #13b1bb;
   text-decoration: underline;
-  padding-right:20px;
+  padding-right: 20px;
 }
-h1{
-  font-size:30px;
-  color:#00285D;
-  text-align:center;
-  font-weight:700;
-  margin-bottom:20px;
+h1 {
+  font-size: 30px;
+  color: #00285d;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
 }

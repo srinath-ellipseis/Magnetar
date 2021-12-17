@@ -114,3 +114,6 @@ hr {
 .padding-xy {
   padding: 10px 30px 25px 20px;
 }
+::ng-deep .dx-texteditor-buttons-container > .dx-button > .dx-button-content {
+  padding: 0px;
+}

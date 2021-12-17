@@ -1,37 +1,4 @@
-.contact-container {
-  display: flex;
-  flex-direction: column;
-  background-color: #cdcdcd;
-  margin: 5%;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-/* Responsive layout - makes a one column layout instead of a two-column layout */
-@media (max-width: 800px) {
-  .contact-container {
-    flex-direction: column;
-  }
-}
-.contact-item-left,
-.contact-item-right {
-  padding: 20px;
-  border: 1px dashed blue;
-  height: auto;
-  box-sizing: border-box;
-  max-width: 50%;
-}
-
-/* Responsive layout - makes a one column layout instead of a two-column layout */
-@media (max-width: 800px) {
-  .contact-item-right,
-  .contact-item-left {
-    flex: 100%;
-  }
-}
 .contact-area {
-  /* padding:90px 0 90px; */
   background: #f9f9f9;
 }
 .map-responsive {
@@ -69,53 +36,7 @@
   padding: 10px 35px 47px;
   margin-bottom: 30px;
 }
-.form-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: -5px;
-  margin-left: -5px;
-}
-@media screen and (max-width: 768px) {
-  .form-row {
-    display: block;
-  }
-}
-.form-group {
-  margin-bottom: 1rem;
-}
-input,
-textarea {
-  border: 1px solid #14b1bb;
-  background: #14b1bb;
-  color: #fff;
-  width: 98%;
-  height: 50px;
-  border-radius: 5px;
-  outline: none;
-  margin: 1%;
-  text-align: left;
-  padding-left: 30px;
-  box-sizing: border-box;
-}
-textarea {
-  width: 96%;
-  height: 150px;
-  padding: 10px;
-  margin: 0;
-}
-::placeholder {
-  color: #fff;
-  opacity: 1;
-}
-:-ms-input-placeholder {
-  color: #fff;
-}
-::-ms-input-placeholder {
-  color: #fff;
-}
-.contact-form .btn {
-  width: 96%;
-}
+
 .margin-b-15 {
   margin-bottom: 15px;
 }

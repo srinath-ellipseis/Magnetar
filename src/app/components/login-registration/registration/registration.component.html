@@ -1,77 +1,84 @@
-
 <div class="container-fluid register-roles">
-    <div class="roles-form">
-      <div class="container">
-        <div class="row">
-          <div class="welcome-text">
-            <p>GET YOUR PROFESSION</p>
-            <h2>Welcome To Ellipseis For Best Network</h2>
-            <p>More than 5000 students are satisfied with our consulting program!</p>
-          </div>
-        </div>
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="role-category">
-                <div class="role-category-inner">
-                  <div class="role-category-front">
-                    <div class="role-icon">
-                      <i class="fa fa-graduation-cap"></i>
-                    </div>
-                    <div class="role-title">
-                      NEW-HIRE
-                    </div>
-                  </div>
-                  <div class="role-category-back">
-                    <h3>NEW-HIRE</h3> 
-                    <p>Welcome to Ellipseis for world class service and support.</p> 
-                    <p>Let's Join...</p>
-                    <div class="btn" (click)="goToDetailPage('new')">Register</div>
-                  </div>
-                </div>
-              </div> 
-            </div>
-            <div class="col-sm-4">
-              <div class="role-category">
-                <div class="role-category-inner">
-                  <div class="role-category-front">
-                    <div class="role-icon">
-                      <i class="fa fa-users"></i>
-                    </div>
-                    <div class="role-title">
-                      CLIENT/VENDOR
-                    </div>
-                  </div>
-                  <div class="role-category-back">
-                    <h3>CLIENT/VENDOR</h3> 
-                    <p>Welcome to Ellipseis for world class service and support.</p> 
-                    <p>Let's Join...</p>
-                    <div class="btn" (click)="goToDetailPage('client')">Register</div>
-                  </div>
-                </div>
-              </div>  
-          </div>
-            <div class="col-sm-4">
-              <div class="role-category">
-                <div class="role-category-inner">
-                  <div class="role-category-front">
-                    <div class="role-icon">
-                      <i class="fa fa-user-circle"></i>
-                    </div>
-                    <div class="role-title">
-                      EMPLOYEE
-                    </div>
-                  </div>
-                  <div class="role-category-back">
-                    <h3>EMPLOYEE</h3> 
-                    <p>Welcome to Ellipseis for world class service and support.</p> 
-                    <p>Let's Join...</p>
-                    <div class="btn" (click)="goToDetailPage('vendor')">Register</div>
-                  </div>
-                </div>
-              </div> 
-              </div>
+  <div class="roles-form">
+    <div class="container">
+      <div class="row">
+        <div class="welcome-text">
+          <p>GET YOUR PROFESSION</p>
+          <h2>Welcome To {{ COMMON_MSG.applicationName }} For Best Network</h2>
+          <p>
+            More than 5000 students are satisfied with our consulting program!
+          </p>
         </div>
       </div>
-      
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="role-category">
+            <div class="role-category-inner">
+              <div class="role-category-front">
+                <div class="role-icon">
+                  <i class="fa fa-graduation-cap"></i>
+                </div>
+                <div class="role-title">NEW-HIRE</div>
+              </div>
+              <div class="role-category-back">
+                <h3>NEW-HIRE</h3>
+                <p>
+                  Welcome to {{ COMMON_MSG.applicationName }} for world class
+                  service and support.
+                </p>
+                <p>Let's Join...</p>
+                <div class="btn" (click)="goToDetailPage('new')">Register</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="role-category">
+            <div class="role-category-inner">
+              <div class="role-category-front">
+                <div class="role-icon">
+                  <i class="fa fa-users"></i>
+                </div>
+                <div class="role-title">CLIENT/VENDOR</div>
+              </div>
+              <div class="role-category-back">
+                <h3>CLIENT/VENDOR</h3>
+                <p>
+                  Welcome to {{ COMMON_MSG.applicationName }} for world class
+                  service and support.
+                </p>
+                <p>Let's Join...</p>
+                <div class="btn" (click)="goToDetailPage('client')">
+                  Register
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="role-category">
+            <div class="role-category-inner">
+              <div class="role-category-front">
+                <div class="role-icon">
+                  <i class="fa fa-user-circle"></i>
+                </div>
+                <div class="role-title">EMPLOYEE</div>
+              </div>
+              <div class="role-category-back">
+                <h3>EMPLOYEE</h3>
+                <p>
+                  Welcome to {{ COMMON_MSG.applicationName }} for world class
+                  service and support.
+                </p>
+                <p>Let's Join...</p>
+                <div class="btn" (click)="goToDetailPage('vendor')">
+                  Register
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>

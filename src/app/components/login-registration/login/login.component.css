@@ -73,3 +73,6 @@
 ::ng-deep .dx-button-mode-contained.dx-button-default.dx-state-focused {
   background-color: unset;
 }
+.whiteColor {
+  color: white;
+}

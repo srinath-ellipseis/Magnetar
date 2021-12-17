@@ -10,7 +10,6 @@
         [shading]="true"
         [closeOnOutsideClick]="false"
         (onShown)="onShown()"
-        (onHidden)="onHidden()"
       >
       </dx-load-panel>
     </div>
@@ -81,7 +80,9 @@
                   ><br />
                   <label>{{ detailsData.email }}</label
                   ><br />
-                  <label>{{ detailsData.mobileNumber }}</label
+                  <label
+                    >{{ detailsData.countryCode }} -
+                    {{ detailsData.mobileNumber }}</label
                   ><br />
                   <label>{{ detailsData.dob | date }}</label
                   ><br />
@@ -315,8 +316,8 @@
                             <td>{{ emp.companyName }}</td>
                           </tr>
                           <tr>
-                            <td class="textCenter width48">Description</td>
-                            <td>{{ emp.description }}</td>
+                            <td class="textCenter width48">Designation</td>
+                            <td>{{ emp.designation }}</td>
                           </tr>
                           <tr>
                             <td class="textCenter width48">

@@ -1,30 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { COMMON_MSG } from 'src/app/common/messages/common-msg';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { COMMON_MSG } from "src/app/common/messages/common-msg";
+import { LoginOptions } from "src/app/models/login.model";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
-  loginData = {
-    Email: "",
-    Password: "",
-  };
+  loginData: LoginOptions = {};
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  onFormSubmit(e: any) {
-    localStorage.setItem("loginUser", JSON.stringify(this.loginData));
-    this.router.navigate(['/login/registration-details']);
+  onFormSubmit(event: any) {
+    localStorage.setItem(COMMON_MSG.loginUser, JSON.stringify(this.loginData));
+    this.router.navigate(["/login/registration-details"]);
   }
   valueChanged(event: any, text: string) {
-    if (text === "email") {
-      this.loginData.Email = event.value;
+    if (text === COMMON_MSG.email) {
+      this.loginData.email = event.value;
     } else {
-      this.loginData.Password = event.value;
+      this.loginData.password = event;
     }
+  }
+  signupPage() {
+    this.router.navigate(["/login/registration"]);
   }
 }

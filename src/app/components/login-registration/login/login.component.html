@@ -28,7 +28,7 @@
                       ></dxi-validation-rule>
                       <dxi-validation-rule
                         type="email"
-                        [message]="COMMON_MSG.mail"
+                        [message]="COMMON_MSG.mailError"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-text-box>
@@ -59,10 +59,14 @@
       </div>
       <div class="row">
         <div class="col-md-6 textCenter">
-          <span>Forgot Password?</span>
+          <button class="btn whiteColor" type="default">
+            Forgot Password?
+          </button>
         </div>
         <div class="col-md-6 textCenter">
-          <span>Sign Up</span>
+          <button class="btn whiteColor" type="default" (click)="signupPage()">
+            Sign Up
+          </button>
         </div>
       </div>
     </div>
