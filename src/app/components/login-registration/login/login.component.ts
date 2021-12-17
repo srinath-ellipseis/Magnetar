@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { COMMON_MSG } from 'src/app/common/messages/common-msg';
-import { LoginOptions } from 'src/app/models/login.model';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { COMMON_MSG } from "src/app/common/messages/common-msg";
+import { LoginOptions } from "src/app/models/login.model";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
   onFormSubmit(event: any) {
     localStorage.setItem(COMMON_MSG.loginUser, JSON.stringify(this.loginData));
-    this.router.navigate(['/login/registration-details']);
+    this.router.navigate(["/login/registration-details"]);
   }
   valueChanged(event: any, text: string) {
     if (text === COMMON_MSG.email) {
@@ -24,5 +24,8 @@ export class LoginComponent implements OnInit {
     } else {
       this.loginData.password = event;
     }
+  }
+  signupPage() {
+    this.router.navigate(["/login/registration"]);
   }
 }

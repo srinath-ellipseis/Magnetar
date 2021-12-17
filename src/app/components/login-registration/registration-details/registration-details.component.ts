@@ -12,12 +12,12 @@ import { PersonalDetails } from "src/app/models/login.model";
 export class RegistrationDetailsComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
   genders = DropdownValues.genders;
-  roles = DropdownValues.roles
+  roles = DropdownValues.roles;
   countries = DropdownValues.countries;
-  states= DropdownValues.states;
-  cities= DropdownValues.cities;
+  states = DropdownValues.states;
+  cities = DropdownValues.cities;
   maxDate: any;
-  detailsData: PersonalDetails={};
+  detailsData: PersonalDetails = {};
   detailsForm: PersonalDetails;
   namePattern: any = /^[^0-9]+$/;
   loadingVisible: boolean = true;
@@ -25,10 +25,13 @@ export class RegistrationDetailsComponent implements OnInit {
   nextBtnTooltip: boolean = false;
   constructor(private router: Router) {
     let date = new Date();
-    let oldDate = new Date(date.setFullYear(date.getFullYear() - COMMON_MSG.dobAgeLimit));
+    let oldDate = new Date(
+      date.setFullYear(date.getFullYear() - COMMON_MSG.dobAgeLimit)
+    );
     this.maxDate = formatDate(oldDate, "yyyy-MM-dd hh:mm:ssZZZZZ", "en_US");
-
-    this.detailsForm = JSON.parse(localStorage.getItem(COMMON_MSG.personalDetalis)!);
+    this.detailsForm = JSON.parse(
+      localStorage.getItem(COMMON_MSG.personalDetalis)!
+    );
     if (this.detailsForm) {
       this.detailsData.firstName = this.detailsForm.firstName;
       this.detailsData.lastName = this.detailsForm.lastName;
@@ -47,8 +50,7 @@ export class RegistrationDetailsComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onShown() {
     setTimeout(() => {
@@ -57,7 +59,10 @@ export class RegistrationDetailsComponent implements OnInit {
   }
 
   onFormSubmit(event: any) {
-    localStorage.setItem(COMMON_MSG.personalDetalis, JSON.stringify(this.detailsData));
+    localStorage.setItem(
+      COMMON_MSG.personalDetalis,
+      JSON.stringify(this.detailsData)
+    );
     this.router.navigate(["/login/registration-edu-emp"]);
   }
 

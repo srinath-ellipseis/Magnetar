@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { COMMON_MSG, DropdownValues } from "src/app/common/messages/common-msg";
 import { EduDetails, EmpDetails } from "src/app/models/login.model";
 
@@ -52,7 +52,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   percentagePattern: any =
     /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/;
   floatPattern: any = /^\d+\.\d{2}$/;
-  percentageButton:any;
+  percentageButton: any;
   constructor(private router: Router) {
     this.employeeData = JSON.parse(
       localStorage.getItem(COMMON_MSG.employeeForm)!
@@ -110,10 +110,10 @@ export class RegistrationEduEmpComponent implements OnInit {
       this.goToEmpForm(this.editEmpData, COMMON_MSG.edit);
     }
     this.percentageButton = {
-      text: '%',
-      stylingMode: 'text',
+      text: "%",
+      stylingMode: "text",
       width: 32,
-    }
+    };
   }
 
   ngOnInit(): void {}

@@ -1,7 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { COMMON_MSG } from "src/app/common/messages/common-msg";
-import { EduDetails, EmpDetails, PersonalDetails } from "src/app/models/login.model";
+import {
+  EduDetails,
+  EmpDetails,
+  PersonalDetails,
+} from "src/app/models/login.model";
 
 @Component({
   selector: "app-registration-preview",
@@ -15,9 +19,15 @@ export class RegistrationPreviewComponent implements OnInit {
   employeeData: EmpDetails[];
   backBtnTooltip: boolean = false;
   constructor(private router: Router) {
-    this.educationData = JSON.parse(localStorage.getItem(COMMON_MSG.educationForm)!);
-    this.employeeData = JSON.parse(localStorage.getItem(COMMON_MSG.employeeForm)!);
-    this.detailsData = JSON.parse(localStorage.getItem(COMMON_MSG.personalDetalis)!);
+    this.educationData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.educationForm)!
+    );
+    this.employeeData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.employeeForm)!
+    );
+    this.detailsData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.personalDetalis)!
+    );
   }
 
   ngOnInit(): void {}
