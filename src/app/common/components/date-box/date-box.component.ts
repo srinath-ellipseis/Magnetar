@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { COMMON_MSG } from "../../messages/common-msg";
+import { COMMON_MSG, Validation_MSG } from "../../messages/common-msg";
 
 @Component({
   selector: "app-date-box",
@@ -8,6 +8,7 @@ import { COMMON_MSG } from "../../messages/common-msg";
 })
 export class DateBoxComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
+  error_msg = Validation_MSG;
   @Input() datePatchValue: any;
   @Input() placeholder: string = COMMON_MSG.dobPlaceholder;
   @Input() statDateValidation: boolean = false;

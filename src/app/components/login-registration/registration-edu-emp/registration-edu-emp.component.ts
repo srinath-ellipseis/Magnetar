@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { COMMON_MSG, DropdownValues } from "src/app/common/messages/common-msg";
+import {
+  COMMON_MSG,
+  DropdownValues,
+  Validation_MSG,
+} from "src/app/common/messages/common-msg";
 import { EduDetails, EmpDetails } from "src/app/models/login.model";
 
 @Component({
@@ -10,6 +14,7 @@ import { EduDetails, EmpDetails } from "src/app/models/login.model";
 })
 export class RegistrationEduEmpComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
+  error_msg = Validation_MSG;
   countries = DropdownValues.countries;
   states = DropdownValues.states;
   cities = DropdownValues.cities;
@@ -65,6 +70,7 @@ export class RegistrationEduEmpComponent implements OnInit {
           companyName: emp.companyName,
           designation: emp.designation,
           roles: emp.roles,
+          projects: emp.projects,
           toDate: emp.toDate,
           formDate: emp.formDate,
           country: emp.country,
@@ -84,6 +90,7 @@ export class RegistrationEduEmpComponent implements OnInit {
           formDate: new Date(edu.formDate),
           gpa: edu.gpa,
           gpaCode: edu.gpaCode,
+          projects: edu.projects,
           country: edu.country,
           state: edu.state,
           city: edu.city,
@@ -103,7 +110,22 @@ export class RegistrationEduEmpComponent implements OnInit {
       localStorage.getItem(COMMON_MSG.editEmpData)!
     );
     if (this.editEduData) {
-      this.goToEduForm(this.editEduData, COMMON_MSG.edit);
+      let editData = [];
+      editData.push({
+        collegeName: this.editEduData.collegeName,
+        major: this.editEduData.major,
+        levelEdu: this.editEduData.levelEdu,
+        toDate: new Date(this.editEduData.toDate),
+        formDate: new Date(this.editEduData.formDate),
+        gpa: this.editEduData.gpa,
+        gpaCode: this.editEduData.gpaCode,
+        projects: this.editEduData.projects,
+        country: this.editEduData.country,
+        state: this.editEduData.state,
+        city: this.editEduData.city,
+        zipcode: this.editEduData.zipcode,
+      });
+      this.goToEduForm(editData[0], COMMON_MSG.edit);
     }
     if (this.editEmpData) {
       this.goToEmpForm(this.editEmpData, COMMON_MSG.edit);
@@ -120,7 +142,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
-    }, COMMON_MSG.setTimeout2);
+    }, COMMON_MSG.setTimeout2000);
   }
 
   goToEmpForm(event: any, type: string) {
@@ -138,6 +160,7 @@ export class RegistrationEduEmpComponent implements OnInit {
         this.empForm.companyName = this.empCurrentData.companyName;
         this.empForm.designation = this.empCurrentData.designation;
         this.empForm.roles = this.empCurrentData.roles;
+        this.empForm.projects = this.empCurrentData.projects;
         this.empForm.formDate = this.empCurrentData.formDate;
         this.empForm.toDate = this.empCurrentData.toDate;
         this.empForm.country = this.empCurrentData.country;
@@ -163,6 +186,7 @@ export class RegistrationEduEmpComponent implements OnInit {
             companyName: emp.companyName,
             designation: emp.designation,
             roles: emp.roles,
+            projects: emp.projects,
             toDate: emp.toDate,
             formDate: emp.formDate,
             country: emp.country,
@@ -189,7 +213,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     window.location.reload();
     setTimeout(() => {
       this.loadingVisible = false;
-    }, COMMON_MSG.setTimeout5);
+    }, COMMON_MSG.setTimeout5000);
   }
 
   empFormSubmit(event: any) {
@@ -204,7 +228,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.empFormVisible = false;
     setTimeout(() => {
       this.loadingVisible = false;
-    }, COMMON_MSG.setTimeout5);
+    }, COMMON_MSG.setTimeout5000);
   }
 
   empValueChanged(event: any, text: string) {
@@ -214,6 +238,8 @@ export class RegistrationEduEmpComponent implements OnInit {
       this.empForm.designation = event.value;
     } else if (text === COMMON_MSG.roles) {
       this.empForm.roles = event.value;
+    } else if (text === COMMON_MSG.projects) {
+      this.empForm.projects = event.value;
     } else if (text === COMMON_MSG.formDate) {
       this.empToMinDate = event;
       this.empForm.formDate = event;
@@ -263,6 +289,7 @@ export class RegistrationEduEmpComponent implements OnInit {
         this.eduForm.toDate = event.toDate;
         this.eduForm.gpa = event.gpa;
         this.eduForm.gpaCode = event.gpaCode;
+        this.eduForm.projects = event.projects;
         this.eduForm.country = event.country;
         this.eduForm.state = event.state;
         this.eduForm.city = event.city;
@@ -286,6 +313,7 @@ export class RegistrationEduEmpComponent implements OnInit {
             formDate: edu.formDate,
             gpa: edu.gpa,
             gpaCode: edu.gpaCode,
+            projects: edu.projects,
             country: edu.country,
             state: edu.state,
             city: edu.city,
@@ -309,7 +337,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.eduFormVisible = false;
     setTimeout(() => {
       this.loadingVisible = false;
-    }, COMMON_MSG.setTimeout5);
+    }, COMMON_MSG.setTimeout5000);
   }
 
   deleteEduForm(event: any) {
@@ -325,7 +353,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     window.location.reload();
     setTimeout(() => {
       this.loadingVisible = false;
-    }, COMMON_MSG.setTimeout5);
+    }, COMMON_MSG.setTimeout5000);
   }
 
   eduValueChanged(event: any, text: string) {
@@ -351,6 +379,8 @@ export class RegistrationEduEmpComponent implements OnInit {
       } else {
         this.gpaCodeLength = 3;
       }
+    } else if (text === COMMON_MSG.projects) {
+      this.eduForm.projects = event.value;
     } else if (text === COMMON_MSG.country) {
       this.eduForm.country = event.value;
     } else if (text === COMMON_MSG.states) {

@@ -21,6 +21,7 @@ export interface EmpDetails {
   companyName?: string;
   designation?: string;
   roles?: string;
+  projects?: string;
   toDate?: any;
   formDate?: any;
   country?: string;
@@ -32,6 +33,7 @@ export interface EduDetails {
   collegeName?: string;
   major?: string;
   levelEdu?: string;
+  projects?: string;
   toDate?: any;
   formDate?: any;
   gpa?: string;

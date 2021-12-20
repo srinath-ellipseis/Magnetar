@@ -35,7 +35,7 @@ export class RegistrationPreviewComponent implements OnInit {
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
-    }, COMMON_MSG.setTimeout2);
+    }, COMMON_MSG.setTimeout2000);
   }
 
   goToDetailsPage() {
