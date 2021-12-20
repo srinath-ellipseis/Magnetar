@@ -68,6 +68,7 @@ export const COMMON_MSG = {
   setTimeout5000: 5000,
   Success: "Success",
   text: "text",
+  rememberMe:"Remember me!"
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",

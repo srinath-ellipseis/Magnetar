@@ -12,11 +12,14 @@ export class LoginComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
   error_msg = Validation_MSG
   loginData: LoginOptions = {};
+  isChecked: boolean = false;
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
   onFormSubmit(event: any) {
-    localStorage.setItem(COMMON_MSG.loginUser, JSON.stringify(this.loginData));
+    if(this.isChecked){
+      localStorage.setItem(COMMON_MSG.loginUser, JSON.stringify(this.loginData));
+    }
     this.router.navigate(["/login/registration-details"]);
   }
   valueChanged(event: any, text: string) {
@@ -28,5 +31,8 @@ export class LoginComponent implements OnInit {
   }
   signupPage() {
     this.router.navigate(["/login/registration"]);
+  }
+  checkedValue(event: any){
+    this.isChecked = event.value;
   }
 }

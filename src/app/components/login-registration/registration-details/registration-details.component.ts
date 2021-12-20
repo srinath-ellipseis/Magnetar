@@ -21,9 +21,8 @@ export class RegistrationDetailsComponent implements OnInit {
   detailsForm: PersonalDetails;
   namePattern: any = /^[^0-9]+$/;
   loadingVisible: boolean = true;
-  checked: boolean = false;
   nextBtnTooltip: boolean = false;
-  datePatch = new Date();
+  datePatch:any;
   constructor(private router: Router) {
     this.detailsForm = JSON.parse(
       localStorage.getItem(COMMON_MSG.personalDetalis)!
@@ -42,7 +41,6 @@ export class RegistrationDetailsComponent implements OnInit {
       this.detailsData.zipcode = this.detailsForm.zipcode;
       this.detailsData.mobileNumber = this.detailsForm.mobileNumber;
       this.detailsData.countryCode = this.detailsForm.countryCode;
-      this.checked = true;
       this.datePatch = new Date(this.detailsData.dob);
     }
   }
