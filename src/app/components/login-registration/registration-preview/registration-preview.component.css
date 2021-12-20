@@ -70,3 +70,6 @@ label {
   font-size: 18px;
   margin: 10px;
 }
+.fontBold {
+  font-weight: bold;
+}

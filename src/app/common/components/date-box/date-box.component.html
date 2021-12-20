@@ -9,12 +9,12 @@
       [value]="datePatchValue"
     >
       <dx-validator>
-        <dxi-validation-rule type="required" [message]="COMMON_MSG.dobRequired">
+        <dxi-validation-rule type="required" [message]="error_msg.dobRequired">
         </dxi-validation-rule>
         <dxi-validation-rule
           type="range"
           [max]="dobMaxDate"
-          [message]="COMMON_MSG.dobError"
+          [message]="error_msg.dob18Error"
         >
         </dxi-validation-rule>
       </dx-validator>
@@ -37,20 +37,20 @@
         <dxi-validation-rule
           *ngIf="statDateValidation"
           type="required"
-          [message]="COMMON_MSG.startDateRequired"
+          [message]="error_msg.startDateRequired"
         >
         </dxi-validation-rule>
         <dxi-validation-rule
           *ngIf="endDateValidation"
           type="required"
-          [message]="COMMON_MSG.endDateRequired"
+          [message]="error_msg.endDateRequired"
         >
         </dxi-validation-rule>
         <dxi-validation-rule
           *ngIf="endDateValidation"
           type="range"
           [min]="startDate"
-          [message]="COMMON_MSG.dateRange"
+          [message]="error_msg.dateRange"
         >
         </dxi-validation-rule>
       </dx-validator>

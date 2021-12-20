@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { COMMON_MSG } from "src/app/common/messages/common-msg";
+import { COMMON_MSG, Validation_MSG } from "src/app/common/messages/common-msg";
 import { LoginOptions } from "src/app/models/login.model";
 
 @Component({
@@ -10,6 +10,7 @@ import { LoginOptions } from "src/app/models/login.model";
 })
 export class LoginComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
+  error_msg = Validation_MSG
   loginData: LoginOptions = {};
   constructor(private router: Router) {}
 

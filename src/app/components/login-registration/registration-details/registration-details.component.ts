@@ -1,7 +1,7 @@
 import { formatDate } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { COMMON_MSG, DropdownValues } from "src/app/common/messages/common-msg";
+import { COMMON_MSG, DropdownValues, Validation_MSG } from "src/app/common/messages/common-msg";
 import { PersonalDetails } from "src/app/models/login.model";
 
 @Component({
@@ -11,6 +11,7 @@ import { PersonalDetails } from "src/app/models/login.model";
 })
 export class RegistrationDetailsComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
+  error_msg = Validation_MSG
   genders = DropdownValues.genders;
   roles = DropdownValues.roles;
   countries = DropdownValues.countries;
@@ -51,7 +52,7 @@ export class RegistrationDetailsComponent implements OnInit {
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
-    }, COMMON_MSG.setTimeout2);
+    }, COMMON_MSG.setTimeout2000);
   }
 
   onFormSubmit(event: any) {
