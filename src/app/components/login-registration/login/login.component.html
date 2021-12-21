@@ -16,7 +16,7 @@
               <div class="dx-field">
                 <div class="dx-field-value width100">
                   <dx-text-box
-                    placeholder="Enter Email"
+                    [placeholder]="COMMON_MSG.emailPlaceholder"
                     valueChangeEvent="keyup"
                     (onValueChanged)="valueChanged($event, 'email')"
                     autocomplete="off"
@@ -24,11 +24,11 @@
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.emailRequired"
+                        [message]="error_msg.emailRequired"
                       ></dxi-validation-rule>
                       <dxi-validation-rule
                         type="email"
-                        [message]="COMMON_MSG.mail"
+                        [message]="error_msg.mailError"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-text-box>
@@ -40,6 +40,18 @@
                 [placeholder]="COMMON_MSG.passwordPlaceholder"
                 (value)="valueChanged($event, 'password')"
               ></app-input-password>
+            </div>
+            <div class="row margin-b-15">
+              <div class="col-md-12">
+                <div class="dx-field">
+                  <dx-check-box
+                  class="whiteColor"
+                [value]="isChecked"
+                [text]="COMMON_MSG.rememberMe"
+                (onValueChanged)="checkedValue($event)"
+              ></dx-check-box>
+                </div>
+              </div>
             </div>
             <div class="row margin-b-15">
               <div class="col-md-4"></div>
@@ -59,10 +71,14 @@
       </div>
       <div class="row">
         <div class="col-md-6 textCenter">
-          <span>Forgot Password?</span>
+          <button class="btn whiteColor" type="default">
+            Forgot Password?
+          </button>
         </div>
         <div class="col-md-6 textCenter">
-          <span>Sign Up</span>
+          <button class="btn whiteColor" type="default" (click)="signupPage()">
+            Sign Up
+          </button>
         </div>
       </div>
     </div>

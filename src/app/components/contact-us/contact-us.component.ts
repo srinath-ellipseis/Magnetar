@@ -11,10 +11,4 @@ export class ContactUsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  valueChanged(event: any, text: string){
-    console.log()
-  }
-  onFormSubmit(event: any){
-    
-  }
 }

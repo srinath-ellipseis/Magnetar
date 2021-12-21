@@ -6,7 +6,6 @@ import { RegistrationEduEmpComponent } from "./registration-edu-emp/registration
 import { RegistrationPreviewComponent } from "./registration-preview/registration-preview.component";
 import { RegistrationComponent } from "./registration/registration.component";
 const routes: Routes = [
- 
   {
     path: "login-page",
     component: LoginComponent,

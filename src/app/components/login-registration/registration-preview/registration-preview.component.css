@@ -18,7 +18,7 @@
 
 .previewHeader {
   height: 60px;
-  background-color: #14b1bb;
+  background-color: #dbdada;
   border-radius: 6px 6px 0 0;
 }
 
@@ -69,4 +69,7 @@ td {
 label {
   font-size: 18px;
   margin: 10px;
+}
+.fontBold {
+  font-weight: bold;
 }

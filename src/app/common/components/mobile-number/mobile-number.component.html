@@ -4,16 +4,18 @@
       <div class="dx-field-value width100">
         <dx-select-box
           [dataSource]="countryCodes"
-          placeholder="Select Code"
+          [placeholder]="COMMON_MSG.ccPlaceholder"
           [value]="countryCode"
           valueChangeEvent="keyup"
+          displayExpr="dial_code"
+          valueExpr="dial_code"
           (onValueChanged)="codeValueChange($event)"
           [searchEnabled]="true"
         >
           <dx-validator>
             <dxi-validation-rule
               type="required"
-              [message]="COMMON_MSG.countryCodeRequired"
+              [message]="error_msg.countryCodeRequired"
             ></dxi-validation-rule>
           </dx-validator>
         </dx-select-box>
@@ -24,7 +26,7 @@
     <div class="dx-field">
       <div class="dx-field-value width100">
         <dx-text-box
-          placeholder="Enter Mobile Number"
+          [placeholder]="COMMON_MSG.mobilePlaceholder"
           [value]="mobileNumberValue"
           valueChangeEvent="keyup"
           [maxLength]="10"
@@ -34,13 +36,13 @@
           <dx-validator>
             <dxi-validation-rule
               type="required"
-              [message]="COMMON_MSG.mobileNumberRequired"
+              [message]="error_msg.mobileNumberRequired"
             >
             </dxi-validation-rule>
             <dxi-validation-rule
               type="pattern"
               [pattern]="phonePattern"
-              [message]="COMMON_MSG.mobileNumber"
+              [message]="error_msg.mobileNumberError"
             >
             </dxi-validation-rule>
           </dx-validator>

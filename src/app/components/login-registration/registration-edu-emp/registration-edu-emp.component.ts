@@ -1,7 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { COMMON_MSG } from "src/app/common/messages/common-msg";
-import { DropdownOptions } from "src/app/common/messages/drop-down-options";
+import { Router } from "@angular/router";
+import {
+  COMMON_MSG,
+  DropdownValues,
+  Validation_MSG,
+} from "src/app/common/messages/common-msg";
+import { EduDetails, EmpDetails } from "src/app/models/login.model";
 
 @Component({
   selector: "app-registration-edu-emp",
@@ -10,82 +14,64 @@ import { DropdownOptions } from "src/app/common/messages/drop-down-options";
 })
 export class RegistrationEduEmpComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
-  countries: any = DropdownOptions.countries;
-  states: any = DropdownOptions.states;
-  cities: any = DropdownOptions.cities;
-  levelEdu: any = DropdownOptions.levelEdu;
-  gpaCodes: any = DropdownOptions.gpaCodes;
-  empForm = {
-    companyName: "",
-    description: "",
-    roles: "",
-    toDate: "",
-    formDate: "",
-    country: "",
-    state: "",
-    city: "",
-    zipcode: "",
-  };
-  eduForm = {
-    collegeName: "",
-    major: "",
-    levelEdu: "",
-    toDate: "",
-    formDate: "",
-    gpa: "",
-    gpaCode: "",
-    country: "",
-    state: "",
-    city: "",
-    zipcode: "",
-  };
+  error_msg = Validation_MSG;
+  countries = DropdownValues.countries;
+  states = DropdownValues.states;
+  cities = DropdownValues.cities;
+  levelEdu = DropdownValues.levelEdu;
+  gpaCodes = DropdownValues.gpaCodes;
+  empForm: EmpDetails = {};
+  eduForm: EduDetails = {};
   loadingVisible: boolean = true;
   empFormVisible: boolean = false;
   eduFormVisible: boolean = false;
+  checked: boolean = false;
+  empFormData: EmpDetails[] = [];
+  eduFormData: EduDetails[] = [];
+  educationData: EduDetails[] = [];
+  employeeData: EmpDetails[] = [];
   empCurrentData: any;
   eduCurrentData: any;
-  checked: boolean = false;
-  empFormData: any[] = [];
-  eduFormData: any[] = [];
-  educationData: any[] = [];
-  employeeData: any[] = [];
-  eduFromMaxDate: any;
-  eduToMinDate = new Date();
-  empFromMaxDate: any;
-  empToMinDate: any;
-  eduDeletePopup: boolean = false;
-  empDeletePopup: boolean = false;
   eduCurrentDelete: any;
   empCurrentDelete: any;
+  editEduData: EduDetails;
+  editEmpData: EmpDetails;
+  eduDeletePopup: boolean = false;
+  empDeletePopup: boolean = false;
   eduFormDisable: boolean = false;
   empFormDisable: boolean = false;
   defaultVisible = false;
   viewTooltipVisible = false;
   editTooltipVisible = false;
   deleteTooltipVisible = false;
-  editEduData: any;
-  editEmpData: any;
   backBtnTooltip: boolean = false;
   nextBtnTooltip: boolean = false;
   fromDate = new Date();
-  dateRangeShow: boolean = false;
-  gpaCodeLength: any;
+  eduFromMaxDate = new Date();
+  eduToMinDate = new Date();
+  empFromMaxDate = new Date();
+  empToMinDate = new Date();
+  gpaCodeLength: number = 0;
   gradePattern: any = /^[^0-9]+$/;
   percentagePattern: any =
     /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/;
-  floatPattern: any = /^\d+\.\d{2}$/;
-  constructor(
-    private router: Router,
-    private activeRoute: ActivatedRoute
-    ) {
-    this.employeeData = JSON.parse(localStorage.getItem("employeeForm")!);
-    this.educationData = JSON.parse(localStorage.getItem("educationForm")!);
+  floatPattern: any = /^\d+\.\d{1,2}$/;
+  percentageButton: any;
+  constructor(private router: Router) {
+    this.employeeData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.employeeForm)!
+    );
+    this.educationData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.educationForm)!
+    );
     if (this.employeeData) {
       for (let emp of this.employeeData) {
         this.empFormData.push({
+          id: emp.id,
           companyName: emp.companyName,
-          description: emp.description,
+          designation: emp.designation,
           roles: emp.roles,
+          projects: emp.projects,
           toDate: emp.toDate,
           formDate: emp.formDate,
           country: emp.country,
@@ -98,33 +84,59 @@ export class RegistrationEduEmpComponent implements OnInit {
     if (this.educationData) {
       for (let edu of this.educationData) {
         this.eduFormData.push({
+          id: edu.id,
           collegeName: edu.collegeName,
           major: edu.major,
           levelEdu: edu.levelEdu,
-          toDate: edu.toDate,
-          formDate: edu.formDate,
+          toDate: new Date(edu.toDate),
+          formDate: new Date(edu.formDate),
           gpa: edu.gpa,
           gpaCode: edu.gpaCode,
+          projects: edu.projects,
           country: edu.country,
           state: edu.state,
           city: edu.city,
           zipcode: edu.zipcode,
         });
-        if (edu.levelEdu === "Diploma") {
+        if (edu.levelEdu === COMMON_MSG.Diploma) {
           this.levelEdu[0].disabled = true;
-        } else if (edu.levelEdu === "Bachelor Degree") {
+        } else if (edu.levelEdu === COMMON_MSG.BachelorDegree) {
           this.levelEdu[1].disabled = true;
         }
       }
     }
-    this.editEduData = JSON.parse(localStorage.getItem("editEduData")!);
-    this.editEmpData = JSON.parse(localStorage.getItem("editEmpData")!);
+    this.editEduData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.editEduData)!
+    );
+    this.editEmpData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.editEmpData)!
+    );
     if (this.editEduData) {
-      this.goToEduForm(this.editEduData, "edit");
+      let editData = [];
+      editData.push({
+        collegeName: this.editEduData.collegeName,
+        major: this.editEduData.major,
+        levelEdu: this.editEduData.levelEdu,
+        toDate: new Date(this.editEduData.toDate),
+        formDate: new Date(this.editEduData.formDate),
+        gpa: this.editEduData.gpa,
+        gpaCode: this.editEduData.gpaCode,
+        projects: this.editEduData.projects,
+        country: this.editEduData.country,
+        state: this.editEduData.state,
+        city: this.editEduData.city,
+        zipcode: this.editEduData.zipcode,
+      });
+      this.goToEduForm(editData[0], COMMON_MSG.edit);
     }
     if (this.editEmpData) {
-      this.goToEmpForm(this.editEmpData, "edit");
+      this.goToEmpForm(this.editEmpData, COMMON_MSG.edit);
     }
+    this.percentageButton = {
+      text: "%",
+      stylingMode: "text",
+      width: 32,
+    };
   }
 
   ngOnInit(): void {}
@@ -132,26 +144,26 @@ export class RegistrationEduEmpComponent implements OnInit {
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 2000);
+    }, COMMON_MSG.setTimeout2000);
   }
 
-  onHidden() {}
-
-  goToEmpForm(e: any, type: string) {
-    if (e === "new") {
+  goToEmpForm(event: any, type: string) {
+    if (event === COMMON_MSG.new) {
       this.empFormDisable = false;
       this.empCurrentData = "";
     } else {
-      this.empCurrentData = e;
-      if (type === "view") {
+      this.empCurrentData = event;
+      if (type === COMMON_MSG.view) {
         this.empFormDisable = true;
       } else {
         this.empFormDisable = false;
       }
       if (this.empCurrentData) {
+        this.empForm.id = this.empCurrentData.id;
         this.empForm.companyName = this.empCurrentData.companyName;
-        this.empForm.description = this.empCurrentData.description;
+        this.empForm.designation = this.empCurrentData.designation;
         this.empForm.roles = this.empCurrentData.roles;
+        this.empForm.projects = this.empCurrentData.projects;
         this.empForm.formDate = this.empCurrentData.formDate;
         this.empForm.toDate = this.empCurrentData.toDate;
         this.empForm.country = this.empCurrentData.country;
@@ -165,18 +177,18 @@ export class RegistrationEduEmpComponent implements OnInit {
       if (this.empCurrentData) {
         let yourNewData = [];
         for (let i = 0; i < this.empFormData.length; i++) {
-          if (
-            this.empFormData[i].companyName !== this.empCurrentData.companyName
-          ) {
+          if (this.empFormData[i].id !== this.empCurrentData.id) {
             yourNewData.push(this.empFormData[i]);
           }
         }
         this.empFormData = [];
         for (let emp of yourNewData) {
           this.empFormData.push({
+            id: emp.id,
             companyName: emp.companyName,
-            description: emp.description,
+            designation: emp.designation,
             roles: emp.roles,
+            projects: emp.projects,
             toDate: emp.toDate,
             formDate: emp.formDate,
             country: emp.country,
@@ -190,105 +202,117 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.empFormVisible = true;
   }
 
-  deleteEmpForm(e: any) {
+  deleteEmpForm(event: any) {
     this.loadingVisible = true;
     let yourNewData = [];
     for (let i = 0; i < this.empFormData.length; i++) {
-      if (this.empFormData[i].companyName !== e.companyName) {
+      if (this.empFormData[i].id !== event.id) {
         yourNewData.push(this.empFormData[i]);
       }
     }
-    localStorage.setItem("employeeForm", JSON.stringify(yourNewData));
+    localStorage.setItem(COMMON_MSG.employeeForm, JSON.stringify(yourNewData));
     this.empDeletePopup = false;
     window.location.reload();
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 5000);
+    }, COMMON_MSG.setTimeout5000);
   }
 
-  empFormSubmit(e: any) {
+  empFormSubmit(event: any) {
     this.loadingVisible = true;
+    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+    this.empForm.id = newId;
     this.empFormData.push(this.empForm);
-    localStorage.setItem("employeeForm", JSON.stringify(this.empFormData));
-    localStorage.removeItem("editEmpData");
+    localStorage.setItem(
+      COMMON_MSG.employeeForm,
+      JSON.stringify(this.empFormData)
+    );
+    localStorage.removeItem(COMMON_MSG.editEmpData);
     window.location.reload();
     this.empFormVisible = false;
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 5000);
+    }, COMMON_MSG.setTimeout5000);
   }
 
   empValueChanged(event: any, text: string) {
-    if (text === "companyName") {
+    if (text === COMMON_MSG.companyName) {
       this.empForm.companyName = event.value;
-    } else if (text === "description") {
-      this.empForm.description = event.value;
-    } else if (text === "roles") {
+    } else if (text === COMMON_MSG.designation) {
+      this.empForm.designation = event.value;
+    } else if (text === COMMON_MSG.roles) {
       this.empForm.roles = event.value;
-    } else if (text === "formDate") {
-      this.empToMinDate = event.value;
-      this.empForm.formDate = event.value;
-    } else if (text === "toDate") {
-      this.empFromMaxDate = event.value;
-      this.empForm.toDate = event.value;
-    } else if (text === "country") {
+    } else if (text === COMMON_MSG.projects) {
+      this.empForm.projects = event.value;
+    } else if (text === COMMON_MSG.formDate) {
+      this.empToMinDate = event;
+      this.empForm.formDate = event;
+    } else if (text === COMMON_MSG.toDate) {
+      this.empFromMaxDate = event;
+      this.empForm.toDate = event;
+    } else if (text === COMMON_MSG.country) {
       this.empForm.country = event.value;
-    } else if (text === "state") {
+    } else if (text === COMMON_MSG.states) {
       this.empForm.state = event.value;
-    } else if (text === "city") {
+    } else if (text === COMMON_MSG.city) {
       this.empForm.city = event.value;
-    } else if (text === "zipcode") {
+    } else if (text === COMMON_MSG.zipcode) {
       this.empForm.zipcode = event.value;
     }
   }
   closeEmpForm() {
     this.empFormVisible = false;
-    localStorage.removeItem("editEmpData");
+    localStorage.removeItem(COMMON_MSG.editEmpData);
     window.location.reload();
   }
-  goToEmpDeletePopup(e: any) {
+  goToEmpDeletePopup(event: any) {
     this.empDeletePopup = true;
-    this.empCurrentDelete = e;
+    this.empCurrentDelete = event;
   }
 
   cancelEmpDeletePopup() {
     this.empDeletePopup = false;
   }
 
-  goToEduForm(e: any, type: string) {
-    if (e === "new") {
+  goToEduForm(event: any, type: string) {
+    this.eduForm.projects = "-";
+    if (event === COMMON_MSG.new) {
       this.eduFormDisable = false;
       this.eduCurrentData = "";
     } else {
-      this.eduCurrentData = e;
-      if (type === "view") {
+      this.eduCurrentData = event;
+      if (type === COMMON_MSG.view) {
         this.eduFormDisable = true;
       } else {
         this.eduFormDisable = false;
       }
       if (this.eduCurrentData) {
-        this.eduForm.collegeName = e.collegeName;
-        this.eduForm.major = e.major;
-        this.eduForm.levelEdu = e.levelEdu;
-        this.eduForm.formDate = e.formDate;
-        this.eduForm.toDate = e.toDate;
-        this.eduForm.gpa = e.gpa;
-        this.eduForm.gpaCode = e.gpaCode;
-        this.eduForm.country = e.country;
-        this.eduForm.state = e.state;
-        this.eduForm.city = e.city;
-        this.eduForm.zipcode = e.zipcode;
+        this.eduForm.id = event.id;
+        this.eduForm.collegeName = event.collegeName;
+        this.eduForm.major = event.major;
+        this.eduForm.levelEdu = event.levelEdu;
+        this.eduForm.formDate = event.formDate;
+        this.eduForm.toDate = event.toDate;
+        this.eduForm.gpa = event.gpa;
+        this.eduForm.gpaCode = event.gpaCode;
+        this.eduForm.projects = event.projects;
+        this.eduForm.country = event.country;
+        this.eduForm.state = event.state;
+        this.eduForm.city = event.city;
+        this.eduForm.zipcode = event.zipcode;
+        this.dateRange(new Date(event.formDate));
       }
       if (this.eduCurrentData) {
         let yourNewData = [];
         for (let i = 0; i < this.eduFormData.length; i++) {
-          if (this.eduFormData[i].major !== e.major) {
+          if (this.eduFormData[i].id !== event.id) {
             yourNewData.push(this.eduFormData[i]);
           }
         }
         this.eduFormData = [];
         for (let edu of yourNewData) {
           this.eduFormData.push({
+            id: edu.id,
             collegeName: edu.collegeName,
             major: edu.major,
             levelEdu: edu.levelEdu,
@@ -296,6 +320,7 @@ export class RegistrationEduEmpComponent implements OnInit {
             formDate: edu.formDate,
             gpa: edu.gpa,
             gpaCode: edu.gpaCode,
+            projects: edu.projects,
             country: edu.country,
             state: edu.state,
             city: edu.city,
@@ -307,78 +332,84 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.eduFormVisible = true;
   }
 
-  eduFormSubmit(e: any) {
+  eduFormSubmit(event: any) {
     this.loadingVisible = true;
+    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+    this.eduForm.id = newId;
     this.eduFormData.push(this.eduForm);
-    localStorage.setItem("educationForm", JSON.stringify(this.eduFormData));
-    localStorage.removeItem("editEduData");
+    localStorage.setItem(
+      COMMON_MSG.educationForm,
+      JSON.stringify(this.eduFormData)
+    );
+    localStorage.removeItem(COMMON_MSG.editEduData);
     window.location.reload();
     this.eduFormVisible = false;
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 5000);
+    }, COMMON_MSG.setTimeout5000);
   }
 
-  deleteEduForm(e: any) {
+  deleteEduForm(event: any) {
     this.loadingVisible = true;
     let yourNewData = [];
     for (let i = 0; i < this.eduFormData.length; i++) {
-      if (this.eduFormData[i].levelEdu !== e.levelEdu) {
+      if (this.eduFormData[i].id !== event.id) {
         yourNewData.push(this.eduFormData[i]);
       }
     }
-    localStorage.setItem("educationForm", JSON.stringify(yourNewData));
+    localStorage.setItem(COMMON_MSG.educationForm, JSON.stringify(yourNewData));
     this.eduDeletePopup = false;
     window.location.reload();
     setTimeout(() => {
       this.loadingVisible = false;
-    }, 5000);
+    }, COMMON_MSG.setTimeout5000);
   }
 
   eduValueChanged(event: any, text: string) {
-    if (text === "collegeName") {
+    if (text === COMMON_MSG.collegeName) {
       this.eduForm.collegeName = event.value;
-    } else if (text === "major") {
+    } else if (text === COMMON_MSG.major) {
       this.eduForm.major = event.value;
-    } else if (text === "levelEdu") {
+    } else if (text === COMMON_MSG.levelEdu) {
       this.eduForm.levelEdu = event.value;
       this.dateRange(this.eduToMinDate);
-    } else if (text === "formDate") {
-      this.eduToMinDate = event.value;
-      this.dateRangeShow = true;
-      this.dateRange(event.value);
-    } else if (text === "toDate") {
-      this.eduFromMaxDate = event.value;
-      this.eduForm.toDate = event.value;
-    } else if (text === "gpa") {
+    } else if (text === COMMON_MSG.formDate) {
+      this.eduToMinDate = event;
+      this.dateRange(event);
+    } else if (text === COMMON_MSG.toDate) {
+      this.eduFromMaxDate = event;
+      this.eduForm.toDate = event;
+    } else if (text === COMMON_MSG.gpa) {
       this.eduForm.gpa = event.value;
-    } else if (text === "gpaCode") {
+    } else if (text === COMMON_MSG.gpaCode) {
       this.eduForm.gpaCode = event.value;
-      if (this.eduForm.gpaCode === "Float") {
+      if (this.eduForm.gpaCode === COMMON_MSG.Float) {
         this.gpaCodeLength = 5;
       } else {
         this.gpaCodeLength = 3;
       }
-    } else if (text === "country") {
+    } else if (text === COMMON_MSG.projects) {
+      this.eduForm.projects = event.value;
+    } else if (text === COMMON_MSG.country) {
       this.eduForm.country = event.value;
-    } else if (text === "state") {
+    } else if (text === COMMON_MSG.states) {
       this.eduForm.state = event.value;
-    } else if (text === "city") {
+    } else if (text === COMMON_MSG.city) {
       this.eduForm.city = event.value;
-    } else if (text === "zipcode") {
+    } else if (text === COMMON_MSG.zipcode) {
       this.eduForm.zipcode = event.value;
     }
   }
   dateRange(date: any) {
-    if (this.eduForm.levelEdu === "Diploma") {
+    if (this.eduForm.levelEdu === COMMON_MSG.Diploma) {
       this.fromDate = new Date(date.setFullYear(date.getFullYear() + 2));
       let reSet: any = new Date(date.setFullYear(date.getFullYear() - 2));
       this.eduForm.formDate = reSet;
-    } else if (this.eduForm.levelEdu === "Bachelor Degree") {
+    } else if (this.eduForm.levelEdu === COMMON_MSG.BachelorDegree) {
       this.fromDate = new Date(date.setFullYear(date.getFullYear() + 3));
       let reSet: any = new Date(date.setFullYear(date.getFullYear() - 3));
       this.eduForm.formDate = reSet;
-    } else if (this.eduForm.levelEdu === "Masters") {
+    } else if (this.eduForm.levelEdu === COMMON_MSG.Masters) {
       this.fromDate = new Date(date.setFullYear(date.getFullYear() + 1));
       let reSet: any = new Date(date.setFullYear(date.getFullYear() - 1));
       this.eduForm.formDate = reSet;
@@ -388,12 +419,13 @@ export class RegistrationEduEmpComponent implements OnInit {
   }
   closeEduForm() {
     this.eduFormVisible = false;
-    localStorage.removeItem("editEduData");
+    localStorage.removeItem(COMMON_MSG.editEduData);
     window.location.reload();
   }
-  goToDeletePopup(e: any) {
+  goToDeletePopup(event: any) {
+    console.log(event);
     this.eduDeletePopup = true;
-    this.eduCurrentDelete = e;
+    this.eduCurrentDelete = event;
   }
 
   cancelEduDeletePopup() {

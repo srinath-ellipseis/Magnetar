@@ -1,15 +1,16 @@
 .main-nav {
-  border-top: 3px solid #14b1bb;
+  border-bottom: 3px solid #0a61c8;
   padding: 10px 10px 0px 10px;
   background-color: #fff;
   vertical-align: middle;
+  height: 75px;
 }
 .navbar {
   align-items: flex-end;
   float: right;
 }
 .navbar-light .navbar-toggler {
-  border-color: #2596be;
+  border-color: #fa8936;
 }
 .navbar-toggler .icon-bar {
   margin: 7px;
@@ -33,7 +34,7 @@
   text-transform: uppercase;
 }
 .nav-item:hover > a {
-  color: #14b1bb;
+  color: #fa8936;
 }
 .nav-item svg {
   margin-left: 5px;
@@ -42,7 +43,7 @@
   margin: 0 10px;
   height: 1em;
   width: 1em;
-  color: #14b1bb;
+  color: #fa8936;
 }
 .menu-2col {
   columns: 2;
@@ -67,14 +68,14 @@
 }
 .dropdown-item:hover {
   background-color: transparent;
-  color: #14b1bb !important;
+  color: #fa8936 !important;
 }
 .navbar-light .navbar-brand:focus,
 .navbar-light .navbar-brand:hover,
 .navbar-light .navbar-toggler:focus,
 .navbar-light .navbar-toggler:hover {
-  color: aqua;
+  color: #fa8936;
 }
-img{
+img {
   width: 65%;
 }

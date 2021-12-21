@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { COMMON_MSG } from "src/app/common/messages/common-msg";
 
 @Component({
   selector: "app-navbar",
@@ -7,19 +7,13 @@ import { Router } from "@angular/router";
   styleUrls: ["./navbar.component.css"],
 })
 export class NavbarComponent implements OnInit {
-  
-  constructor(private router: Router) {}
+  COMMON_MSG= COMMON_MSG
+  constructor() {}
 
   ngOnInit(): void {}
   clearForms() {
-    localStorage.removeItem("deatilsForm");
-    localStorage.removeItem("eductionForm");
-    localStorage.removeItem("employeeForm");
-  }
-  itemClick(event: any) {
-    console.log(event.itemData.name);
-    if (event.itemData.name === "HD Video Player") {
-      this.router.navigate(["company/about"]);
-    }
+    localStorage.removeItem(COMMON_MSG.personalDetalis);
+    localStorage.removeItem(COMMON_MSG.educationForm);
+    localStorage.removeItem(COMMON_MSG.employeeForm);
   }
 }

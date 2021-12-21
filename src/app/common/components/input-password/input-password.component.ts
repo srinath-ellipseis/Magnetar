@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { COMMON_MSG } from "../../messages/common-msg";
+import { COMMON_MSG, Validation_MSG } from "../../messages/common-msg";
 
 @Component({
   selector: "app-input-password",
@@ -8,7 +8,8 @@ import { COMMON_MSG } from "../../messages/common-msg";
 })
 export class InputPasswordComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
-  @Input() placeholder: string = "Enter Password";
+  error_msg = Validation_MSG;
+  @Input() placeholder: string = COMMON_MSG.passwordPlaceholder;
   @Input() comparePassword: any;
   @Input() showPattern: boolean = false;
   @Input() passwordValue: any;
@@ -21,19 +22,25 @@ export class InputPasswordComponent implements OnInit {
   passwordPattern: any =
     /^(?:(?=.*[a-z])(?:(?=.*[A-Z])(?=.*[\d\W])|(?=.*\W)(?=.*\d))|(?=.*\W)(?=.*[A-Z])(?=.*\d)).{8,}$/;
   constructor() {
-    this.passwordMode = "password";
+    this.passwordMode = COMMON_MSG.password;
     this.passwordButton = {
       icon: "assets/images/eye-icon-slash.svg",
       type: "default",
       onClick: () => {
-        this.passwordMode = this.passwordMode === "text" ? "password" : "text";
+        this.passwordMode =
+          this.passwordMode === COMMON_MSG.text
+            ? COMMON_MSG.password
+            : COMMON_MSG.text;
       },
     };
     this.hidePasswordButton = {
       icon: "assets/images/eye-icon.svg",
       type: "default",
       onClick: () => {
-        this.passwordMode = this.passwordMode === "text" ? "password" : "text";
+        this.passwordMode =
+          this.passwordMode === COMMON_MSG.text
+            ? COMMON_MSG.password
+            : COMMON_MSG.text;
       },
     };
     this.compareName = this.comparePassword;

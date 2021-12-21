@@ -11,7 +11,9 @@
 .textCenter {
   text-align: center !important;
 }
-
+i{
+width:25px;
+}
 .width100 {
   width: 100% !important;
 }
@@ -22,51 +24,53 @@
   text-align: end;
 }
 .dx-icon-arrowleft::before {
-  color: #14b1bb;
+  color: #0a61c8;
 }
 .dx-icon-arrowright::before {
-  color: #14b1bb;
+  color: #0a61c8;
 }
 .dx-datebox-calendar .dx-dropdowneditor-icon::before {
-  color: #14b1bb;
+  color: #0a61c8;
 }
 .dx-dropdowneditor-icon::before {
-  color: #14b1bb;
+  color: #0a61c8;
 }
 .dx-icon-plus::before {
-  color: #14b1bb;
+  color: #0a61c8;
 }
 .fa-eye:before {
-  color: #14b1bb;
+  color: #0a61c8;
 }
 .dx-icon-edit::before {
-  color: #14b1bb;
+  color: #0a61c8;
 }
 .dx-icon-trash::before {
-  color: #14b1bb;
+  color: #0a61c8;
 }
-h3,
-h5,
-.main-heading {
-  color: #14b1bb;
-  font-size: 30px;
+h3, h4, h5, .main-heading {
+  color: #0a61c8;
+  font-size: 30px !important;
   text-align: center;
-  line-height: 70px;
-  font-weight: bold;
+  font-weight: bold !important;
   display: block;
   white-space: nowrap;
 }
-h1{
-  font-size:30px;
-  color:#00285D;
-  text-align:center;
-  font-weight:700;
-  margin-bottom:20px;
+h1 {
+  font-size: 30px;
+  color: #00285d;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
-.industries h1{margin-bottom:50px;}
+.industries h1 {
+  margin-bottom: 50px;
+}
 .industries {
   background-color: #f9f7f8;
   padding: 10px 0 50px 0;
+}
+.industries a{
+  text-decoration: none;
 }
 .industries-content {
   position: relative;
@@ -156,16 +160,47 @@ span::after {
   width: 50%;
   height: 50%;
 }
-.link-tex{
-  float:right;
-  color:#13B1BB;
+.link-tex {
+  float: right;
+  color: #13b1bb;
   text-decoration: underline;
-  padding-right:20px;
+  padding-right: 20px;
 }
-h1{
-  font-size:30px;
-  color:#00285D;
-  text-align:center;
-  font-weight:700;
-  margin-bottom:20px;
+h1 {
+  font-size: 30px;
+  color: #00285d;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.right-align-content{
+  text-align: right;
+}
+.sec-heading{
+  color:#fa8936;
+  font-size:20px !important;
+  line-height: 22px;
+}
+.c-btn {
+  color: #0a61c8 !important;
+  background-color: #b3d1f5 !important;
+  border: 1px solid #0a61c8;
+  text-transform: uppercase;
+  padding: 15px 30px;
+  margin-top: 10px 0;
+  width: 100%;
+  font-size:18px;
+  font-weight:bold;
+}
+.c-btn::before {
+  z-index: -1;
+  opacity: 0;
+  transform: scale3d(0.7, 1, 1);
+  transition: transform 0.42s, opacity 0.42s;
+}
+
+.c-btn:hover {
+  color: #fff;
+  background-color: #0a61c8;
+  border-color: #0a61c8;
 }

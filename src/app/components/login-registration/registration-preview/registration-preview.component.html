@@ -10,7 +10,6 @@
         [shading]="true"
         [closeOnOutsideClick]="false"
         (onShown)="onShown()"
-        (onHidden)="onHidden()"
       >
       </dx-load-panel>
     </div>
@@ -62,26 +61,28 @@
           >
             <div class="card-body">
               <div class="row">
-                <div class="col-md-4">
-                  <label>First Name :</label><br />
-                  <label>Last Name :</label><br />
-                  <label>Email :</label><br />
-                  <label>Mobile Number :</label><br />
-                  <label>Date of Birth :</label><br />
-                  <label>Gender :</label><br />
-                  <label>Country :</label><br />
-                  <label>State :</label><br />
-                  <label>City :</label><br />
-                  <label>zipcode :</label>
+                <div class="col-md-5">
+                  <label class="fontBold">First Name :</label><br />
+                  <label class="fontBold">Last Name :</label><br />
+                  <label class="fontBold">Email :</label><br />
+                  <label class="fontBold">Mobile Number :</label><br />
+                  <label class="fontBold">Date of Birth :</label><br />
+                  <label class="fontBold">Gender :</label><br />
+                  <label class="fontBold">Country :</label><br />
+                  <label class="fontBold">State :</label><br />
+                  <label class="fontBold">City :</label><br />
+                  <label class="fontBold">zipcode :</label>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                   <label>{{ detailsData.firstName }}</label
                   ><br />
                   <label>{{ detailsData.lastName }}</label
                   ><br />
                   <label>{{ detailsData.email }}</label
                   ><br />
-                  <label>{{ detailsData.mobileNumber }}</label
+                  <label
+                    >{{ detailsData.countryCode }} -
+                    {{ detailsData.mobileNumber }}</label
                   ><br />
                   <label>{{ detailsData.dob | date }}</label
                   ><br />
@@ -96,54 +97,6 @@
                   <label>{{ detailsData.zipcode }}</label>
                 </div>
               </div>
-              <!-- <table class="table table-striped table-bordered">
-                  <tbody>
-                    <tr>
-                      <td class="width48">First Name</td>
-                      <td>{{ detailsData.firstName }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">Last Name</td>
-                      <td>{{ detailsData.lastName }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">Email</td>
-                      <td>{{ detailsData.email }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">Password</td>
-                      <td>{{ detailsData.password }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">Mobile Number</td>
-                      <td>{{ detailsData.mobileNumber }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">Date of Birth</td>
-                      <td>{{ detailsData.dob | date }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">Gender</td>
-                      <td>{{ detailsData.gender }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">Country</td>
-                      <td>{{ detailsData.country }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">State</td>
-                      <td>{{ detailsData.state }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">City</td>
-                      <td>{{ detailsData.city }}</td>
-                    </tr>
-                    <tr>
-                      <td class="width48">Zipcode</td>
-                      <td>{{ detailsData.zipcode }}</td>
-                    </tr>
-                  </tbody>
-                </table> -->
             </div>
           </div>
         </div>
@@ -180,7 +133,7 @@
                       <div class="col-md-11 padding-t-5">
                         <a
                           data-bs-toggle="collapse"
-                          href="#tab_{{ edu.levelEdu }}"
+                          href="#tab_{{ edu.id }}"
                         >
                           <h5>
                             {{ edu.levelEdu }}
@@ -196,57 +149,50 @@
                     </div>
                   </div>
                   <div
-                    id="tab_{{ edu.levelEdu }}"
+                    id="tab_{{ edu.id }}"
                     class="collapse"
                     data-bs-parent="#EducationAccordion"
                   >
                     <div class="card-body">
-                      <table class="table table-striped table-bordered">
-                        <tbody>
-                          <tr>
-                            <td class="textCenter width48">College Name</td>
-                            <td>{{ edu.collegeName }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">Major</td>
-                            <td>{{ edu.major }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">
-                              Level of Education
-                            </td>
-                            <td>{{ edu.levelEdu }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">Form Date</td>
-                            <td>{{ edu.formDate | date }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">To Date</td>
-                            <td>{{ edu.toDate | date }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">GPA</td>
-                            <td>{{ edu.gpa }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">Country</td>
-                            <td>{{ edu.country }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">State</td>
-                            <td>{{ edu.state }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">City</td>
-                            <td>{{ edu.city }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">Zipcode</td>
-                            <td>{{ edu.zipcode }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <label class="fontBold">College Name :</label><br />
+                          <label class="fontBold">Major :</label><br />
+                          <label class="fontBold">Level of Education :</label
+                          ><br />
+                          <label class="fontBold">Form Date :</label><br />
+                          <label class="fontBold">To Date :</label><br />
+                          <label class="fontBold">GPA :</label><br />
+                          <label class="fontBold">Projects :</label><br />
+                          <label class="fontBold">Country :</label><br />
+                          <label class="fontBold">State :</label><br />
+                          <label class="fontBold">City :</label><br />
+                          <label class="fontBold">Zipcode :</label>
+                        </div>
+                        <div class="col-md-7">
+                          <label>{{ edu.collegeName }}</label
+                          ><br />
+                          <label>{{ edu.major }}</label
+                          ><br />
+                          <label>{{ edu.levelEdu }}</label
+                          ><br />
+                          <label>{{ edu.formDate | date }}</label
+                          ><br />
+                          <label>{{ edu.toDate | date }}</label
+                          ><br />
+                          <label>{{ edu.gpa }}</label
+                          ><br />
+                          <label>{{ edu.projects }}</label
+                          ><br />
+                          <label>{{ edu.country }}</label
+                          ><br />
+                          <label>{{ edu.state }}</label
+                          ><br />
+                          <label>{{ edu.city }}</label
+                          ><br />
+                          <label>{{ edu.zipcode }}</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -287,7 +233,7 @@
                       <div class="col-md-11 padding-t-5">
                         <a
                           data-bs-toggle="collapse"
-                          href="#tab_{{ emp.companyName }}"
+                          href="#tab_{{ emp.id }}"
                         >
                           <h5>
                             {{ emp.companyName }}
@@ -303,53 +249,48 @@
                     </div>
                   </div>
                   <div
-                    id="tab_{{ emp.companyName }}"
+                    id="tab_{{ emp.id }}"
                     class="collapse"
                     data-bs-parent="#EmployeeAccordion"
                   >
                     <div class="card-body">
-                      <table class="table table-striped table-bordered">
-                        <tbody>
-                          <tr>
-                            <td class="textCenter width48">Company Name</td>
-                            <td>{{ emp.companyName }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">Description</td>
-                            <td>{{ emp.description }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">
-                              Roles & Responsibilies
-                            </td>
-                            <td>{{ emp.roles }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">Form Date</td>
-                            <td>{{ emp.formDate | date }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">To Date</td>
-                            <td>{{ emp.toDate | date }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">Country</td>
-                            <td>{{ emp.country }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">State</td>
-                            <td>{{ emp.state }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">City</td>
-                            <td>{{ emp.city }}</td>
-                          </tr>
-                          <tr>
-                            <td class="textCenter width48">Zipcode</td>
-                            <td>{{ emp.zipcode }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      <div class="row">
+                        <div class="col-md-5">
+                          <label class="fontBold">Company Name :</label><br />
+                          <label class="fontBold">Designation :</label><br />
+                          <label class="fontBold"
+                            >Roles & Responsibilies :</label
+                          ><br />
+                          <label class="fontBold">Projects :</label><br />
+                          <label class="fontBold">Form Date :</label><br />
+                          <label class="fontBold">To Date :</label><br />
+                          <label class="fontBold">Country :</label><br />
+                          <label class="fontBold">State :</label><br />
+                          <label class="fontBold">City :</label><br />
+                          <label class="fontBold">Zipcode :</label>
+                        </div>
+                        <div class="col-md-7">
+                          <label>{{ emp.companyName }}</label
+                          ><br />
+                          <label>{{ emp.designation }}</label
+                          ><br />
+                          <label>{{ emp.roles }}</label
+                          ><br />
+                          <label>{{ emp.projects }}</label
+                          ><br />
+                          <label>{{ emp.formDate | date }}</label
+                          ><br />
+                          <label>{{ emp.toDate | date }}</label
+                          ><br />
+                          <label>{{ emp.country }}</label
+                          ><br />
+                          <label>{{ emp.state }}</label
+                          ><br />
+                          <label>{{ emp.city }}</label
+                          ><br />
+                          <label>{{ emp.zipcode }}</label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

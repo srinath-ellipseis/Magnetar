@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="row headerText">
-          <label>Personal Details</label>
+          <h3>Personal Details</h3>
         </div>
         <div class="dx-fieldset">
           <dx-validation-summary id="summary"></dx-validation-summary>
@@ -52,7 +52,7 @@
             <div class="col-md-6">
               <div class="dx-field-value width100">
                 <dx-text-box
-                  placeholder="First Name"
+                  [placeholder]="COMMON_MSG.firstNamePlaceholder"
                   valueChangeEvent="keyup"
                   [value]="detailsData.firstName"
                   (onValueChanged)="valueChanged($event, 'firstName')"
@@ -61,12 +61,12 @@
                   <dx-validator>
                     <dxi-validation-rule
                       type="required"
-                      [message]="COMMON_MSG.firstNameRequired"
+                      [message]="error_msg.firstNameRequired"
                     ></dxi-validation-rule>
                     <dxi-validation-rule
                       type="pattern"
                       [pattern]="namePattern"
-                      [message]="COMMON_MSG.firstName"
+                      [message]="error_msg.firstNameError"
                     ></dxi-validation-rule>
                   </dx-validator>
                 </dx-text-box>
@@ -75,7 +75,7 @@
             <div class="col-md-6">
               <div class="dx-field-value width100">
                 <dx-text-box
-                  placeholder="Last Name"
+                  [placeholder]="COMMON_MSG.lastNamePlaceholder"
                   valueChangeEvent="keyup"
                   [value]="detailsData.lastName"
                   (onValueChanged)="valueChanged($event, 'lastName')"
@@ -84,12 +84,12 @@
                   <dx-validator>
                     <dxi-validation-rule
                       type="required"
-                      [message]="COMMON_MSG.lastNameRequired"
+                      [message]="error_msg.lastNameRequired"
                     ></dxi-validation-rule>
                     <dxi-validation-rule
                       type="pattern"
                       [pattern]="namePattern"
-                      [message]="COMMON_MSG.lastName"
+                      [message]="error_msg.lastNameError"
                     ></dxi-validation-rule>
                   </dx-validator>
                 </dx-text-box>
@@ -101,7 +101,7 @@
               <div class="dx-field">
                 <div class="dx-field-value width100">
                   <dx-text-box
-                    placeholder="Enter Email"
+                    [placeholder]="COMMON_MSG.emailPlaceholder"
                     valueChangeEvent="keyup"
                     [value]="detailsData.email"
                     (onValueChanged)="valueChanged($event, 'email')"
@@ -110,11 +110,11 @@
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.emailRequired"
+                        [message]="error_msg.emailRequired"
                       ></dxi-validation-rule>
                       <dxi-validation-rule
                         type="email"
-                        [message]="COMMON_MSG.mail"
+                        [message]="error_msg.mailError"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-text-box>
@@ -151,39 +151,18 @@
           </div>
           <div class="row margin-b-15">
             <div class="col-md-6">
-              <div class="dx-field">
-                <div class="dx-field-value width100">
-                  <dx-date-box
-                    placeholder="Enter DOB"
-                    invalidDateMessage="The date must have the following format: MM/dd/yyyy"
-                    valueChangeEvent="keyup"
-                    autocomplete="off"
-                    (onValueChanged)="valueChanged($event, 'dob')"
-                    [value]="detailsData.dob"
-                  >
-                    <dx-validator>
-                      <dxi-validation-rule
-                        type="required"
-                        [message]="COMMON_MSG.dobRequired"
-                      >
-                      </dxi-validation-rule>
-                      <dxi-validation-rule
-                        type="range"
-                        [max]="maxDate"
-                        [message]="COMMON_MSG.dob"
-                      >
-                      </dxi-validation-rule>
-                    </dx-validator>
-                  </dx-date-box>
-                </div>
-              </div>
+              <app-date-box
+                [dobValidation]="true"
+                (dateValue)="valueChanged($event, 'dob')"
+                [dobDatePatchValue]="datePatch"
+              ></app-date-box>
             </div>
             <div class="col-md-6">
               <div class="dx-field">
                 <div class="dx-field-value width100">
                   <dx-select-box
                     [dataSource]="genders"
-                    placeholder="Select Gender"
+                    [placeholder]="COMMON_MSG.genderPlaceholder"
                     [value]="detailsData.gender"
                     valueChangeEvent="keyup"
                     (onValueChanged)="valueChanged($event, 'genders')"
@@ -192,7 +171,7 @@
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.genderRequired"
+                        [message]="error_msg.genderRequired"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-select-box>
@@ -206,7 +185,7 @@
                 <div class="dx-field-value width100">
                   <dx-select-box
                     [dataSource]="countries"
-                    placeholder="Select Country"
+                    [placeholder]="COMMON_MSG.countryPlaceholder"
                     [value]="detailsData.country"
                     valueChangeEvent="keyup"
                     (onValueChanged)="valueChanged($event, 'country')"
@@ -215,7 +194,7 @@
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.countryRequired"
+                        [message]="error_msg.countryRequired"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-select-box>
@@ -227,7 +206,7 @@
                 <div class="dx-field-value width100">
                   <dx-select-box
                     [dataSource]="states"
-                    placeholder="Select State"
+                    [placeholder]="COMMON_MSG.statePlaceholder"
                     [value]="detailsData.state"
                     valueChangeEvent="keyup"
                     (onValueChanged)="valueChanged($event, 'states')"
@@ -236,7 +215,7 @@
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.stateRequired"
+                        [message]="error_msg.stateRequired"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-select-box>
@@ -250,7 +229,7 @@
                 <div class="dx-field-value width100">
                   <dx-select-box
                     [dataSource]="cities"
-                    placeholder="Select City"
+                    [placeholder]="COMMON_MSG.cityPlaceholder"
                     [value]="detailsData.city"
                     valueChangeEvent="keyup"
                     (onValueChanged)="valueChanged($event, 'city')"
@@ -259,7 +238,7 @@
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.cityRequired"
+                        [message]="error_msg.cityRequired"
                       >
                       </dxi-validation-rule>
                     </dx-validator>
@@ -271,7 +250,7 @@
               <div class="dx-field">
                 <div class="dx-field-value width100">
                   <dx-text-box
-                    placeholder="Enter Zipcode"
+                    [placeholder]="COMMON_MSG.zipcodePlaceholder"
                     valueChangeEvent="keyup"
                     [value]="detailsData.zipcode"
                     [maxLength]="6"
@@ -281,35 +260,19 @@
                     <dx-validator>
                       <dxi-validation-rule
                         type="required"
-                        [message]="COMMON_MSG.zipcodeRequired"
+                        [message]="error_msg.zipcodeRequired"
                       >
                       </dxi-validation-rule>
                       <dxi-validation-rule
                         type="pattern"
                         pattern="^(?!0+$)\d{5,}$"
-                        [message]="COMMON_MSG.zipcode"
+                        [message]="error_msg.zipcodeError"
                       ></dxi-validation-rule>
                     </dx-validator>
                   </dx-text-box>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row margin-b-15">
-            <div class="col-md-6">
-              <dx-check-box
-                [value]="checked"
-                text="I agree to the Terms and Conditions"
-              >
-                <dx-validator>
-                  <dxi-validation-rule
-                    type="required"
-                    [message]="COMMON_MSG.teamsCheck"
-                  ></dxi-validation-rule>
-                </dx-validator>
-              </dx-check-box>
-            </div>
-            <div class="col-md-6"></div>
           </div>
         </div>
       </form>
