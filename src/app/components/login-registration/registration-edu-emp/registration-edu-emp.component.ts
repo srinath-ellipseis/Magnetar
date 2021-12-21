@@ -67,6 +67,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     if (this.employeeData) {
       for (let emp of this.employeeData) {
         this.empFormData.push({
+          id: emp.id,
           companyName: emp.companyName,
           designation: emp.designation,
           roles: emp.roles,
@@ -83,6 +84,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     if (this.educationData) {
       for (let edu of this.educationData) {
         this.eduFormData.push({
+          id: edu.id,
           collegeName: edu.collegeName,
           major: edu.major,
           levelEdu: edu.levelEdu,
@@ -157,6 +159,7 @@ export class RegistrationEduEmpComponent implements OnInit {
         this.empFormDisable = false;
       }
       if (this.empCurrentData) {
+        this.empForm.id = this.empCurrentData.id;
         this.empForm.companyName = this.empCurrentData.companyName;
         this.empForm.designation = this.empCurrentData.designation;
         this.empForm.roles = this.empCurrentData.roles;
@@ -174,15 +177,14 @@ export class RegistrationEduEmpComponent implements OnInit {
       if (this.empCurrentData) {
         let yourNewData = [];
         for (let i = 0; i < this.empFormData.length; i++) {
-          if (
-            this.empFormData[i].companyName !== this.empCurrentData.companyName
-          ) {
+          if (this.empFormData[i].id !== this.empCurrentData.id) {
             yourNewData.push(this.empFormData[i]);
           }
         }
         this.empFormData = [];
         for (let emp of yourNewData) {
           this.empFormData.push({
+            id: emp.id,
             companyName: emp.companyName,
             designation: emp.designation,
             roles: emp.roles,
@@ -204,7 +206,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.loadingVisible = true;
     let yourNewData = [];
     for (let i = 0; i < this.empFormData.length; i++) {
-      if (this.empFormData[i].companyName !== event.companyName) {
+      if (this.empFormData[i].id !== event.id) {
         yourNewData.push(this.empFormData[i]);
       }
     }
@@ -218,6 +220,8 @@ export class RegistrationEduEmpComponent implements OnInit {
 
   empFormSubmit(event: any) {
     this.loadingVisible = true;
+    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+    this.empForm.id = newId;
     this.empFormData.push(this.empForm);
     localStorage.setItem(
       COMMON_MSG.employeeForm,
@@ -283,6 +287,7 @@ export class RegistrationEduEmpComponent implements OnInit {
         this.eduFormDisable = false;
       }
       if (this.eduCurrentData) {
+        this.eduForm.id = event.id;
         this.eduForm.collegeName = event.collegeName;
         this.eduForm.major = event.major;
         this.eduForm.levelEdu = event.levelEdu;
@@ -300,13 +305,14 @@ export class RegistrationEduEmpComponent implements OnInit {
       if (this.eduCurrentData) {
         let yourNewData = [];
         for (let i = 0; i < this.eduFormData.length; i++) {
-          if (this.eduFormData[i].major !== event.major) {
+          if (this.eduFormData[i].id !== event.id) {
             yourNewData.push(this.eduFormData[i]);
           }
         }
         this.eduFormData = [];
         for (let edu of yourNewData) {
           this.eduFormData.push({
+            id: edu.id,
             collegeName: edu.collegeName,
             major: edu.major,
             levelEdu: edu.levelEdu,
@@ -328,6 +334,8 @@ export class RegistrationEduEmpComponent implements OnInit {
 
   eduFormSubmit(event: any) {
     this.loadingVisible = true;
+    let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+    this.eduForm.id = newId;
     this.eduFormData.push(this.eduForm);
     localStorage.setItem(
       COMMON_MSG.educationForm,
@@ -345,7 +353,7 @@ export class RegistrationEduEmpComponent implements OnInit {
     this.loadingVisible = true;
     let yourNewData = [];
     for (let i = 0; i < this.eduFormData.length; i++) {
-      if (this.eduFormData[i].levelEdu !== event.levelEdu) {
+      if (this.eduFormData[i].id !== event.id) {
         yourNewData.push(this.eduFormData[i]);
       }
     }
@@ -414,9 +422,10 @@ export class RegistrationEduEmpComponent implements OnInit {
     localStorage.removeItem(COMMON_MSG.editEduData);
     window.location.reload();
   }
-  goToDeletePopup(e: any) {
+  goToDeletePopup(event: any) {
+    console.log(event);
     this.eduDeletePopup = true;
-    this.eduCurrentDelete = e;
+    this.eduCurrentDelete = event;
   }
 
   cancelEduDeletePopup() {
