@@ -18,6 +18,7 @@ export interface PersonalDetails {
   countryCode?: string | number;
 }
 export interface EmpDetails {
+  id?: number;
   companyName?: string;
   designation?: string;
   roles?: string;
@@ -30,6 +31,7 @@ export interface EmpDetails {
   zipcode?: any;
 }
 export interface EduDetails {
+  id?: number;
   collegeName?: string;
   major?: string;
   levelEdu?: string;
