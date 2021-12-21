@@ -271,6 +271,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   }
 
   goToEduForm(event: any, type: string) {
+    this.eduForm.projects = "-";
     if (event === COMMON_MSG.new) {
       this.eduFormDisable = false;
       this.eduCurrentData = "";

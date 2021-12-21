@@ -10,6 +10,7 @@ export class DateBoxComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
   error_msg = Validation_MSG;
   @Input() datePatchValue: any;
+  @Input() dobDatePatchValue: any;
   @Input() placeholder: string = COMMON_MSG.dobPlaceholder;
   @Input() statDateValidation: boolean = false;
   @Input() endDateValidation: boolean = false;

@@ -6,7 +6,7 @@
       valueChangeEvent="keyup"
       autocomplete="off"
       (onValueChanged)="valueChanged($event)"
-      [value]="datePatchValue"
+      [value]="dobDatePatchValue"
     >
       <dx-validator>
         <dxi-validation-rule type="required" [message]="error_msg.dobRequired">
