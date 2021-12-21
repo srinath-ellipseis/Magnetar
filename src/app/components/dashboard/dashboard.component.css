@@ -1,0 +1,12 @@
+.main-content-margin {
+  margin-top: 5%;
+  margin-bottom: 7%;
+  min-height: 444px;
+}
+
+.footer {
+  position:relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

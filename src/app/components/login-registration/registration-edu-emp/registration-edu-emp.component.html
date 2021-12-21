@@ -1,0 +1,810 @@
+<div class="container-fluid bgImg">
+  <div class="row margin">
+    <div class="row">
+      <dx-load-panel
+        #loadPanel
+        shadingColor="rgba(0,0,0,0.4)"
+        [(visible)]="loadingVisible"
+        [showIndicator]="true"
+        [showPane]="true"
+        [shading]="true"
+        [closeOnOutsideClick]="false"
+        (onShown)="onShown()"
+      >
+      </dx-load-panel>
+    </div>
+    <div class="row padding0 eduEmpHeader">
+      <div class="col-md-2 padding-t-10">
+        <dx-button
+          id="backIcon"
+          icon="arrowleft"
+          (onClick)="backPage()"
+          (mouseenter)="toggleBackBtn()"
+          (mouseleave)="toggleBackBtn()"
+        >
+        </dx-button>
+        <dx-tooltip
+          target="#backIcon"
+          [(visible)]="backBtnTooltip"
+          [closeOnOutsideClick]="false"
+        >
+          <div *dxTemplate="let data = data; of: 'content'">Back Button</div>
+        </dx-tooltip>
+      </div>
+      <div class="col-md-8 headerText">
+        <img src="assets/images/magnetar_logo.png" />
+      </div>
+      <div class="col-md-2 padding-t-10 textEnd">
+        <dx-button
+          icon="arrowright"
+          (onClick)="nextPage()"
+          id="nextIcon"
+          (mouseenter)="toggleNextBtn()"
+          (mouseleave)="toggleNextBtn()"
+          [disabled]="
+            educationData != null && educationData.length > 0 ? false : true
+          "
+        >
+        </dx-button>
+        <dx-tooltip
+          target="#nextIcon"
+          [(visible)]="nextBtnTooltip"
+          [closeOnOutsideClick]="false"
+        >
+          <div *dxTemplate="let data = data; of: 'content'">Next Button</div>
+        </dx-tooltip>
+      </div>
+    </div>
+    <div class="row eduForm">
+      <div class="row bgStyle">
+        <div class="row margin-b-5">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 textCenter">
+            <h3>Education Details</h3>
+          </div>
+          <div class="col-md-4">
+            <div class="textEnd">
+              <dx-button
+                icon="plus"
+                (onClick)="goToEduForm('new', 'new')"
+              ></dx-button>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="list-container">
+          <dx-list [dataSource]="eduFormData" height="100%">
+            <div *dxTemplate="let item of 'item'">
+              <div class="row">
+                <div class="col-md-6">{{ item.levelEdu }}</div>
+                <div class="col-md-6 textEnd">
+                  <dx-button
+                    class="margin-r-5"
+                    (onClick)="goToEduForm(item, 'view')"
+                    ><i class="far fa-eye"></i>
+                  </dx-button>
+                  <dx-button
+                    class="margin-r-5"
+                    icon="edit"
+                    (onClick)="goToEduForm(item, 'edit')"
+                  ></dx-button>
+                  <dx-button
+                    icon="trash"
+                    (onClick)="goToDeletePopup(item)"
+                  ></dx-button>
+                </div>
+              </div>
+            </div>
+          </dx-list>
+        </div>
+      </div>
+      <div class="row bgStyle">
+        <div class="row margin-b-5">
+          <div class="col-md-4"></div>
+          <div class="col-md-4 textCenter">
+            <h3>Employee Details</h3>
+          </div>
+          <div class="col-md-4">
+            <div class="textEnd">
+              <dx-button
+                icon="plus"
+                (onClick)="goToEmpForm('new', 'new')"
+              ></dx-button>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="list-container">
+          <dx-list [dataSource]="employeeData" height="100%">
+            <div *dxTemplate="let item of 'item'">
+              <div class="row">
+                <div class="col-md-6">{{ item.companyName }}</div>
+                <div class="col-md-6 textEnd">
+                  <dx-button
+                    class="margin-r-5"
+                    (onClick)="goToEmpForm(item, 'view')"
+                    ><i class="far fa-eye"></i>
+                  </dx-button>
+                  <dx-button
+                    class="margin-r-5"
+                    icon="edit"
+                    (onClick)="goToEmpForm(item, 'edit')"
+                  ></dx-button>
+                  <dx-button
+                    icon="trash"
+                    (onClick)="goToEmpDeletePopup(item)"
+                  ></dx-button>
+                </div>
+              </div>
+            </div>
+          </dx-list>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <dx-popup
+      [width]="500"
+      [showTitle]="false"
+      title="Education Form"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="false"
+      [showCloseButton]="false"
+      container=".dx-viewport"
+      [(visible)]="eduFormVisible"
+      [shading]="true"
+      shadingColor="#060606a1"
+    >
+      <div *dxTemplate="let data of 'content'">
+        <div class="row padding-t-10">
+          <div class="col-md-10 padding-l-30">
+            <h3>Education Form</h3>
+          </div>
+          <div class="col-md-2 cancelIcon">
+            <i class="fas fa-times" (click)="closeEduForm()"></i>
+          </div>
+        </div>
+        <hr />
+        <dx-scroll-view width="100%" class="margin-b-10">
+          <div class="row">
+            <form action="your-action" (submit)="eduFormSubmit($event)">
+              <div class="dx-fieldset margin-xy-0">
+                <dx-validation-summary id="summary"></dx-validation-summary>
+              </div>
+              <div class="dx-fieldset">
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.collegeNamePlaceholder"
+                      valueChangeEvent="keyup"
+                      [value]="eduCurrentData.collegeName"
+                      [disabled]="eduFormDisable"
+                      (onValueChanged)="eduValueChanged($event, 'collegeName')"
+                      autocomplete="off"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="error_msg.collegeNameRequired"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-box>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-text-box
+                          [placeholder]="COMMON_MSG.specializationPlaceholder"
+                          valueChangeEvent="keyup"
+                          [value]="eduCurrentData.major"
+                          [disabled]="eduFormDisable"
+                          (onValueChanged)="eduValueChanged($event, 'major')"
+                          autocomplete="off"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.majorRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-text-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="levelEdu"
+                          displayExpr="name"
+                          valueExpr="name"
+                          [placeholder]="COMMON_MSG.levelfEducationPlaceholder"
+                          [value]="eduCurrentData.levelEdu"
+                          [disabled]="eduFormDisable"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="eduValueChanged($event, 'levelEdu')"
+                          [searchEnabled]="true"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.levelEduRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <app-date-box
+                      [placeholder]="COMMON_MSG.startDatePlaceholder"
+                      [statDateValidation]="true"
+                      (dateValue)="eduValueChanged($event, 'formDate')"
+                      [datePatchValue]="eduCurrentData.formDate"
+                      [isDisable]="eduFormDisable"
+                    ></app-date-box>
+                  </div>
+                  <div class="col-md-6">
+                    <app-date-box
+                      [placeholder]="COMMON_MSG.endDatePlaceholder"
+                      [endDateValidation]="true"
+                      (dateValue)="eduValueChanged($event, 'toDate')"
+                      [datePatchValue]="eduCurrentData.toDate"
+                      [startDate]="fromDate"
+                      [isDisable]="eduFormDisable"
+                    ></app-date-box>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="gpaCodes"
+                          [placeholder]="COMMON_MSG.gpaCodePlaceholder"
+                          [value]="eduCurrentData.gpaCode"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="eduValueChanged($event, 'gpaCode')"
+                          [searchEnabled]="true"
+                          [disabled]="eduFormDisable"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.gpaCodeRequired"
+                            ></dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-text-box
+                          [placeholder]="COMMON_MSG.gpaPlaceholder"
+                          valueChangeEvent="keyup"
+                          [value]="eduCurrentData.gpa"
+                          [disabled]="eduFormDisable"
+                          (onValueChanged)="eduValueChanged($event, 'gpa')"
+                          autocomplete="off"
+                          [maxLength]="gpaCodeLength"
+                          [disabled]="eduFormDisable"
+                        >
+                          <dxi-button
+                            *ngIf="eduForm.gpaCode === 'Percentage'"
+                            name="today"
+                            location="after"
+                            [options]="percentageButton"
+                          ></dxi-button>
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.gpaRequired"
+                            ></dxi-validation-rule>
+                            <dxi-validation-rule
+                              *ngIf="eduForm.gpaCode === 'Grade'"
+                              type="pattern"
+                              [pattern]="gradePattern"
+                              [message]="error_msg.grade"
+                            >
+                            </dxi-validation-rule>
+                            <dxi-validation-rule
+                              *ngIf="eduForm.gpaCode === 'Percentage'"
+                              type="pattern"
+                              [pattern]="percentagePattern"
+                              [message]="error_msg.percentage"
+                            >
+                            </dxi-validation-rule>
+                            <dxi-validation-rule
+                              *ngIf="eduForm.gpaCode === 'Float'"
+                              type="pattern"
+                              [pattern]="floatPattern"
+                              [message]="error_msg.float"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-text-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-area
+                      [placeholder]="COMMON_MSG.eduProjectDetailsPlaceholder"
+                      [height]="140"
+                      [value]="eduCurrentData.projects"
+                      valueChangeEvent="keyup"
+                      (onValueChanged)="eduValueChanged($event, 'projects')"
+                      [disabled]="eduFormDisable"
+                    >
+                    </dx-text-area>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="countries"
+                          [placeholder]="COMMON_MSG.countryPlaceholder"
+                          [value]="eduCurrentData.country"
+                          [disabled]="eduFormDisable"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="eduValueChanged($event, 'country')"
+                          [searchEnabled]="true"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.countryRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="states"
+                          [placeholder]="COMMON_MSG.statePlaceholder"
+                          [value]="eduCurrentData.state"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="eduValueChanged($event, 'states')"
+                          [searchEnabled]="true"
+                          [disabled]="eduFormDisable"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.stateRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="cities"
+                          [placeholder]="COMMON_MSG.cityPlaceholder"
+                          [value]="eduCurrentData.city"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="eduValueChanged($event, 'city')"
+                          [searchEnabled]="true"
+                          [disabled]="eduFormDisable"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.cityRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-text-box
+                          [placeholder]="COMMON_MSG.zipcodePlaceholder"
+                          valueChangeEvent="keyup"
+                          [disabled]="eduFormDisable"
+                          [value]="eduCurrentData.zipcode"
+                          [maxLength]="6"
+                          (onValueChanged)="eduValueChanged($event, 'zipcode')"
+                          autocomplete="off"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.zipcodeRequired"
+                            >
+                            </dxi-validation-rule>
+                            <dxi-validation-rule
+                              type="pattern"
+                              pattern="^(?!0+$)\d{5,}$"
+                              [message]="error_msg.zipcodeError"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-text-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding5">
+                  <div class="col-md-4 textCenter"></div>
+                  <div class="col-md-4 textCenter">
+                    <dx-button
+                      id="button"
+                      text="Save"
+                      type="success"
+                      [useSubmitBehavior]="true"
+                      [disabled]="eduFormDisable"
+                    >
+                    </dx-button>
+                  </div>
+                  <div class="col-md-4 textCenter"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </dx-scroll-view>
+      </div>
+    </dx-popup>
+  </div>
+
+  <div class="container">
+    <dx-popup
+      [width]="500"
+      [showTitle]="false"
+      title="Employee Form"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="false"
+      [showCloseButton]="false"
+      container=".dx-viewport"
+      [(visible)]="empFormVisible"
+      [shading]="true"
+      shadingColor="#060606a1"
+    >
+      <div *dxTemplate="let data of 'content'">
+        <div class="row padding-t-10">
+          <div class="col-md-10 padding-l-30">
+            <h3>Employee Form</h3>
+          </div>
+          <div class="col-md-2 cancelIcon">
+            <i class="fas fa-times" (click)="closeEmpForm()"></i>
+          </div>
+        </div>
+        <hr />
+        <dx-scroll-view width="100%" class="margin-b-10">
+          <div class="row">
+            <form action="your-action" (submit)="empFormSubmit($event)">
+              <div class="dx-fieldset margin-xy-0">
+                <dx-validation-summary id="summary"></dx-validation-summary>
+              </div>
+              <div class="dx-fieldset">
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.companyNamePlaceholder"
+                      valueChangeEvent="keyup"
+                      [value]="empCurrentData.companyName"
+                      [disabled]="empFormDisable"
+                      (onValueChanged)="empValueChanged($event, 'companyName')"
+                      autocomplete="off"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="error_msg.companyNameRequired"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-box>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.designationPlaceholder"
+                      valueChangeEvent="keyup"
+                      [value]="empCurrentData.designation"
+                      [disabled]="empFormDisable"
+                      (onValueChanged)="empValueChanged($event, 'designation')"
+                      autocomplete="off"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="error_msg.designationRequired"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-box>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-area
+                      [placeholder]="COMMON_MSG.rolesPlaceholder"
+                      [height]="90"
+                      [value]="empCurrentData.roles"
+                      valueChangeEvent="keyup"
+                      (onValueChanged)="empValueChanged($event, 'roles')"
+                      [disabled]="empFormDisable"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="error_msg.rolesRequired"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-area>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="dx-field-value width100">
+                    <dx-text-area
+                      [placeholder]="COMMON_MSG.empProjectDetailsPlaceholder"
+                      [height]="140"
+                      [value]="empCurrentData.projects"
+                      valueChangeEvent="keyup"
+                      (onValueChanged)="empValueChanged($event, 'projects')"
+                      [disabled]="empFormDisable"
+                    >
+                      <dx-validator>
+                        <dxi-validation-rule
+                          type="required"
+                          [message]="error_msg.projectRequired"
+                        >
+                        </dxi-validation-rule>
+                      </dx-validator>
+                    </dx-text-area>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <app-date-box
+                      [placeholder]="COMMON_MSG.startDatePlaceholder"
+                      [statDateValidation]="true"
+                      (dateValue)="empValueChanged($event, 'formDate')"
+                      [datePatchValue]="empCurrentData.formDate"
+                      [isDisable]="empFormDisable"
+                    ></app-date-box>
+                  </div>
+                  <div class="col-md-6">
+                    <app-date-box
+                      [placeholder]="COMMON_MSG.endDatePlaceholder"
+                      [endDateValidation]="true"
+                      (dateValue)="empValueChanged($event, 'toDate')"
+                      [datePatchValue]="empCurrentData.toDate"
+                      [startDate]="empToMinDate"
+                      [isDisable]="empFormDisable"
+                    ></app-date-box>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="countries"
+                          [placeholder]="COMMON_MSG.countryPlaceholder"
+                          [value]="empCurrentData.country"
+                          [disabled]="empFormDisable"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="empValueChanged($event, 'country')"
+                          [searchEnabled]="true"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.countryRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="states"
+                          [placeholder]="COMMON_MSG.statePlaceholder"
+                          [value]="empCurrentData.state"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="empValueChanged($event, 'states')"
+                          [searchEnabled]="true"
+                          [disabled]="empFormDisable"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.stateRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row margin-b-10">
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-select-box
+                          [dataSource]="cities"
+                          [placeholder]="COMMON_MSG.cityPlaceholder"
+                          [value]="empCurrentData.city"
+                          valueChangeEvent="keyup"
+                          (onValueChanged)="empValueChanged($event, 'city')"
+                          [searchEnabled]="true"
+                          [disabled]="empFormDisable"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.cityRequired"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-select-box>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dx-field">
+                      <div class="dx-field-value width100">
+                        <dx-text-box
+                          [placeholder]="COMMON_MSG.zipcodePlaceholder"
+                          valueChangeEvent="keyup"
+                          [disabled]="empFormDisable"
+                          [value]="empCurrentData.zipcode"
+                          [maxLength]="6"
+                          (onValueChanged)="empValueChanged($event, 'zipcode')"
+                          autocomplete="off"
+                        >
+                          <dx-validator>
+                            <dxi-validation-rule
+                              type="required"
+                              [message]="error_msg.zipcodeRequired"
+                            >
+                            </dxi-validation-rule>
+                            <dxi-validation-rule
+                              type="pattern"
+                              pattern="^(?!0+$)\d{5,}$"
+                              [message]="error_msg.zipcodeError"
+                            >
+                            </dxi-validation-rule>
+                          </dx-validator>
+                        </dx-text-box>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row padding5">
+                  <div class="col-md-4 textCenter"></div>
+                  <div class="col-md-4 textCenter">
+                    <dx-button
+                      id="button"
+                      text="Save"
+                      type="success"
+                      [useSubmitBehavior]="true"
+                      [disabled]="empFormDisable"
+                    >
+                    </dx-button>
+                  </div>
+                  <div class="col-md-4 textCenter"></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </dx-scroll-view>
+      </div>
+    </dx-popup>
+  </div>
+
+  <div class="container">
+    <dx-popup
+      [width]="300"
+      [showTitle]="true"
+      title="Delete"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="false"
+      [showCloseButton]="true"
+      container=".dx-viewport"
+      [(visible)]="eduDeletePopup"
+      [shading]="true"
+      shadingColor="#060606a1"
+    >
+      <div *dxTemplate="let data of 'content'" class="padding-xy">
+        <div class="row">
+          <p>
+            Are sure you want delete this <b>{{ eduCurrentDelete.levelEdu }}</b>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <dx-button
+              text="Cancel"
+              type="default"
+              (onClick)="cancelEduDeletePopup()"
+            ></dx-button>
+          </div>
+          <div class="col-md-6 textEnd">
+            <dx-button
+              text="Ok"
+              type="success"
+              (onClick)="deleteEduForm(eduCurrentDelete)"
+            ></dx-button>
+          </div>
+        </div>
+      </div>
+    </dx-popup>
+  </div>
+
+  <div class="container">
+    <dx-popup
+      [width]="300"
+      [showTitle]="true"
+      title="Delete"
+      [dragEnabled]="false"
+      [closeOnOutsideClick]="false"
+      [showCloseButton]="true"
+      container=".dx-viewport"
+      [(visible)]="empDeletePopup"
+      [shading]="true"
+      shadingColor="#060606a1"
+    >
+      <div *dxTemplate="let data of 'content'" class="padding-xy">
+        <div class="row">
+          <p>
+            Are sure you want delete this
+            <b>{{ empCurrentDelete.companyName }}</b>
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <dx-button
+              text="Cancel"
+              type="default"
+              (onClick)="cancelEmpDeletePopup()"
+            ></dx-button>
+          </div>
+          <div class="col-md-6 textEnd">
+            <dx-button
+              text="Ok"
+              type="success"
+              (onClick)="deleteEmpForm(empCurrentDelete)"
+            ></dx-button>
+          </div>
+        </div>
+      </div>
+    </dx-popup>
+  </div>
+</div>

@@ -1,0 +1,315 @@
+<div class="container-fluid bgImg">
+  <div class="row margin">
+    <div class="row">
+      <dx-load-panel
+        #loadPanel
+        shadingColor="rgba(0,0,0,0.4)"
+        [(visible)]="loadingVisible"
+        [showIndicator]="true"
+        [showPane]="true"
+        [shading]="true"
+        [closeOnOutsideClick]="false"
+        (onShown)="onShown()"
+      >
+      </dx-load-panel>
+    </div>
+    <div class="row padding0 previewHeader">
+      <div class="col-md-2 padding-t-10">
+        <dx-button
+          id="backIcon"
+          icon="arrowleft"
+          (onClick)="backPage()"
+          (mouseenter)="toggleBackBtn()"
+          (mouseleave)="toggleBackBtn()"
+        >
+        </dx-button>
+        <dx-tooltip
+          target="#backIcon"
+          [(visible)]="backBtnTooltip"
+          [closeOnOutsideClick]="false"
+        >
+          <div *dxTemplate="let data = data; of: 'content'">Back Button</div>
+        </dx-tooltip>
+      </div>
+      <div class="col-md-8 headerText">
+        <img src="assets/images/magnetar_logo.png" />
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <div class="row previewForm">
+      <div id="mainAccordion">
+        <div class="card">
+          <div class="card-header textCenter">
+            <div class="row">
+              <div class="col-md-11 padding-t-5">
+                <a data-bs-toggle="collapse" href="#collapseDetails">
+                  <h4>Personal Details</h4>
+                </a>
+              </div>
+              <div class="col-md-1">
+                <dx-button
+                  icon="edit"
+                  (onClick)="goToDetailsPage()"
+                ></dx-button>
+              </div>
+            </div>
+          </div>
+          <div
+            id="collapseDetails"
+            class="collapse show"
+            data-bs-parent="#mainAccordion"
+          >
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-5">
+                  <label class="fontBold">First Name :</label><br />
+                  <label class="fontBold">Last Name :</label><br />
+                  <label class="fontBold">Email :</label><br />
+                  <label class="fontBold">Mobile Number :</label><br />
+                  <label class="fontBold">Date of Birth :</label><br />
+                  <label class="fontBold">Gender :</label><br />
+                  <label class="fontBold">Country :</label><br />
+                  <label class="fontBold">State :</label><br />
+                  <label class="fontBold">City :</label><br />
+                  <label class="fontBold">zipcode :</label>
+                </div>
+                <div class="col-md-7">
+                  <label>{{ detailsData.firstName }}</label
+                  ><br />
+                  <label>{{ detailsData.lastName }}</label
+                  ><br />
+                  <label>{{ detailsData.email }}</label
+                  ><br />
+                  <label
+                    >{{ detailsData.countryCode }} -
+                    {{ detailsData.mobileNumber }}</label
+                  ><br />
+                  <label>{{ detailsData.dob | date }}</label
+                  ><br />
+                  <label>{{ detailsData.gender }}</label
+                  ><br />
+                  <label>{{ detailsData.country }}</label
+                  ><br />
+                  <label>{{ detailsData.state }}</label
+                  ><br />
+                  <label>{{ detailsData.city }}</label
+                  ><br />
+                  <label>{{ detailsData.zipcode }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header textCenter">
+            <div class="row">
+              <div class="col-md-11 padding-t-5">
+                <a
+                  class="collapsed"
+                  data-bs-toggle="collapse"
+                  href="#collapseEducation"
+                >
+                  <h4>Education Details</h4>
+                </a>
+              </div>
+              <div class="col-md-1">
+                <!-- <dx-button icon="edit" (onClick)="goToEduEmpPage()"></dx-button> -->
+              </div>
+            </div>
+          </div>
+          <div
+            id="collapseEducation"
+            class="collapse"
+            data-bs-parent="#mainAccordion"
+          >
+            <div class="card-body">
+              <div id="EducationAccordion">
+                <div class="row noDataText" *ngIf="!educationData">
+                  <p>No data to display</p>
+                </div>
+                <div class="card" *ngFor="let edu of educationData">
+                  <div class="card-header textCenter">
+                    <div class="row">
+                      <div class="col-md-11 padding-t-5">
+                        <a
+                          data-bs-toggle="collapse"
+                          href="#tab_{{ edu.id }}"
+                        >
+                          <h5>
+                            {{ edu.levelEdu }}
+                          </h5>
+                        </a>
+                      </div>
+                      <div class="col-md-1">
+                        <dx-button
+                          icon="edit"
+                          (onClick)="editEduForm(edu)"
+                        ></dx-button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="tab_{{ edu.id }}"
+                    class="collapse"
+                    data-bs-parent="#EducationAccordion"
+                  >
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <label class="fontBold">College Name :</label><br />
+                          <label class="fontBold">Major :</label><br />
+                          <label class="fontBold">Level of Education :</label
+                          ><br />
+                          <label class="fontBold">Form Date :</label><br />
+                          <label class="fontBold">To Date :</label><br />
+                          <label class="fontBold">GPA :</label><br />
+                          <label class="fontBold">Projects :</label><br />
+                          <label class="fontBold">Country :</label><br />
+                          <label class="fontBold">State :</label><br />
+                          <label class="fontBold">City :</label><br />
+                          <label class="fontBold">Zipcode :</label>
+                        </div>
+                        <div class="col-md-7">
+                          <label>{{ edu.collegeName }}</label
+                          ><br />
+                          <label>{{ edu.major }}</label
+                          ><br />
+                          <label>{{ edu.levelEdu }}</label
+                          ><br />
+                          <label>{{ edu.formDate | date }}</label
+                          ><br />
+                          <label>{{ edu.toDate | date }}</label
+                          ><br />
+                          <label>{{ edu.gpa }}</label
+                          ><br />
+                          <label>{{ edu.projects }}</label
+                          ><br />
+                          <label>{{ edu.country }}</label
+                          ><br />
+                          <label>{{ edu.state }}</label
+                          ><br />
+                          <label>{{ edu.city }}</label
+                          ><br />
+                          <label>{{ edu.zipcode }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="card"
+          *ngIf="employeeData != null && employeeData.length > 0"
+        >
+          <div class="card-header textCenter">
+            <div class="row">
+              <div class="col-md-11 padding-t-5">
+                <a
+                  class="collapsed"
+                  data-bs-toggle="collapse"
+                  href="#collapseEmployee"
+                >
+                  <h4>Employee Details</h4>
+                </a>
+              </div>
+              <div class="col-md-1">
+                <!-- <dx-button icon="edit" (onClick)="goToEduEmpPage()"></dx-button> -->
+              </div>
+            </div>
+          </div>
+          <div
+            id="collapseEmployee"
+            class="collapse"
+            data-bs-parent="#mainAccordion"
+          >
+            <div class="card-body">
+              <div id="EmployeeAccordion">
+                <div class="card" *ngFor="let emp of employeeData">
+                  <div class="card-header textCenter">
+                    <div class="row">
+                      <div class="col-md-11 padding-t-5">
+                        <a
+                          data-bs-toggle="collapse"
+                          href="#tab_{{ emp.id }}"
+                        >
+                          <h5>
+                            {{ emp.companyName }}
+                          </h5>
+                        </a>
+                      </div>
+                      <div class="col-md-1">
+                        <dx-button
+                          icon="edit"
+                          (onClick)="editEmpForm(emp)"
+                        ></dx-button>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="tab_{{ emp.id }}"
+                    class="collapse"
+                    data-bs-parent="#EmployeeAccordion"
+                  >
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-5">
+                          <label class="fontBold">Company Name :</label><br />
+                          <label class="fontBold">Designation :</label><br />
+                          <label class="fontBold"
+                            >Roles & Responsibilies :</label
+                          ><br />
+                          <label class="fontBold">Projects :</label><br />
+                          <label class="fontBold">Form Date :</label><br />
+                          <label class="fontBold">To Date :</label><br />
+                          <label class="fontBold">Country :</label><br />
+                          <label class="fontBold">State :</label><br />
+                          <label class="fontBold">City :</label><br />
+                          <label class="fontBold">Zipcode :</label>
+                        </div>
+                        <div class="col-md-7">
+                          <label>{{ emp.companyName }}</label
+                          ><br />
+                          <label>{{ emp.designation }}</label
+                          ><br />
+                          <label>{{ emp.roles }}</label
+                          ><br />
+                          <label>{{ emp.projects }}</label
+                          ><br />
+                          <label>{{ emp.formDate | date }}</label
+                          ><br />
+                          <label>{{ emp.toDate | date }}</label
+                          ><br />
+                          <label>{{ emp.country }}</label
+                          ><br />
+                          <label>{{ emp.state }}</label
+                          ><br />
+                          <label>{{ emp.city }}</label
+                          ><br />
+                          <label>{{ emp.zipcode }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 registeBtn">
+          <dx-button
+            text="Register"
+            type="success"
+            (onClick)="registrationBtn()"
+          ></dx-button>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  </div>
+</div>

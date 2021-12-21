@@ -1,0 +1,59 @@
+<div class="dx-field" *ngIf="dobValidation">
+  <div class="dx-field-value width100">
+    <dx-date-box
+      [placeholder]="placeholder"
+      invalidDateMessage="The date must have the following format: MM/DD/YYYY"
+      valueChangeEvent="keyup"
+      autocomplete="off"
+      (onValueChanged)="valueChanged($event)"
+      [value]="dobDatePatchValue"
+    >
+      <dx-validator>
+        <dxi-validation-rule type="required" [message]="error_msg.dobRequired">
+        </dxi-validation-rule>
+        <dxi-validation-rule
+          type="range"
+          [max]="dobMaxDate"
+          [message]="error_msg.dob18Error"
+        >
+        </dxi-validation-rule>
+      </dx-validator>
+    </dx-date-box>
+  </div>
+</div>
+<div class="dx-field" *ngIf="statDateValidation || endDateValidation">
+  <div class="dx-field-value width100">
+    <dx-date-box
+      [placeholder]="placeholder"
+      [value]="datePatchValue"
+      invalidDateMessage="The date must have the following format: MM/DD/YYYY"
+      valueChangeEvent="keyup"
+      autocomplete="off"
+      [disabled]="isDisable"
+      (onValueChanged)="valueChanged($event)"
+      [max]="todayDate"
+    >
+      <dx-validator>
+        <dxi-validation-rule
+          *ngIf="statDateValidation"
+          type="required"
+          [message]="error_msg.startDateRequired"
+        >
+        </dxi-validation-rule>
+        <dxi-validation-rule
+          *ngIf="endDateValidation"
+          type="required"
+          [message]="error_msg.endDateRequired"
+        >
+        </dxi-validation-rule>
+        <dxi-validation-rule
+          *ngIf="endDateValidation"
+          type="range"
+          [min]="startDate"
+          [message]="error_msg.dateRange"
+        >
+        </dxi-validation-rule>
+      </dx-validator>
+    </dx-date-box>
+  </div>
+</div>

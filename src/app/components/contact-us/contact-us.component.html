@@ -1,0 +1,111 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <img src="assets/images/header-contactus.jpg" class="img-fluid" />
+    </div>
+  </div>
+</div>
+<div class="contact-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12 col-sm-12">
+        <form action="your-action" class="contact-form">
+          <h3 class="textCenter">Contact Us</h3>
+            <!-- <div class="dx-fieldset">
+              <dx-validation-summary id="summary"></dx-validation-summary>
+            </div> -->
+          <div class="dx-fieldset">
+            <div class="row margin-b-15">
+              <div class="col-md-6">
+                <div class="dx-field-value width100">
+                  <dx-text-box
+                    placeholder="First Name"
+                    valueChangeEvent="keyup"
+                    autocomplete="off"
+                  >
+                  </dx-text-box>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="dx-field-value width100">
+                  <dx-text-box
+                    placeholder="Last Name"
+                    valueChangeEvent="keyup"
+                    autocomplete="off"
+                  >
+                  </dx-text-box>
+                </div>
+              </div>
+            </div>
+            <div class="row margin-b-15">
+              <div class="col-md-6">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      placeholder="Enter Email"
+                      valueChangeEvent="keyup"
+                      autocomplete="off"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <app-mobile-number></app-mobile-number>
+              </div>
+            </div>
+            <div class="row">
+              <div class="dx-field-value width100">
+                <dx-text-area
+                  placeholder="Enter Comments/Message"
+                  [height]="90"
+                  valueChangeEvent="keyup"
+                >
+                </dx-text-area>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4 submitBtn">
+                <dx-button
+                  text="Submit"
+                  [useSubmitBehavior]="true"
+                  id="nextIcon"
+                >
+                </dx-button>
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-lg-4 col-md-12 col-sm-12 contact-info">
+        <div class="row">
+          <div class="col-lg-12 col-md-6 col-sm-12">
+            <div class="contact-block">
+              <div class="contact-data">
+                <div class="icon">
+                  <i class="fas fa-edit"></i>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-block"></div>
+            <div class="contact-block"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="map-responsive">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3804.860631954291!2d78.3847829143549!3d17.51416510374745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1633501419816!5m2!1sen!2sin"
+    width="800"
+    height="600"
+    style="border: 0"
+    allowfullscreen=""
+    loading="lazy"
+  ></iframe>
+</div>

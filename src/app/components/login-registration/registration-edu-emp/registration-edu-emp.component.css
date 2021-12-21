@@ -1,0 +1,119 @@
+.bgImg {
+  background: url("~src/assets/images/img-login.jpg") no-repeat 0 0
+    rgba(0, 0, 0, 0);
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 10px;
+  min-height: 445px;
+}
+
+.eduForm {
+  height: auto;
+  background: rgba(255, 255, 255, 0.5);
+  color: #fff;
+  border-radius: 0px 0px 6px 6px;
+  padding-left: 31px;
+  padding-top: 15px;
+}
+
+.eduEmpHeader {
+  height: 60px;
+  background-color: #b3d1f5;
+  border-radius: 6px 6px 0 0;
+}
+
+.headerText {
+  text-align: center;
+  color: #fff;
+  padding-top: 10px;
+  font-style: italic;
+  letter-spacing: 5px;
+}
+
+.eduEmpHeader .headerText img {
+  width: 30%;
+}
+
+.margin {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.margin-b-10 {
+  margin-bottom: 10px;
+}
+
+.margin-b-5 {
+  margin-bottom: 5px;
+}
+
+.margin-r-5 {
+  margin-right: 5px;
+}
+
+.bgStyle {
+  background-color: #fff;
+  padding: 10px;
+  color: #000;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+hr {
+  margin: 0px;
+  color: inherit;
+  background-color: currentColor;
+  border: 0;
+  opacity: 0.25;
+}
+
+::ng-deep .dx-list .dx-empty-message {
+  text-align: center;
+}
+
+.padding5 {
+  padding: 5px;
+}
+.closeBtn {
+  background-color: #556069;
+  color: white;
+  border: unset;
+  height: 100%;
+}
+.padding-t-10 {
+  padding-top: 10px;
+}
+::ng-deep .dx-overlay-wrapper {
+  height: 100% !important;
+}
+::ng-deep .dx-overlay-content .dx-popup-content {
+  padding: 0px;
+}
+.cancelIcon {
+  text-align: center;
+  font-size: 20px;
+}
+.padding10 {
+  padding: 10px;
+}
+
+::ng-deep .dx-popup-wrapper > .dx-overlay-content {
+  height: auto !important;
+  top: 85px !important;
+}
+.padding-l-30 {
+  padding-left: 30px;
+}
+.margin-xy-0 {
+  margin: 0px 0px 0px 20px;
+}
+::ng-deep .dx-scrollable {
+  height: 95%;
+}
+.padding-xy {
+  padding: 10px 30px 25px 20px;
+}
+::ng-deep .dx-texteditor-buttons-container > .dx-button > .dx-button-content {
+  padding: 0px;
+}
