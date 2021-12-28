@@ -68,7 +68,13 @@ export const COMMON_MSG = {
   setTimeout5000: 5000,
   Success: "Success",
   text: "text",
-  rememberMe:"Remember me!"
+  rememberMe: "Remember me!",
+  questionsPlaceholder: "Question",
+  queAnsPlaceholder: "Answer",
+  securityQuestions: "securityQuestions",
+  question: "question",
+  answer: "answer",
+  userRole: "userRole",
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",
@@ -108,6 +114,9 @@ export const Validation_MSG = {
   grade: "Invalid Grade Formate",
   percentage: "Invalid Percentage Formate",
   float: "Invalid Float Formate",
+  questionsRequired: "Question is required",
+  answerRequired: "Answer is required",
+  answerError: "Answer do not match",
 };
 export const DropdownValues = {
   genders: ["Male", "Female", "Others"],
@@ -122,6 +131,30 @@ export const DropdownValues = {
   ],
   gpaCodes: ["Grade", "Percentage", "Float"],
   roles: ["Student", "Employee", "Client/Vendor"],
+  securityQuestions: [
+    { id: 1, name: "What is your date of birth?", disabled: false },
+    { id: 2, name: "What is your favourite city?", disabled: false },
+    { id: 3, name: "What is your favourite movie?", disabled: false },
+    { id: 4, name: "What is your school name?", disabled: false },
+    {
+      id: 5,
+      name: "What was your favorite school teacher’s name?",
+      disabled: false,
+    },
+    { id: 6, name: "What was your first car?", disabled: false },
+    { id: 7, name: "What city were you born in?", disabled: false },
+    {
+      id: 8,
+      name: "In what city or town did your parents meet?",
+      disabled: false,
+    },
+    {
+      id: 9,
+      name: "What was the first concert you attended?",
+      disabled: false,
+    },
+    { id: 10, name: "How do you work in a team?", disabled: false },
+  ],
   countryCodes: [
     {
       name: "Afghanistan",
