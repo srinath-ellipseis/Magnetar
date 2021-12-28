@@ -1,9 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.container-fluid{
+  padding: 0 !important;
+}
 .dx-invalid-message > .dx-overlay-content {
   width: 100% !important;
   text-align: center;
 }
-
 .padding0 {
   padding: 0px !important;
 }
@@ -101,21 +108,21 @@ span::after {
 .industries-content::before {
   top: -2px;
   left: -2px;
-  border-top: 2px solid #1c7c8c;
-  border-left: 2px solid #1c7c8c;
+  border-top: 2px solid #fa8936;
+  border-left: 2px solid #fa8936;
   transition: 0.1s all;
 }
 .industries-content::after {
   top: -2px;
   right: -2px;
-  border-top: 2px solid #1c7c8c;
-  border-right: 2px solid #1c7c8c;
+  border-top: 2px solid #fa8936;
+  border-right: 2px solid #fa8936;
   transition: 0.1s all;
 }
 .industries-content .heading {
   font-size: 16px;
   font-weight: bold;
-  color: #1c7c8c;
+  color: #0a61c8;
   text-align: center;
   height: 20px;
   width: 100%;
@@ -139,15 +146,15 @@ span::after {
 .industries-content span::before {
   bottom: -2px;
   left: -2px;
-  border-bottom: 2px solid #1c7c8c;
-  border-left: 2px solid #1c7c8c;
+  border-bottom: 2px solid #fa8936;
+  border-left: 2px solid #fa8936;
   transition: 0.1s all;
 }
 .industries-content span::after {
   bottom: -2px;
   right: -2px;
-  border-bottom: 2px solid #1c7c8c;
-  border-right: 2px solid #1c7c8c;
+  border-bottom: 2px solid #fa8936;
+  border-right: 2px solid #fa8936;
   transition: 0.1s all;
 }
 .industries-content:hover::before,
@@ -162,7 +169,7 @@ span::after {
 }
 .link-tex {
   float: right;
-  color: #13b1bb;
+  color: #0a61c8;
   text-decoration: underline;
   padding-right: 20px;
 }
@@ -178,7 +185,7 @@ h1 {
 }
 .sec-heading{
   color:#fa8936;
-  font-size:20px !important;
+  font-size:22px !important;
   line-height: 22px;
 }
 .c-btn {
