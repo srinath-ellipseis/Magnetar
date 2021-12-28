@@ -3,8 +3,7 @@ footer {
   bottom: 0;
   height: 100px;
   width: 100%;
-  border-top: 1px dotted #00285d;
-  background-color: #e0e7ff;
+  
 }
 .fab,
 .fa-facebook,
@@ -18,11 +17,11 @@ footer {
   width: 41px;
   text-align: center;
   text-decoration: none;
-  margin: 5px 20px;
+  margin: 5px 15px;
   border-radius: 30%;
 }
 .insta{
-  margin: 5px 20px;
+  margin: 5px 15px;
 }
 img {
   margin-top: -8px;
@@ -72,9 +71,17 @@ img {
 .margin30 {
   margin-top: 30px;
 }
-@media screen and (max-width: 576px) {
+.social-media{
+  text-align:right;
+}
+@media screen and (max-width: 481px) {
   .copyright-text {
     font-size: 12px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .copyright-text {
+    font-size: 16px;
   }
   .fab,
   .fa-facebook,
@@ -83,6 +90,18 @@ img {
   .fa-instagram,
   .fa-linkedin,
   .fa-youtube {
-    margin: 5px 15px;
+    margin: 5px 10px;
+  }
+  .insta{
+    margin: 5px 10px;
+  }
+  .margin30 {
+    margin-top: 10px;
+  }
+  .copyright-text{
+    line-height: 30px;
+  }
+  .social-media{
+    text-align:center;
   }
 }
