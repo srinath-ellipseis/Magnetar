@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ForgotComponent } from './forgot.component';
+import { SecurityAnswersComponent } from './security-answers.component';
 
-describe('ForgotComponent', () => {
-  let component: ForgotComponent;
-  let fixture: ComponentFixture<ForgotComponent>;
+describe('SecurityAnswersComponent', () => {
+  let component: SecurityAnswersComponent;
+  let fixture: ComponentFixture<SecurityAnswersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ForgotComponent ]
+      declarations: [ SecurityAnswersComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ForgotComponent);
+    fixture = TestBed.createComponent(SecurityAnswersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

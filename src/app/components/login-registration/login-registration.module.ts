@@ -9,7 +9,6 @@ import { LoginRegistrationRoutingModule } from "./login-registration-routing.mod
 import { CommonComponentModule } from "src/app/common/common.module";
 import { DevExtremeModuleModule } from "src/app/common/modules/dev-extreme.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { ForgotComponent } from './forgot/forgot.component';
 import { SecurityQuestionsComponent } from './security-questions/security-questions.component';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { SecurityQuestionsComponent } from './security-questions/security-questi
     RegistrationDetailsComponent,
     RegistrationEduEmpComponent,
     RegistrationPreviewComponent,
-    ForgotComponent,
     SecurityQuestionsComponent,
   ],
   imports: [

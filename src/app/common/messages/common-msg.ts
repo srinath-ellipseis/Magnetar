@@ -75,6 +75,8 @@ export const COMMON_MSG = {
   question: "question",
   answer: "answer",
   userRole: "userRole",
+  Submit: "Submit",
+  OTPPlaceholder: "OTP*",
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",

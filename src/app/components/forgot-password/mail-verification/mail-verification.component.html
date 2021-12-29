@@ -1,0 +1,94 @@
+<div class="container-fluid bgImg">
+  <div class="row margin">
+    <div class="row">
+      <dx-load-panel
+        #loadPanel
+        shadingColor="rgba(0,0,0,0.4)"
+        [(visible)]="loadingVisible"
+        [showIndicator]="true"
+        [showPane]="true"
+        [shading]="true"
+        [closeOnOutsideClick]="false"
+        (onShown)="onShown()"
+      >
+      </dx-load-panel>
+    </div>
+    <div class="row mailCard">
+      <form action="your-action">
+        <div class="row padding0 formHeader">
+          <div class="col-md-2 padding-t-10"></div>
+          <div class="col-md-8 headerText">
+            <img src="assets/images/magnetar_logo.png" />
+          </div>
+          <div class="col-md-2 padding-t-10 textEnd"></div>
+        </div>
+        <div class="row headerText">
+          <h3>Mail Verification</h3>
+        </div>
+        <div class="dx-fieldset">
+          <div class="row margin-b-15">
+            <div class="dx-field">
+              <div class="dx-field-value width100">
+                <dx-text-box
+                  [placeholder]="COMMON_MSG.emailPlaceholder"
+                  valueChangeEvent="keyup"
+                  (onValueChanged)="mailValueChanged($event)"
+                >
+                  <dxi-button
+                    *ngIf="showValidation"
+                    name="today"
+                    location="after"
+                    [options]="correctMail"
+                  ></dxi-button>
+                  <dxi-button
+                    *ngIf="!showValidation"
+                    name="today"
+                    location="after"
+                    [options]="worngMail"
+                  ></dxi-button>
+                </dx-text-box>
+              </div>
+            </div>
+            <div class="dx-field" *ngIf="showValidation">
+              <div class="dx-field-value width100">
+                <dx-number-box
+                  [placeholder]="COMMON_MSG.OTPPlaceholder"
+                  valueChangeEvent="keyup"
+                  (onValueChanged)="otpValueChanged($event)"
+                  [value]="otpValue"
+                >
+                  <dxi-button
+                    *ngIf="otpValidation"
+                    name="today"
+                    location="after"
+                    [options]="correctOtp"
+                  ></dxi-button>
+                  <dxi-button
+                    *ngIf="!otpValidation"
+                    name="today"
+                    location="after"
+                    [options]="worngOtp"
+                  ></dxi-button>
+                </dx-number-box>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dx-fieldset">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 textCenter">
+              <dx-button
+                [text]="COMMON_MSG.Submit"
+                type="success"
+                (onClick)="submit()"
+                [disabled]="!btnDisable"
+              ></dx-button>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

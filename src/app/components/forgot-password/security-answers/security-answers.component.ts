@@ -8,11 +8,11 @@ import {
 import { SecurityQuestions } from "src/app/models/login.model";
 
 @Component({
-  selector: "app-forgot",
-  templateUrl: "./forgot.component.html",
-  styleUrls: ["./forgot.component.css"],
+  selector: "app-security-answers",
+  templateUrl: "./security-answers.component.html",
+  styleUrls: ["./security-answers.component.css"],
 })
-export class ForgotComponent implements OnInit {
+export class SecurityAnswersComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
   error_msg = Validation_MSG;
   questions = DropdownValues.securityQuestions;
@@ -26,6 +26,15 @@ export class ForgotComponent implements OnInit {
   showQues3: boolean = false;
   loadingVisible: boolean = true;
   securityQuestionsData: SecurityQuestions[];
+  showValidation1: boolean = false;
+  showValidation2: boolean = false;
+  showValidation3: boolean = false;
+  correctAns1: any;
+  worngAns1: any;
+  correctAns2: any;
+  worngAns2: any;
+  correctAns3: any;
+  worngAns3: any;
   constructor(private router: Router) {
     this.securityQuestionsData = JSON.parse(
       localStorage.getItem(COMMON_MSG.securityQuestions)!
@@ -40,14 +49,36 @@ export class ForgotComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.correctAns1 = {
+      icon: "check",
+      type: "success",
+    };
+    this.worngAns1 = {
+      icon: "clear",
+      type: "danger",
+    };
+    this.correctAns2 = {
+      icon: "check",
+      type: "success",
+    };
+    this.worngAns2 = {
+      icon: "clear",
+      type: "danger",
+    };
+    this.correctAns3 = {
+      icon: "check",
+      type: "success",
+    };
+    this.worngAns3 = {
+      icon: "clear",
+      type: "danger",
+    };
+  }
   onShown() {
     setTimeout(() => {
       this.loadingVisible = false;
     }, COMMON_MSG.setTimeout2000);
-  }
-  onFormSubmit(event: any) {
-    
   }
 
   toggleNextBtn() {
@@ -61,26 +92,34 @@ export class ForgotComponent implements OnInit {
   backPage() {
     this.router.navigate(["/login/login-page"]);
   }
-
+  submit() {
+    this.router.navigate(["/forgot/mail-verification"]);
+  }
   q1ValueChanged(event: any, text: string) {
-    if ( this.securityQus1.answer === event.value) {
+    if (this.securityQus1.answer === event.value) {
+      this.showValidation1 = true;
       this.showQues2 = true;
     } else {
+      this.showValidation1 = false;
       this.showQues2 = false;
     }
   }
 
   q2ValueChanged(event: any, text: string) {
     if (this.securityQus2.answer === event.value) {
+      this.showValidation2 = true;
       this.showQues3 = true;
     } else {
+      this.showValidation2 = false;
       this.showQues3 = false;
     }
   }
 
   q3ValueChanged(event: any, text: string) {
+    if (this.securityQus3.answer === event.value) {
+      this.showValidation3 = true;
+    } else {
+      this.showValidation3 = false;
+    }
   }
-  securityQus1Comparison = () => this.securityQus1.answer;
-  securityQus2Comparison = () => this.securityQus2.answer;
-  securityQus3Comparison = () => this.securityQus3.answer;
 }
