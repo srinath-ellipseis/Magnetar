@@ -73,3 +73,10 @@ label {
 .fontBold {
   font-weight: bold;
 }
+.question{
+  font-size: 18px;
+  font-weight: bold;
+}
+.margin-b-10{
+  margin-bottom: 10px;
+}

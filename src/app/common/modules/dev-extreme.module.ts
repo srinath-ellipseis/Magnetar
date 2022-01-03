@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import {
   DxAccordionModule,
+  DxAutocompleteModule,
   DxButtonModule,
   DxCheckBoxModule,
   DxDataGridModule,
@@ -50,7 +51,8 @@ import {
     DxTooltipModule,
     DxDataGridModule,
     DxTextAreaModule,
-    DxResponsiveBoxModule
+    DxResponsiveBoxModule,
+    DxAutocompleteModule
   ],
   exports: [
     DxButtonModule,
@@ -76,7 +78,8 @@ import {
     DxDataGridModule,
     DxTextAreaModule,
     DxResponsiveBoxModule,
-    DxMenuModule
+    DxMenuModule,
+    DxAutocompleteModule
   ],
   providers: [],
   bootstrap: [],

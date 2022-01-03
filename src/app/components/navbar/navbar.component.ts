@@ -15,5 +15,6 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem(COMMON_MSG.personalDetalis);
     localStorage.removeItem(COMMON_MSG.educationForm);
     localStorage.removeItem(COMMON_MSG.employeeForm);
+    localStorage.removeItem(COMMON_MSG.securityQuestions);
   }
 }
