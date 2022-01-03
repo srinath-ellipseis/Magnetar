@@ -18,7 +18,9 @@ export class MobileNumberComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.countryCode = '+91';
+  }
   codeValueChange(event: any) {
     this.countryCode = event.value;
     this.codeValue.emit(this.countryCode);
