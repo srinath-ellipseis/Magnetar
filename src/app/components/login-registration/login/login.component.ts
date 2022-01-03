@@ -64,6 +64,6 @@ export class LoginComponent implements OnInit {
     this.isChecked = event.value;
   }
   forgotPage() {
-    this.router.navigate(["/forgot/security-answer"]);
+    this.router.navigate(["/forgot/mail-verification"]);
   }
 }

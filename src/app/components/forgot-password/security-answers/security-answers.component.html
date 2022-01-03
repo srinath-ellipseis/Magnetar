@@ -14,55 +14,21 @@
       </dx-load-panel>
     </div>
     <div class="row privacy">
-      <form action="your-action">
+      <form action="your-action" (submit)="onFormSubmit($event)">
         <div class="row padding0 formHeader">
           <div class="col-md-2 padding-t-10">
-            <!-- <dx-button
-              id="backIcon"
-              icon="arrowleft"
-              (onClick)="backPage()"
-              (mouseenter)="toggleBackBtn()"
-              (mouseleave)="toggleBackBtn()"
-            >
-            </dx-button>
-            <dx-tooltip
-              target="#backIcon"
-              [(visible)]="backBtnTooltip"
-              [closeOnOutsideClick]="false"
-            >
-              <div *dxTemplate="let data = data; of: 'content'">
-                Back Button
-              </div>
-            </dx-tooltip> -->
           </div>
           <div class="col-md-8 headerText">
             <img src="assets/images/magnetar_logo.png" />
           </div>
           <div class="col-md-2 padding-t-10 textEnd">
-            <!-- <dx-button
-              icon="arrowright"
-              [useSubmitBehavior]="true"
-              id="nextIcon"
-              (mouseenter)="toggleNextBtn()"
-              (mouseleave)="toggleNextBtn()"
-            >
-            </dx-button>
-            <dx-tooltip
-              target="#nextIcon"
-              [(visible)]="nextBtnTooltip"
-              [closeOnOutsideClick]="false"
-            >
-              <div *dxTemplate="let data = data; of: 'content'">
-                Next Button
-              </div>
-            </dx-tooltip> -->
           </div>
         </div>
         <div class="row headerText">
           <h3>Security Answers</h3>
         </div>
         <div class="dx-fieldset">
-          <div class="row margin-b-15">
+          <div class="row ansCard">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -87,13 +53,13 @@
                   (onValueChanged)="q1ValueChanged($event, 'answer')"
                 >
                   <dxi-button
-                    *ngIf="showValidation1"
+                    *ngIf="showValidation1 && ans1Value"
                     name="today"
                     location="after"
                     [options]="correctAns1"
                   ></dxi-button>
                   <dxi-button
-                    *ngIf="!showValidation1"
+                    *ngIf="!showValidation1 && ans1Value"
                     name="today"
                     location="after"
                     [options]="worngAns1"
@@ -102,7 +68,7 @@
               </div>
             </div>
           </div>
-          <div class="row margin-b-15" *ngIf="showQues2">
+          <div class="row ansCard" *ngIf="showQues2">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -127,13 +93,13 @@
                   (onValueChanged)="q2ValueChanged($event, 'answer')"
                 >
                   <dxi-button
-                    *ngIf="showValidation2"
+                    *ngIf="showValidation2 && ans2Value"
                     name="today"
                     location="after"
                     [options]="correctAns2"
                   ></dxi-button>
                   <dxi-button
-                    *ngIf="!showValidation2"
+                    *ngIf="!showValidation2 && ans2Value"
                     name="today"
                     location="after"
                     [options]="worngAns2"
@@ -142,7 +108,7 @@
               </div>
             </div>
           </div>
-          <div class="row margin-b-15" *ngIf="showQues3">
+          <div class="row ansCard" *ngIf="showQues3">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -167,13 +133,13 @@
                   (onValueChanged)="q3ValueChanged($event, 'answer')"
                 >
                   <dxi-button
-                    *ngIf="showValidation3"
+                    *ngIf="showValidation3 && ans3Value"
                     name="today"
                     location="after"
                     [options]="correctAns3"
                   ></dxi-button>
                   <dxi-button
-                    *ngIf="!showValidation3"
+                    *ngIf="!showValidation3 && ans3Value"
                     name="today"
                     location="after"
                     [options]="worngAns3"
@@ -190,8 +156,10 @@
               <dx-button
                 [text]="COMMON_MSG.Submit"
                 type="success"
-                (onClick)="submit()"
-                [disabled]="!showValidation3"
+                [useSubmitBehavior]="true"
+                [disabled]="
+                  !(showValidation1 && showValidation2 && showValidation3)
+                "
               ></dx-button>
             </div>
             <div class="col-md-4"></div>

@@ -32,6 +32,9 @@ export class SecurityQuestionsComponent implements OnInit {
     this.securityQuestionsData = JSON.parse(
       localStorage.getItem(COMMON_MSG.securityQuestions)!
     );
+    this.answers1Callback = this.answers1Callback.bind(this);
+    this.answers2Callback = this.answers2Callback.bind(this);
+    this.answers3Callback = this.answers3Callback.bind(this);
     if (this.securityQuestionsData) {
       this.securityQus1.question = this.securityQuestionsData[0].question;
       this.securityQus1.answer = this.securityQuestionsData[0].answer;
@@ -104,11 +107,6 @@ export class SecurityQuestionsComponent implements OnInit {
     } else if (text === COMMON_MSG.answer) {
       this.securityQus1.answer = event.value;
     }
-    if (this.securityQus1.question && this.securityQus1.answer) {
-      this.showQues2 = true;
-    } else {
-      this.showQues2 = false;
-    }
   }
 
   q2ValueChanged(event: any, text: string) {
@@ -128,11 +126,6 @@ export class SecurityQuestionsComponent implements OnInit {
     } else if (text === COMMON_MSG.answer) {
       this.securityQus2.answer = event.value;
     }
-    if (this.securityQus2.question && this.securityQus2.answer) {
-      this.showQues3 = true;
-    } else {
-      this.showQues3 = false;
-    }
   }
 
   q3ValueChanged(event: any, text: string) {
@@ -151,6 +144,47 @@ export class SecurityQuestionsComponent implements OnInit {
       }
     } else if (text === COMMON_MSG.answer) {
       this.securityQus3.answer = event.value;
+    }
+  }
+
+  answers1Callback(event: any) {
+    if (
+      event.value === this.securityQus2.answer ||
+      event.value === this.securityQus3.answer
+    ) {
+      return false;
+    } else {
+      if (this.securityQus1.question && this.securityQus1.answer) {
+        this.showQues2 = true;
+      } else {
+        this.showQues2 = false;
+      }
+      return true;
+    }
+  }
+  answers2Callback(event: any) {
+    if (
+      event.value === this.securityQus1.answer ||
+      event.value === this.securityQus3.answer
+    ) {
+      return false;
+    } else {
+      if (this.securityQus2.question && this.securityQus2.answer) {
+        this.showQues3 = true;
+      } else {
+        this.showQues3 = false;
+      }
+      return true;
+    }
+  }
+  answers3Callback(event: any) {
+    if (
+      event.value === this.securityQus1.answer ||
+      event.value === this.securityQus2.answer
+    ) {
+      return false;
+    } else {
+      return true;
     }
   }
 }

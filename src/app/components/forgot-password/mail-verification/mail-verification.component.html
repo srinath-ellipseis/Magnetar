@@ -26,7 +26,7 @@
           <h3>Mail Verification</h3>
         </div>
         <div class="dx-fieldset">
-          <div class="row margin-b-15">
+          <div class="row Card">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-text-box
@@ -35,13 +35,13 @@
                   (onValueChanged)="mailValueChanged($event)"
                 >
                   <dxi-button
-                    *ngIf="showValidation"
+                    *ngIf="showValidation && this.mailValue"
                     name="today"
                     location="after"
                     [options]="correctMail"
                   ></dxi-button>
                   <dxi-button
-                    *ngIf="!showValidation"
+                    *ngIf="!showValidation && mailValue"
                     name="today"
                     location="after"
                     [options]="worngMail"
@@ -58,13 +58,13 @@
                   [value]="otpValue"
                 >
                   <dxi-button
-                    *ngIf="otpValidation"
+                    *ngIf="otpValidation && otpValue"
                     name="today"
                     location="after"
                     [options]="correctOtp"
                   ></dxi-button>
                   <dxi-button
-                    *ngIf="!otpValidation"
+                    *ngIf="!otpValidation && otpValue"
                     name="today"
                     location="after"
                     [options]="worngOtp"

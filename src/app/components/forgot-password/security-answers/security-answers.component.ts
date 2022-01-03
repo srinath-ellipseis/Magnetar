@@ -16,8 +16,6 @@ export class SecurityAnswersComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
   error_msg = Validation_MSG;
   questions = DropdownValues.securityQuestions;
-  nextBtnTooltip: boolean = false;
-  backBtnTooltip: boolean = false;
   securityQusArray: SecurityQuestions[] = [];
   securityQus1: SecurityQuestions = {};
   securityQus2: SecurityQuestions = {};
@@ -35,6 +33,9 @@ export class SecurityAnswersComponent implements OnInit {
   worngAns2: any;
   correctAns3: any;
   worngAns3: any;
+  ans1Value: any;
+  ans2Value: any;
+  ans3Value: any;
   constructor(private router: Router) {
     this.securityQuestionsData = JSON.parse(
       localStorage.getItem(COMMON_MSG.securityQuestions)!
@@ -80,42 +81,39 @@ export class SecurityAnswersComponent implements OnInit {
       this.loadingVisible = false;
     }, COMMON_MSG.setTimeout2000);
   }
-
-  toggleNextBtn() {
-    this.nextBtnTooltip = !this.nextBtnTooltip;
+  
+  onFormSubmit(event: any) {
+    this.router.navigate(["/forgot/update-password"]);
   }
 
-  toggleBackBtn() {
-    this.backBtnTooltip = !this.backBtnTooltip;
-  }
-
-  backPage() {
-    this.router.navigate(["/login/login-page"]);
-  }
-  submit() {
-    this.router.navigate(["/forgot/mail-verification"]);
-  }
   q1ValueChanged(event: any, text: string) {
+    this.ans1Value = event.value;
     if (this.securityQus1.answer === event.value) {
       this.showValidation1 = true;
       this.showQues2 = true;
     } else {
       this.showValidation1 = false;
+      this.showValidation2 = false;
+      this.showValidation3 = false;
       this.showQues2 = false;
+      this.showQues3 = false;
     }
   }
 
   q2ValueChanged(event: any, text: string) {
+    this.ans2Value = event.value;
     if (this.securityQus2.answer === event.value) {
       this.showValidation2 = true;
       this.showQues3 = true;
     } else {
       this.showValidation2 = false;
+      this.showValidation3 = false;
       this.showQues3 = false;
     }
   }
 
   q3ValueChanged(event: any, text: string) {
+    this.ans3Value = event.value;
     if (this.securityQus3.answer === event.value) {
       this.showValidation3 = true;
     } else {

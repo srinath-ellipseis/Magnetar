@@ -65,7 +65,7 @@
           <dx-validation-summary id="summary"></dx-validation-summary>
         </div>
         <div class="dx-fieldset">
-          <div class="row margin-b-15">
+          <div class="row ansCard">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -89,9 +89,8 @@
             </div>
             <div class="dx-field">
               <div class="dx-field-value width100">
-                <dx-text-area
+                <dx-text-box
                   [placeholder]="COMMON_MSG.queAnsPlaceholder"
-                  [height]="100"
                   valueChangeEvent="keyup"
                   (onValueChanged)="q1ValueChanged($event, 'answer')"
                   [value]="securityQus1.answer"
@@ -101,12 +100,17 @@
                       type="required"
                       [message]="error_msg.answerRequired"
                     ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="custom"
+                      [validationCallback]="answers1Callback"
+                      [message]="error_msg.ansCompare"
+                    ></dxi-validation-rule>
                   </dx-validator>
-                </dx-text-area>
+                </dx-text-box>
               </div>
             </div>
           </div>
-          <div class="row margin-b-15" *ngIf="showQues2">
+          <div class="row ansCard" *ngIf="showQues2">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -130,9 +134,8 @@
             </div>
             <div class="dx-field">
               <div class="dx-field-value width100">
-                <dx-text-area
+                <dx-text-box
                   [placeholder]="COMMON_MSG.queAnsPlaceholder"
-                  [height]="100"
                   valueChangeEvent="keyup"
                   (onValueChanged)="q2ValueChanged($event, 'answer')"
                   [value]="securityQus2.answer"
@@ -142,12 +145,17 @@
                       type="required"
                       [message]="error_msg.answerRequired"
                     ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="custom"
+                      [validationCallback]="answers2Callback"
+                      [message]="error_msg.ansCompare"
+                    ></dxi-validation-rule>
                   </dx-validator>
-                </dx-text-area>
+                </dx-text-box>
               </div>
             </div>
           </div>
-          <div class="row margin-b-15" *ngIf="showQues3">
+          <div class="row ansCard" *ngIf="showQues3">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -171,9 +179,8 @@
             </div>
             <div class="dx-field">
               <div class="dx-field-value width100">
-                <dx-text-area
+                <dx-text-box
                   [placeholder]="COMMON_MSG.queAnsPlaceholder"
-                  [height]="100"
                   valueChangeEvent="keyup"
                   (onValueChanged)="q3ValueChanged($event, 'answer')"
                   [value]="securityQus3.answer"
@@ -183,10 +190,29 @@
                       type="required"
                       [message]="error_msg.answerRequired"
                     ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="custom"
+                      [validationCallback]="answers3Callback"
+                      [reevaluate]="true"
+                      [message]="error_msg.ansCompare"
+                    ></dxi-validation-rule>
                   </dx-validator>
-                </dx-text-area>
+                </dx-text-box>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="dx-fieldset">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 textCenter">
+              <dx-button
+                [text]="COMMON_MSG.Submit"
+                type="success"
+                [useSubmitBehavior]="true"
+              ></dx-button>
+            </div>
+            <div class="col-md-4"></div>
           </div>
         </div>
       </form>

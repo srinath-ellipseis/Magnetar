@@ -49,10 +49,16 @@ export class MailVerificationComponent implements OnInit {
   }
   mailValueChanged(event: any) {
     this.mailValue = event.value;
-    if (this.mailValue === "abcd@gmail.com") {
+    let mailString = this.mailValue.split("@", 2);
+    if (mailString[1] === "magnetar.com" || mailString[1] === "elipse.com") {
       this.showValidation = true;
       this.otpCode = Math.floor(Math.random() * (1000000 - 100000) + 100000);
-      console.log(this.otpCode);
+      console.log('Otp ==>', this.otpCode);
+    }else{
+      this.showValidation = false;
+      this.otpValue = '';
+      this.otpValidation = false;
+      this.btnDisable = false;
     }
   }
   otpValueChanged(event: any) {
@@ -60,9 +66,12 @@ export class MailVerificationComponent implements OnInit {
     if (this.otpCode === this.otpValue) {
       this.otpValidation = true;
       this.btnDisable = true;
+    } else {
+      this.otpValidation = false;
+      this.btnDisable = false;
     }
   }
   submit() {
-    this.router.navigate(["/forgot/update-password"]);
+    this.router.navigate(["/forgot/security-answer"]);
   }
 }

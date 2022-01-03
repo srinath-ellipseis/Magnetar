@@ -77,6 +77,8 @@ export const COMMON_MSG = {
   userRole: "userRole",
   Submit: "Submit",
   OTPPlaceholder: "OTP*",
+  NewPasswordPlaceholder: "New Password*",
+  OldPasswordPlaceholder: "Old Password*",
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",
@@ -119,6 +121,9 @@ export const Validation_MSG = {
   questionsRequired: "Question is required",
   answerRequired: "Answer is required",
   answerError: "Answer do not match",
+  ansCompare: "Answers should not be same",
+  oldPasswordRequired: "Old Password is required",
+  newPasswordRequired: "New Password is required",
 };
 export const DropdownValues = {
   genders: ["Male", "Female", "Others"],
