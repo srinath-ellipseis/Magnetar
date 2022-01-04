@@ -1,0 +1,43 @@
+<dx-toolbar>
+  <dxi-item location="before" widget="dxButton" [options]="menuOptions">
+  </dxi-item>
+  <dxi-item location="before" locateInMenu="never">
+    <div *dxTemplate class="p-l-15">
+      <a routerLink="home">
+        <img class="logo" src="../../../assets/images/magnetar_logo.png" />
+      </a>
+    </div>
+  </dxi-item>
+  <dxi-item location="after" widget="dxButton">
+    <div *dxTemplate>
+      <div class="toolbar-label timeStyle">{{ time }}</div>
+    </div>
+  </dxi-item>
+  <dxi-item location="after" widget="dxButton">
+    <div *dxTemplate>
+      <div class="toolbar-label userName"><b>Srinath</b></div>
+    </div>
+  </dxi-item>
+  <dxi-item location="after" widget="dxButton">
+    <div *dxTemplate>
+      <div class="toolbar-label logoutText"(click)="logout()">Logout</div>
+    </div>
+  </dxi-item>
+</dx-toolbar>
+<dx-drawer
+  openedStateMode="overlap"
+  position="left"
+  revealMode="slide"
+  template="template"
+  [(opened)]="isDrawerOpen"
+  [closeOnOutsideClick]="true"
+>
+  <div *dxTemplate="let data of 'template'" style="width: 200px" class="sideMenu">
+    <div class="row">
+      <label (click)="routerLink()">Holidays List</label>
+    </div>
+  </div>
+  <div id="content" class="dx-theme-background-color">
+    <router-outlet></router-outlet>
+  </div>
+</dx-drawer>
