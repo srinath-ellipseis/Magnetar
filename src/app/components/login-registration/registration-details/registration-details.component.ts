@@ -58,7 +58,7 @@ export class RegistrationDetailsComponent implements OnInit {
       COMMON_MSG.personalDetalis,
       JSON.stringify(this.detailsData)
     );
-    this.router.navigate(["/login/registration-edu-emp"]);
+    this.router.navigate(["/login/security"]);
   }
 
   valueChanged(event: any, value: string) {

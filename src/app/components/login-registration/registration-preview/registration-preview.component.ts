@@ -5,6 +5,7 @@ import {
   EduDetails,
   EmpDetails,
   PersonalDetails,
+  SecurityQuestions,
 } from "src/app/models/login.model";
 
 @Component({
@@ -18,6 +19,8 @@ export class RegistrationPreviewComponent implements OnInit {
   educationData: EduDetails[];
   employeeData: EmpDetails[];
   backBtnTooltip: boolean = false;
+  userRole: string;
+  securityQuestionsData: SecurityQuestions[];
   constructor(private router: Router) {
     this.educationData = JSON.parse(
       localStorage.getItem(COMMON_MSG.educationForm)!
@@ -27,6 +30,10 @@ export class RegistrationPreviewComponent implements OnInit {
     );
     this.detailsData = JSON.parse(
       localStorage.getItem(COMMON_MSG.personalDetalis)!
+    );
+    this.userRole = JSON.parse(localStorage.getItem(COMMON_MSG.userRole)!);
+    this.securityQuestionsData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.securityQuestions)!
     );
   }
 
@@ -53,12 +60,19 @@ export class RegistrationPreviewComponent implements OnInit {
     this.goToEduEmpPage();
   }
   backPage() {
-    this.goToEduEmpPage();
+    if (this.userRole === COMMON_MSG.new) {
+      this.router.navigate(["/login/registration-edu-emp"]);
+    } else {
+      this.router.navigate(["/login/security"]);
+    }
   }
   toggleBackBtn() {
     this.backBtnTooltip = !this.backBtnTooltip;
   }
   registrationBtn() {
     alert(COMMON_MSG.Success);
+  }
+  goToSecurityPage(){
+    this.router.navigate(["/login/security"]);
   }
 }

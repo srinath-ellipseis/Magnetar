@@ -31,6 +31,10 @@ const routes: Routes = [
       {
         path: 'partners',
         loadChildren: () =>import('./components/partners/partners.module').then((m) => m.PartnersModule)
+      },
+      {
+        path: 'forgot',
+        loadChildren: () =>import('./components/forgot-password/forgot-password.module').then((m) => m.ForgotPasswordModule)
       }
     ]
   },
