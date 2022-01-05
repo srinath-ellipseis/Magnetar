@@ -1,7 +1,11 @@
 import { formatDate } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { COMMON_MSG, DropdownValues, Validation_MSG } from "src/app/common/messages/common-msg";
+import {
+  COMMON_MSG,
+  DropdownValues,
+  Validation_MSG,
+} from "src/app/common/messages/common-msg";
 import { PersonalDetails } from "src/app/models/login.model";
 
 @Component({
@@ -11,7 +15,7 @@ import { PersonalDetails } from "src/app/models/login.model";
 })
 export class RegistrationDetailsComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
-  error_msg = Validation_MSG
+  error_msg = Validation_MSG;
   genders = DropdownValues.genders;
   roles = DropdownValues.roles;
   countries = DropdownValues.countries;
@@ -22,7 +26,9 @@ export class RegistrationDetailsComponent implements OnInit {
   namePattern: any = /^[^0-9]+$/;
   loadingVisible: boolean = true;
   nextBtnTooltip: boolean = false;
-  datePatch:any;
+  datePatch: any;
+  btnDisable: boolean = true;
+  isVisible: boolean = false;
   constructor(private router: Router) {
     this.detailsForm = JSON.parse(
       localStorage.getItem(COMMON_MSG.personalDetalis)!
@@ -42,6 +48,7 @@ export class RegistrationDetailsComponent implements OnInit {
       this.detailsData.mobileNumber = this.detailsForm.mobileNumber;
       this.detailsData.countryCode = this.detailsForm.countryCode;
       this.datePatch = new Date(this.detailsData.dob);
+      this.btnDisable = false;
     }
   }
 
@@ -58,10 +65,16 @@ export class RegistrationDetailsComponent implements OnInit {
       COMMON_MSG.personalDetalis,
       JSON.stringify(this.detailsData)
     );
+    this.btnDisable = false;
+    this.isVisible = true;
+  }
+
+  nextPage() {
     this.router.navigate(["/login/security"]);
   }
 
   valueChanged(event: any, value: string) {
+    this.btnDisable = true;
     if (value === COMMON_MSG.firstName) {
       this.detailsData.firstName = event.value;
     } else if (value === COMMON_MSG.lastName) {

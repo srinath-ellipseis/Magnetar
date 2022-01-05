@@ -79,6 +79,7 @@ export const COMMON_MSG = {
   OTPPlaceholder: "OTP*",
   NewPasswordPlaceholder: "New Password*",
   OldPasswordPlaceholder: "Old Password*",
+  Next: "Next",
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",
@@ -121,9 +122,13 @@ export const Validation_MSG = {
   questionsRequired: "Question is required",
   answerRequired: "Answer is required",
   answerError: "Answer do not match",
-  ansCompare: "Answers should not be same",
+  ansCompare: "Answers should not be same with previous massage",
   oldPasswordRequired: "Old Password is required",
   newPasswordRequired: "New Password is required",
+  personalDetailsSuccessMsg: "Personal Details saved successfully, Please click on Next button",
+  securityQusSuccessMsg: "Security Questions saved successfully, Please click on Next button",
+  registrationSuccessMsg: "Registration saved successfully",
+  strongAnswer: "Please choose a strong Answer",
 };
 export const DropdownValues = {
   genders: ["Male", "Female", "Others"],

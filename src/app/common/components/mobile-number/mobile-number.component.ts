@@ -1,5 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { COMMON_MSG, DropdownValues, Validation_MSG } from "../../messages/common-msg";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  SimpleChange,
+} from "@angular/core";
+import {
+  COMMON_MSG,
+  DropdownValues,
+  Validation_MSG,
+} from "../../messages/common-msg";
 
 @Component({
   selector: "app-mobile-number",
@@ -18,8 +29,14 @@ export class MobileNumberComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.countryCode = '+91';
+  ngOnInit(): void {}
+  ngOnChanges(change: SimpleChange) {
+    if (this.countryCode) {
+      this.countryCode = this.countryCode;
+    } else {
+      this.countryCode = "+91";
+      this.codeValue.emit(this.countryCode);
+    }
   }
   codeValueChange(event: any) {
     this.countryCode = event.value;

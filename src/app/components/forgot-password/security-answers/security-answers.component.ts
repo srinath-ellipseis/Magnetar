@@ -20,8 +20,6 @@ export class SecurityAnswersComponent implements OnInit {
   securityQus1: SecurityQuestions = {};
   securityQus2: SecurityQuestions = {};
   securityQus3: SecurityQuestions = {};
-  showQues2: boolean = false;
-  showQues3: boolean = false;
   loadingVisible: boolean = true;
   securityQuestionsData: SecurityQuestions[];
   showValidation1: boolean = false;
@@ -81,38 +79,30 @@ export class SecurityAnswersComponent implements OnInit {
       this.loadingVisible = false;
     }, COMMON_MSG.setTimeout2000);
   }
-  
+
   onFormSubmit(event: any) {
     this.router.navigate(["/forgot/update-password"]);
   }
 
-  q1ValueChanged(event: any, text: string) {
+  q1ValueChanged(event: any) {
     this.ans1Value = event.value;
     if (this.securityQus1.answer === event.value) {
       this.showValidation1 = true;
-      this.showQues2 = true;
     } else {
       this.showValidation1 = false;
-      this.showValidation2 = false;
-      this.showValidation3 = false;
-      this.showQues2 = false;
-      this.showQues3 = false;
     }
   }
 
-  q2ValueChanged(event: any, text: string) {
+  q2ValueChanged(event: any) {
     this.ans2Value = event.value;
     if (this.securityQus2.answer === event.value) {
       this.showValidation2 = true;
-      this.showQues3 = true;
     } else {
       this.showValidation2 = false;
-      this.showValidation3 = false;
-      this.showQues3 = false;
     }
   }
 
-  q3ValueChanged(event: any, text: string) {
+  q3ValueChanged(event: any) {
     this.ans3Value = event.value;
     if (this.securityQus3.answer === event.value) {
       this.showValidation3 = true;

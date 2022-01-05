@@ -12,6 +12,12 @@
         (onShown)="onShown()"
       >
       </dx-load-panel>
+      <dx-toast
+        [(visible)]="isVisible"
+        type="success"
+        [message]="detailsData.firstName + detailsData.lastName + ' registration successfully'"
+      >
+      </dx-toast>
     </div>
     <div class="row padding0 previewHeader">
       <div class="col-md-2 padding-t-10">
@@ -308,7 +314,10 @@
                 </a>
               </div>
               <div class="col-md-1">
-                <dx-button icon="edit" (onClick)="goToSecurityPage()"></dx-button>
+                <dx-button
+                  icon="edit"
+                  (onClick)="goToSecurityPage()"
+                ></dx-button>
               </div>
             </div>
           </div>
@@ -318,9 +327,12 @@
             data-bs-parent="#mainAccordion"
           >
             <div class="card-body">
-              <div class="row margin-b-10" *ngFor="let que of securityQuestionsData">
-                <span class="question">{{que.question}}</span>
-                <span>{{que.answer}}</span>
+              <div
+                class="row margin-b-10"
+                *ngFor="let que of securityQuestionsData"
+              >
+                <span class="question">{{ que.question }}</span>
+                <span>{{ que.answer }}</span>
               </div>
             </div>
           </div>
