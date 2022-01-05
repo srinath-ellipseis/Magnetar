@@ -1,6 +1,7 @@
 .main-content {
   margin-top: 5%;
   min-height: 486px;
+  /* margin-bottom: 20%; */
 }
 @media (min-width: 769px) and (max-width: 1024px) {
   .main-content {

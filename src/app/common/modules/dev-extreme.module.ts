@@ -24,6 +24,7 @@ import {
   DxTemplateModule,
   DxTextAreaModule,
   DxTextBoxModule,
+  DxToastModule,
   DxToolbarModule,
   DxTooltipModule,
   DxValidationSummaryModule,
@@ -86,6 +87,7 @@ import {
     DxDrawerModule,
     DxRadioGroupModule,
     DxToolbarModule,
+    DxToastModule
   ],
   providers: [],
   bootstrap: [],

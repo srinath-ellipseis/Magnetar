@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { COMMON_MSG } from "src/app/common/messages/common-msg";
+import { COMMON_MSG, Validation_MSG } from "src/app/common/messages/common-msg";
 import {
   EduDetails,
   EmpDetails,
@@ -14,6 +14,8 @@ import {
   styleUrls: ["./registration-preview.component.css"],
 })
 export class RegistrationPreviewComponent implements OnInit {
+  error_msg = Validation_MSG;
+  isVisible: boolean = false;
   loadingVisible: boolean = true;
   detailsData: PersonalDetails;
   educationData: EduDetails[];
@@ -70,9 +72,9 @@ export class RegistrationPreviewComponent implements OnInit {
     this.backBtnTooltip = !this.backBtnTooltip;
   }
   registrationBtn() {
-    alert(COMMON_MSG.Success);
+    this.isVisible = true;
   }
-  goToSecurityPage(){
+  goToSecurityPage() {
     this.router.navigate(["/login/security"]);
   }
 }

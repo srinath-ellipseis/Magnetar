@@ -12,6 +12,12 @@
         (onShown)="onShown()"
       >
       </dx-load-panel>
+      <dx-toast
+        [(visible)]="isVisible"
+        type="success"
+        [message]="error_msg.securityQusSuccessMsg"
+      >
+      </dx-toast>
     </div>
     <div class="row privacy">
       <form action="your-action" (submit)="onFormSubmit($event)">
@@ -41,10 +47,11 @@
           <div class="col-md-2 padding-t-10 textEnd">
             <dx-button
               icon="arrowright"
-              [useSubmitBehavior]="true"
               id="nextIcon"
               (mouseenter)="toggleNextBtn()"
               (mouseleave)="toggleNextBtn()"
+              [disabled]="btnDisable"
+              (onClick)="nextPage()"
             >
             </dx-button>
             <dx-tooltip
@@ -94,11 +101,17 @@
                   valueChangeEvent="keyup"
                   (onValueChanged)="q1ValueChanged($event, 'answer')"
                   [value]="securityQus1.answer"
+                  maxLength="30"
                 >
                   <dx-validator>
                     <dxi-validation-rule
                       type="required"
                       [message]="error_msg.answerRequired"
+                    ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="pattern"
+                      pattern=".{3,}"
+                      [message]="error_msg.strongAnswer"
                     ></dxi-validation-rule>
                     <dxi-validation-rule
                       type="custom"
@@ -139,11 +152,17 @@
                   valueChangeEvent="keyup"
                   (onValueChanged)="q2ValueChanged($event, 'answer')"
                   [value]="securityQus2.answer"
+                  maxLength="30"
                 >
                   <dx-validator>
                     <dxi-validation-rule
                       type="required"
                       [message]="error_msg.answerRequired"
+                    ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="pattern"
+                      pattern=".{3,}"
+                      [message]="error_msg.strongAnswer"
                     ></dxi-validation-rule>
                     <dxi-validation-rule
                       type="custom"
@@ -184,11 +203,17 @@
                   valueChangeEvent="keyup"
                   (onValueChanged)="q3ValueChanged($event, 'answer')"
                   [value]="securityQus3.answer"
+                  maxLength="30"
                 >
                   <dx-validator>
                     <dxi-validation-rule
                       type="required"
                       [message]="error_msg.answerRequired"
+                    ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="pattern"
+                      pattern=".{3,}"
+                      [message]="error_msg.strongAnswer"
                     ></dxi-validation-rule>
                     <dxi-validation-rule
                       type="custom"
@@ -210,6 +235,13 @@
                 [text]="COMMON_MSG.Submit"
                 type="success"
                 [useSubmitBehavior]="true"
+                *ngIf="!showNextBtn"
+              ></dx-button>
+              <dx-button
+                [text]="COMMON_MSG.Next"
+                type="success"
+                [useSubmitBehavior]="true"
+                *ngIf="showNextBtn"
               ></dx-button>
             </div>
             <div class="col-md-4"></div>

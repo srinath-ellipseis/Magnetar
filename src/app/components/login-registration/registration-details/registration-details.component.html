@@ -12,8 +12,13 @@
         (onShown)="onShown()"
       >
       </dx-load-panel>
+      <dx-toast
+        [(visible)]="isVisible"
+        type="success"
+        [message]="error_msg.personalDetailsSuccessMsg"
+      >
+      </dx-toast>
     </div>
-
     <div class="row detForm">
       <form action="your-action" (submit)="onFormSubmit($event)">
         <div class="row padding0 formHeader">
@@ -24,10 +29,11 @@
           <div class="col-md-2 padding-t-10 textEnd">
             <dx-button
               icon="arrowright"
-              [useSubmitBehavior]="true"
               id="nextIcon"
               (mouseenter)="toggleNextBtn()"
               (mouseleave)="toggleNextBtn()"
+              [disabled]="btnDisable"
+              (onClick)="nextPage()"
             >
             </dx-button>
             <dx-tooltip
