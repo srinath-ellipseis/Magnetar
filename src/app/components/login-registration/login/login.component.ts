@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
       yourNewData.push(this.loginDetails);
       localStorage.setItem(COMMON_MSG.loginUser, JSON.stringify(yourNewData));
     }
-    this.router.navigate(["/login/registration-details"]);
+    this.router.navigate(["/landing"]);
   }
   valueChanged(event: any, text: string) {
     if (text === COMMON_MSG.email) {

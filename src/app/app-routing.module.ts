@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
+import { LandingDashboardComponent } from './components/landing/landing-dashboard/landing-dashboard.component';
 
 const routes: Routes = [
   { 
@@ -38,7 +40,17 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '**', redirectTo: '' }
+  { 
+    path: 'landing',
+    component: LandingDashboardComponent,
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () =>import('./components/landing/landing.module').then((m) => m.LandingModule)
+      }
+    ]
+  },
+  { path: '**', component: ErrorComponent}
 ];
 
 @NgModule({
