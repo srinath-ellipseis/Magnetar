@@ -47,6 +47,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () =>import('./components/landing/landing.module').then((m) => m.LandingModule)
+      },
+      {
+        path: 'scrum',
+        loadChildren: () =>import('./components/scrum/scrum.module').then((m) => m.ScrumModule)
       }
     ]
   },

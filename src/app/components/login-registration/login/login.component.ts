@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   emailValue: any;
   passwordValue: any;
   userData: any;
+  isVisible: boolean = false;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -41,7 +42,12 @@ export class LoginComponent implements OnInit {
       yourNewData.push(this.loginDetails);
       localStorage.setItem(COMMON_MSG.loginUser, JSON.stringify(yourNewData));
     }
-    this.router.navigate(["/landing"]);
+    if(this.loginDetails.email === "srinath.bandreddi@ellipseis.com" && this.loginDetails.password === "Sri1234"){
+      this.router.navigate(["/landing"]);
+    }else{
+      this.isVisible = true;
+    }
+    
   }
   valueChanged(event: any, text: string) {
     if (text === COMMON_MSG.email) {

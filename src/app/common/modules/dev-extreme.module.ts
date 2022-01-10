@@ -27,6 +27,7 @@ import {
   DxToastModule,
   DxToolbarModule,
   DxTooltipModule,
+  DxTreeListModule,
   DxValidationSummaryModule,
   DxValidatorModule,
 } from "devextreme-angular";
@@ -87,7 +88,8 @@ import {
     DxDrawerModule,
     DxRadioGroupModule,
     DxToolbarModule,
-    DxToastModule
+    DxToastModule,
+    DxTreeListModule,
   ],
   providers: [],
   bootstrap: [],
