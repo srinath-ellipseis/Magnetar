@@ -2,6 +2,17 @@
   <div class="row margin">
     <div class="row">
       <div class="row">
+        <dx-load-panel
+          #loadPanel
+          shadingColor="rgba(0,0,0,0.4)"
+          [(visible)]="loadingVisible"
+          [showIndicator]="true"
+          [showPane]="true"
+          [shading]="true"
+          [closeOnOutsideClick]="false"
+          (onShown)="onLoading()"
+        >
+        </dx-load-panel>
         <dx-toast [(visible)]="isVisible" type="success" message=""> </dx-toast>
       </div>
       <div class="row padding0 headerStyle">
@@ -16,29 +27,94 @@
           <h3>Standup Status</h3>
         </div>
         <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <div class="row">
+              <div class="col-md-2">
+                <dx-button
+                  icon="back"
+                  stylingMode="text"
+                  (onClick)="preDates()"
+                >
+                </dx-button>
+              </div>
+              <div class="col-md-8 dateHeader">
+                <label>{{ mondayDate }} to {{ sundayDate }}</label>
+              </div>
+              <div class="col-md-2">
+                <dx-button
+                  icon="chevronnext"
+                  stylingMode="text"
+                  (onClick)="nextDates()"
+                >
+                </dx-button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4"></div>
+        </div>
+        <div class="row m-t-10">
           <dx-data-grid
             id="gridContainer"
             [dataSource]="mainData"
             keyExpr="id"
             [showBorders]="true"
           >
-          <dxi-column
+            <dxi-column
               dataField="department"
               caption="Department"
               [groupIndex]="0"
             ></dxi-column>
-            <dxi-column
-              dataField="name"
-              caption="Employee"
-            ></dxi-column>
-            <dxi-column dataField="mon" caption="Monday" cellTemplate="monTemplate"></dxi-column>
-            <dxi-column dataField="tue" caption="Tuesday" cellTemplate="tueTemplate"></dxi-column>
-            <dxi-column dataField="wed" caption="Wednesday" cellTemplate="wedTemplate"></dxi-column>
-            <dxi-column dataField="thu" caption="Thursday" cellTemplate="thuTemplate"></dxi-column>
-            <dxi-column dataField="fri" caption="Friday" cellTemplate="friTemplate"></dxi-column>
-            <dxi-column dataField="sat" caption="Saturday" cellTemplate="satTemplate"></dxi-column>
-            <dxi-column dataField="sun" caption="Sunday" cellTemplate="sunTemplate"></dxi-column>
-            <dxi-column dataField="" caption="" cellTemplate="btnTemplate"></dxi-column>
+            <dxi-column dataField="name" caption="Employee"></dxi-column>
+            <dxi-column dataField="mon" caption="Monday">
+              <dxi-column
+                [caption]="mondayDate"
+                dataField=""
+                cellTemplate="monTemplate"
+              ></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="tue" caption="Tuesday">
+              <dxi-column
+                [caption]="tuesdayDate"
+                dataField=""
+                cellTemplate="tueTemplate"
+              ></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="wed" caption="Wednesday">
+              <dxi-column
+                [caption]="wednesdayDate"
+                dataField=""
+                cellTemplate="wedTemplate"
+              ></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="thu" caption="Thursday">
+              <dxi-column
+                [caption]="thursdayDate"
+                dataField=""
+                cellTemplate="thuTemplate"
+              ></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="fri" caption="Friday">
+              <dxi-column
+                [caption]="fridayDate"
+                dataField=""
+                cellTemplate="friTemplate"
+              ></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="sat" caption="Saturday">
+              <dxi-column
+                [caption]="saturdayDate"
+                dataField=""
+                cellTemplate="satTemplate"
+              ></dxi-column>
+            </dxi-column>
+            <dxi-column dataField="sun" caption="Sunday">
+              <dxi-column
+                [caption]="sundayDate"
+                dataField=""
+                cellTemplate="sunTemplate"
+              ></dxi-column>
+            </dxi-column>
             <div *dxTemplate="let cell of 'monTemplate'; let i = index">
               <div class="dx-field">
                 <div class="dx-field-value width100">
@@ -130,14 +206,18 @@
                 </div>
               </div>
             </div>
-            <div *dxTemplate="let cell of 'btnTemplate'">
-              <dx-button
-                [text]="COMMON_MSG.Save"
-                type="success"
-                (onClick)="submit(cell.data)"
-              ></dx-button>
-            </div>
           </dx-data-grid>
+        </div>
+        <div class="row m-t-10">
+          <div class="col-md-4"></div>
+          <div class="col-md-4">
+            <dx-button
+              [text]="COMMON_MSG.Save"
+              type="success"
+              (onClick)="submit(mainData)"
+            ></dx-button>
+          </div>
+          <div class="col-md-4"></div>
         </div>
       </div>
     </div>

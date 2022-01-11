@@ -132,14 +132,17 @@ export const Validation_MSG = {
   ansCompare: "Answers should not be same with previous message",
   oldPasswordRequired: "Old Password is required",
   newPasswordRequired: "New Password is required",
-  personalDetailsSuccessMsg: "Personal Details saved successfully, Please click on Next button",
-  securityQusSuccessMsg: "Security Questions saved successfully, Please click on Next button",
+  personalDetailsSuccessMsg:
+    "Personal Details saved successfully, Please click on Next button",
+  securityQusSuccessMsg:
+    "Security Questions saved successfully, Please click on Next button",
   registrationSuccessMsg: "Registration saved successfully",
   strongAnswer: "Answer should be minimum 3 and maximum 30 characters length",
   departmentSuccessMsg: "Department Name saved successfully",
   employeeSuccessMsg: "Employee Name saved successfully",
   departmentRequired: "Department is required",
   employeeRequired: "Employee is required",
+  dateCompare: "This date is already existed",
 };
 export const DropdownValues = {
   genders: ["Male", "Female", "Others"],

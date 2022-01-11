@@ -20,6 +20,7 @@ import {
   DxScrollViewModule,
   DxSelectBoxModule,
   DxSliderModule,
+  DxSpeedDialActionModule,
   DxTagBoxModule,
   DxTemplateModule,
   DxTextAreaModule,
@@ -90,6 +91,7 @@ import {
     DxToolbarModule,
     DxToastModule,
     DxTreeListModule,
+    DxSpeedDialActionModule
   ],
   providers: [],
   bootstrap: [],

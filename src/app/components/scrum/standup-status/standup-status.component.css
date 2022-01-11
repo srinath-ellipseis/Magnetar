@@ -52,3 +52,13 @@ a {
 .padding-t-10 {
   padding-top: 10px;
 }
+.m-t-10 {
+  margin-top: 10px;
+  text-align: center;
+}
+.dateHeader {
+  padding-top: 7px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
