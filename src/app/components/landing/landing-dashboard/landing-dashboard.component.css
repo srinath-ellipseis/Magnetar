@@ -11,10 +11,10 @@
 .logo {
   height: 40px;
 }
-::ng-deep .dx-button {
+/* ::ng-deep .dx-button {
   background-color: rgba(191, 191, 191, -0.15) !important;
   border: none;
-}
+} */
 ::ng-deep .dx-button-mode-contained .dx-icon {
   font-size: 30px;
 }
@@ -43,4 +43,7 @@
   padding: 20px;
   text-align: center;
   height: 100%;
+}
+.m-b-20{
+  margin-bottom: 20px;
 }

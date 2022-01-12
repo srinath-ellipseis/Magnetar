@@ -6,6 +6,12 @@
         <div class="card-title text-center border-bottom">
           <h3 class="p-3">Sign In</h3>
         </div>
+        <dx-toast
+        [(visible)]="isVisible"
+        type="error"
+        message="Email Password worng"
+      >
+      </dx-toast>
         <div class="card-body">
           <form action="your-action" (submit)="onFormSubmit($event)">
             <div class="dx-fieldset">

@@ -26,11 +26,19 @@ export class LandingDashboardComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  routerLink() {
-    this.route.navigate(["landing/dashboard/holidays-list"]);
+  routerLink(page: string) {
+    if (page === "holidaysList") {
+      this.route.navigate(["landing/dashboard/holidays-list"]);
+    } else if (page === "department") {
+      this.route.navigate(["landing/scrum/department"]);
+    } else if (page === "employee") {
+      this.route.navigate(["landing/scrum/employee"]);
+    } else if (page === "standup") {
+      this.route.navigate(["landing/scrum/standup-status"]);
+    }
     this.isDrawerOpen = !this.isDrawerOpen;
   }
-  
+
   logout() {
     localStorage.clear();
     sessionStorage.clear();

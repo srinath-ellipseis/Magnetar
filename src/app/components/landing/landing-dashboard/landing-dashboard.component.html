@@ -20,7 +20,7 @@
   </dxi-item>
   <dxi-item location="after" widget="dxButton">
     <div *dxTemplate>
-      <div class="toolbar-label logoutText"(click)="logout()">Logout</div>
+      <div class="toolbar-label logoutText" (click)="logout()">Logout</div>
     </div>
   </dxi-item>
 </dx-toolbar>
@@ -32,9 +32,22 @@
   [(opened)]="isDrawerOpen"
   [closeOnOutsideClick]="true"
 >
-  <div *dxTemplate="let data of 'template'" style="width: 200px" class="sideMenu">
-    <div class="row">
-      <label (click)="routerLink()">Holidays List</label>
+  <div
+    *dxTemplate="let data of 'template'"
+    style="width: 200px"
+    class="sideMenu"
+  >
+    <div class="row m-b-20">
+      <label (click)="routerLink('holidaysList')">Holidays List</label>
+    </div>
+    <div class="row m-b-20">
+      <label (click)="routerLink('department')">Department</label>
+    </div>
+    <div class="row m-b-20">
+      <label (click)="routerLink('employee')">Employee</label>
+    </div>
+    <div class="row m-b-20">
+      <label (click)="routerLink('standup')">Standup Status</label>
     </div>
   </div>
   <div id="content" class="dx-theme-background-color">

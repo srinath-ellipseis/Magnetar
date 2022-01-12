@@ -20,6 +20,7 @@ import {
   DxScrollViewModule,
   DxSelectBoxModule,
   DxSliderModule,
+  DxSpeedDialActionModule,
   DxTagBoxModule,
   DxTemplateModule,
   DxTextAreaModule,
@@ -27,6 +28,7 @@ import {
   DxToastModule,
   DxToolbarModule,
   DxTooltipModule,
+  DxTreeListModule,
   DxValidationSummaryModule,
   DxValidatorModule,
 } from "devextreme-angular";
@@ -87,7 +89,9 @@ import {
     DxDrawerModule,
     DxRadioGroupModule,
     DxToolbarModule,
-    DxToastModule
+    DxToastModule,
+    DxTreeListModule,
+    DxSpeedDialActionModule
   ],
   providers: [],
   bootstrap: [],
