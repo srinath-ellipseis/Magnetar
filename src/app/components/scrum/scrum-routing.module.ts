@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: "standup-status",
     component: StandupStatusComponent,
-  }
+  },
 ];
 
 @NgModule({

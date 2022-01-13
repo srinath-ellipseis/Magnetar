@@ -24,6 +24,7 @@ export class DateBoxComponent implements OnInit {
   compareDate: boolean = true;
   eduFormData: EduDetails[] = [];
   educationData: EduDetails[] = [];
+  name:string|undefined = '';
   constructor() {
     let date = new Date();
     this.dobMaxDate = new Date(
@@ -72,6 +73,7 @@ export class DateBoxComponent implements OnInit {
         endDate = date.toDate.getTime();
         startDate = date.formDate.getTime();
         if (startDate <= checkDate && endDate >= checkDate) {
+          this.name = date.levelEdu
           this.compareDate = false;
           break;
         } else {

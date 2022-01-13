@@ -142,7 +142,7 @@ export const Validation_MSG = {
   employeeSuccessMsg: "Employee Name saved successfully",
   departmentRequired: "Department is required",
   employeeRequired: "Employee is required",
-  dateCompare: "This date is already existed",
+  dateCompare: "This date is already existed in ",
 };
 export const DropdownValues = {
   genders: ["Male", "Female", "Others"],
