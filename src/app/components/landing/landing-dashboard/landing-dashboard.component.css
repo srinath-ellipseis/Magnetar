@@ -11,10 +11,10 @@
 .logo {
   height: 40px;
 }
-::ng-deep .dx-drawer {
+/* ::ng-deep .dx-drawer {
   height: auto;
   width: 100%;
-}
+} */
 /* ::ng-deep .dx-button {
   background-color: rgba(191, 191, 191, -0.15) !important;
   border: none;
