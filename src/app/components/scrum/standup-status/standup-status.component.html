@@ -13,7 +13,12 @@
           (onShown)="onLoading()"
         >
         </dx-load-panel>
-        <dx-toast [(visible)]="isVisible" type="success" message=""> </dx-toast>
+        <dx-toast
+          [(visible)]="isVisible"
+          type="success"
+          message="Status Updated"
+        >
+        </dx-toast>
       </div>
       <div class="row padding0 headerStyle">
         <div class="col-md-2 padding-t-10"></div>
@@ -56,7 +61,7 @@
         <div class="row m-t-10">
           <dx-data-grid
             id="gridContainer"
-            [dataSource]="mainData"
+            [dataSource]="weekData"
             keyExpr="id"
             [showBorders]="true"
           >
@@ -66,63 +71,63 @@
               [groupIndex]="0"
             ></dxi-column>
             <dxi-column dataField="name" caption="Employee"></dxi-column>
-            <dxi-column dataField="mon" caption="Monday">
+            <dxi-column dataField="monday" caption="Monday">
               <dxi-column
                 [caption]="mondayDate"
-                dataField=""
+                dataField="monday.date"
                 cellTemplate="monTemplate"
               ></dxi-column>
             </dxi-column>
-            <dxi-column dataField="tue" caption="Tuesday">
+            <dxi-column dataField="tuesday" caption="Tuesday">
               <dxi-column
                 [caption]="tuesdayDate"
                 dataField=""
                 cellTemplate="tueTemplate"
               ></dxi-column>
             </dxi-column>
-            <dxi-column dataField="wed" caption="Wednesday">
+            <dxi-column dataField="wednesday" caption="Wednesday">
               <dxi-column
                 [caption]="wednesdayDate"
                 dataField=""
                 cellTemplate="wedTemplate"
               ></dxi-column>
             </dxi-column>
-            <dxi-column dataField="thu" caption="Thursday">
+            <dxi-column dataField="thursday" caption="Thursday">
               <dxi-column
                 [caption]="thursdayDate"
                 dataField=""
                 cellTemplate="thuTemplate"
               ></dxi-column>
             </dxi-column>
-            <dxi-column dataField="fri" caption="Friday">
+            <dxi-column dataField="friday" caption="Friday">
               <dxi-column
                 [caption]="fridayDate"
                 dataField=""
                 cellTemplate="friTemplate"
               ></dxi-column>
             </dxi-column>
-            <dxi-column dataField="sat" caption="Saturday">
+            <dxi-column dataField="saturday" caption="Saturday">
               <dxi-column
                 [caption]="saturdayDate"
                 dataField=""
                 cellTemplate="satTemplate"
               ></dxi-column>
             </dxi-column>
-            <dxi-column dataField="sun" caption="Sunday">
+            <dxi-column dataField="sunday" caption="Sunday">
               <dxi-column
                 [caption]="sundayDate"
                 dataField=""
                 cellTemplate="sunTemplate"
               ></dxi-column>
             </dxi-column>
-            <div *dxTemplate="let cell of 'monTemplate'; let i = index">
+            <div *dxTemplate="let cell of 'monTemplate'">
               <div class="dx-field">
                 <div class="dx-field-value width100">
                   <dx-text-box
                     [placeholder]="COMMON_MSG.taskPlaceholder"
                     valueChangeEvent="change"
-                    (onValueChanged)="monValueChanged(cell.data)"
-                    [(value)]="cell.data.mon"
+                    [(value)]="cell.data.monday.value"
+                    [disabled]="cell.data.monday.date != isEnableDate"
                   >
                   </dx-text-box>
                 </div>
@@ -134,8 +139,8 @@
                   <dx-text-box
                     [placeholder]="COMMON_MSG.taskPlaceholder"
                     valueChangeEvent="change"
-                    (onValueChanged)="tueValueChanged($event, cell.data)"
-                    [(value)]="cell.data.tue"
+                    [(value)]="cell.data.tuesday.value"
+                    [disabled]="cell.data.tuesday.date != isEnableDate"
                   >
                   </dx-text-box>
                 </div>
@@ -147,8 +152,8 @@
                   <dx-text-box
                     [placeholder]="COMMON_MSG.taskPlaceholder"
                     valueChangeEvent="change"
-                    (onValueChanged)="wedValueChanged($event, cell.data)"
-                    [(value)]="cell.data.wed"
+                    [(value)]="cell.data.wednesday.value"
+                    [disabled]="cell.data.wednesday.date != isEnableDate"
                   >
                   </dx-text-box>
                 </div>
@@ -160,8 +165,8 @@
                   <dx-text-box
                     [placeholder]="COMMON_MSG.taskPlaceholder"
                     valueChangeEvent="change"
-                    (onValueChanged)="thuValueChanged($event, cell.data)"
-                    [(value)]="cell.data.thu"
+                    [(value)]="cell.data.thursday.value"
+                    [disabled]="cell.data.thursday.date != isEnableDate"
                   >
                   </dx-text-box>
                 </div>
@@ -173,8 +178,8 @@
                   <dx-text-box
                     [placeholder]="COMMON_MSG.taskPlaceholder"
                     valueChangeEvent="change"
-                    (onValueChanged)="friValueChanged($event, cell.data)"
-                    [(value)]="cell.data.fri"
+                    [(value)]="cell.data.friday.value"
+                    [disabled]="cell.data.friday.date != isEnableDate"
                   >
                   </dx-text-box>
                 </div>
@@ -186,8 +191,8 @@
                   <dx-text-box
                     [placeholder]="COMMON_MSG.taskPlaceholder"
                     valueChangeEvent="change"
-                    (onValueChanged)="satValueChanged($event, cell.data)"
-                    [(value)]="cell.data.sat"
+                    [(value)]="cell.data.saturday.value"
+                    [disabled]="cell.data.saturday.date != isEnableDate"
                   >
                   </dx-text-box>
                 </div>
@@ -199,8 +204,8 @@
                   <dx-text-box
                     [placeholder]="COMMON_MSG.taskPlaceholder"
                     valueChangeEvent="change"
-                    (onValueChanged)="sunValueChanged($event, cell.data)"
-                    [(value)]="cell.data.sun"
+                    [(value)]="cell.data.sunday.value"
+                    [disabled]="cell.data.sunday.date != isEnableDate"
                   >
                   </dx-text-box>
                 </div>
@@ -214,7 +219,7 @@
             <dx-button
               [text]="COMMON_MSG.Save"
               type="success"
-              (onClick)="submit(mainData)"
+              (onClick)="submit()"
             ></dx-button>
           </div>
           <div class="col-md-4"></div>

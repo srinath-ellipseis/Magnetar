@@ -179,11 +179,6 @@ export class SecurityQuestionsComponent implements OnInit {
     ) {
       return false;
     } else {
-      if (this.securityQus1.question && this.securityQus1.answer) {
-        // this.showQues2 = true;
-      } else {
-        // this.showQues2 = false;
-      }
       return true;
     }
   }
@@ -194,11 +189,6 @@ export class SecurityQuestionsComponent implements OnInit {
     ) {
       return false;
     } else {
-      if (this.securityQus2.question && this.securityQus2.answer) {
-        // this.showQues3 = true;
-      } else {
-        // this.showQues3 = false;
-      }
       return true;
     }
   }

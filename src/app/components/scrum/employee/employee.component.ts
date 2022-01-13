@@ -37,9 +37,9 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {}
 
   valueChanged(event: any, text: string) {
-    if (text === "employee") {
+    if (text === COMMON_MSG.employee) {
       this.employeeName = event.value;
-    } else if (text === "department") {
+    } else if (text === COMMON_MSG.departments) {
       this.selectedDepartment = event.value;
     }
     if (this.employeeName != "" && this.selectedDepartment != "") {
