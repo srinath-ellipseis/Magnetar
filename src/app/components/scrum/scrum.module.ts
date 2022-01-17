@@ -6,6 +6,7 @@ import { StandupStatusComponent } from "./standup-status/standup-status.componen
 import { ScrumRoutingModule } from "./scrum-routing.module";
 import { DevExtremeModuleModule } from "src/app/common/modules/dev-extreme.module";
 import { CommonComponentModule } from "src/app/common/common.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,8 @@ import { CommonComponentModule } from "src/app/common/common.module";
     ScrumRoutingModule,
     CommonComponentModule,
     DevExtremeModuleModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class ScrumModule {}

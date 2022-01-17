@@ -9,7 +9,7 @@
       </dx-toast>
     </div>
     <div class="row mainCard">
-      <form action="your-action">
+      <form action="your-action" (submit)="empSubmit($event)">
         <div class="row padding0 headerStyle">
           <div class="col-md-2 padding-t-10"></div>
           <div class="col-md-8 headerText">
@@ -24,7 +24,7 @@
           <dx-validation-summary id="summary"></dx-validation-summary>
         </div>
         <div class="dx-fieldset">
-          <div class="row Card">
+          <div class="row">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -61,6 +61,12 @@
                       [message]="error_Msg.employeeRequired"
                     >
                     </dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="custom"
+                      [validationCallback]="employeeCallback"
+                      [reevaluate]="true"
+                      [message]="error_Msg.employeeCompare"
+                    ></dxi-validation-rule>
                   </dx-validator>
                 </dx-text-box>
               </div>
@@ -74,8 +80,7 @@
               <dx-button
                 [text]="COMMON_MSG.Submit"
                 type="success"
-                (onClick)="empSubmit()"
-                [disabled]="!btnDisable"
+                [useSubmitBehavior]="true"
               ></dx-button>
             </div>
             <div class="col-md-4"></div>

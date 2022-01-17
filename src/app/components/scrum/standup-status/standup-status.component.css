@@ -62,3 +62,7 @@ a {
   font-weight: bold;
   text-align: center;
 }
+.emptyText {
+  font-size: 20px;
+  color: #ffffff;
+}

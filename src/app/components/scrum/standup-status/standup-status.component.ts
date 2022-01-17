@@ -176,40 +176,42 @@ export class StandupStatusComponent implements OnInit {
     }
   }
   newDates() {
-    for (let emp of this.employeeData) {
-      this.weekData.push({
-        id: emp.id,
-        name: emp.name,
-        department: emp.department,
-        monday: {
-          date: this.mondayDate,
-          value: "",
-        },
-        tuesday: {
-          date: this.tuesdayDate,
-          value: "",
-        },
-        wednesday: {
-          date: this.wednesdayDate,
-          value: "",
-        },
-        thursday: {
-          date: this.thursdayDate,
-          value: "",
-        },
-        friday: {
-          date: this.fridayDate,
-          value: "",
-        },
-        saturday: {
-          date: this.saturdayDate,
-          value: "",
-        },
-        sunday: {
-          date: this.sundayDate,
-          value: "",
-        },
-      });
+    if(this.employeeData){
+      for (let emp of this.employeeData) {
+        this.weekData.push({
+          id: emp.id,
+          name: emp.name,
+          department: emp.department,
+          monday: {
+            date: this.mondayDate,
+            value: "",
+          },
+          tuesday: {
+            date: this.tuesdayDate,
+            value: "",
+          },
+          wednesday: {
+            date: this.wednesdayDate,
+            value: "",
+          },
+          thursday: {
+            date: this.thursdayDate,
+            value: "",
+          },
+          friday: {
+            date: this.fridayDate,
+            value: "",
+          },
+          saturday: {
+            date: this.saturdayDate,
+            value: "",
+          },
+          sunday: {
+            date: this.sundayDate,
+            value: "",
+          },
+        });
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 export const COMMON_MSG = {
   applicationName: "Magnetar",
+  companyFullName: "Magnetar Integrated Solutions Inc.",
   firstNamePlaceholder: "First Name*",
   lastNamePlaceholder: "Last Name*",
   emailPlaceholder: "Email*",
@@ -143,6 +144,8 @@ export const Validation_MSG = {
   departmentRequired: "Department is required",
   employeeRequired: "Employee is required",
   dateCompare: "This date is already existed in ",
+  departmentCompare: "Department Name should not be same with previous department names",
+  employeeCompare: "Employee Name should not be same with previous employee names",
 };
 export const DropdownValues = {
   genders: ["Male", "Female", "Others"],
