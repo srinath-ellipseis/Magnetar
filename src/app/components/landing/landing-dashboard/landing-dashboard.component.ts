@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { DxDrawerComponent } from "devextreme-angular";
+import { COMMON_MSG } from "src/app/common/messages/common-msg";
 
 @Component({
   selector: "app-landing-dashboard",
@@ -10,14 +11,15 @@ import { DxDrawerComponent } from "devextreme-angular";
 export class LandingDashboardComponent implements OnInit {
   @ViewChild(DxDrawerComponent, { static: false })
   drawer!: DxDrawerComponent;
-
+  COMMON_MSG = COMMON_MSG;
   isDrawerOpen = false;
   menuOptions: any;
   time = new Date().toLocaleTimeString();
-
+  logoutVisible: boolean = false;
   constructor(private route: Router) {
     this.menuOptions = {
       icon: "menu",
+      stylingMode: "text",
       onClick: () => {
         this.isDrawerOpen = !this.isDrawerOpen;
       },
@@ -37,6 +39,10 @@ export class LandingDashboardComponent implements OnInit {
       this.route.navigate(["landing/scrum/standup-status"]);
     }
     this.isDrawerOpen = !this.isDrawerOpen;
+  }
+
+  userTap() {
+    this.logoutVisible = true;
   }
 
   logout() {

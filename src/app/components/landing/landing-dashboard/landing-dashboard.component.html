@@ -13,14 +13,11 @@
       <div class="toolbar-label timeStyle">{{ time }}</div>
     </div>
   </dxi-item>
-  <dxi-item location="after" widget="dxButton">
+  <dxi-item location="after">
     <div *dxTemplate>
-      <div class="toolbar-label userName"><b>Srinath</b></div>
-    </div>
-  </dxi-item>
-  <dxi-item location="after" widget="dxButton">
-    <div *dxTemplate>
-      <div class="toolbar-label logoutText" (click)="logout()">Logout</div>
+      <div class="headerUserIcon" (click)="userTap()">
+        <p>SB</p>
+      </div>
     </div>
   </dxi-item>
 </dx-toolbar>
@@ -54,3 +51,39 @@
     <router-outlet></router-outlet>
   </div>
 </dx-drawer>
+
+<dx-popup
+  [width]="380"
+  [height]="200"
+  [showTitle]="false"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [showCloseButton]="false"
+  container=".dx-viewport"
+  [(visible)]="logoutVisible"
+>
+  <dxo-position at="right top" my="right top" of="#content"> </dxo-position>
+  <div *dxTemplate="let data of 'content'">
+    <div class="row">
+      <div class="col-md-8">
+        <p>{{ COMMON_MSG.companyFullName }}</p>
+      </div>
+      <div class="col-md-4 textEnd">
+        <p (click)="logout()" class="cursorPoint">Sign out</p>
+      </div>
+    </div>
+    <div class="row m-t-25">
+      <div class="col-md-4">
+        <div class="userIcon">
+          <p>SB</p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <p class="userName">Srinath Bandreddi</p>
+        <p class="margin0">srinath.bandreddi@ellipseis.com</p>
+        <a href="" class="text-decoration">View account</a><br />
+        <a href="" class="text-decoration">My Office profile</a>
+      </div>
+    </div>
+  </div>
+</dx-popup>

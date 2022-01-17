@@ -18,7 +18,9 @@ export class EmployeeComponent implements OnInit {
   submitedData: Employee = {};
   employeeArray: Employee[] = [];
   employeeData: Employee[] = [];
+  sameName:boolean = false;
   constructor() {
+    this.employeeCallback = this.employeeCallback.bind(this);
     this.departmentData = JSON.parse(
       localStorage.getItem(COMMON_MSG.departments)!
     );
@@ -48,7 +50,7 @@ export class EmployeeComponent implements OnInit {
       this.btnDisable = false;
     }
   }
-  empSubmit() {
+  empSubmit(event: any) {
     let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
     this.submitedData = {
       id: newId,
@@ -60,9 +62,23 @@ export class EmployeeComponent implements OnInit {
       COMMON_MSG.employee,
       JSON.stringify(this.employeeArray)
     );
-    this.employeeName = "";
-    this.selectedDepartment = "";
+    window.location.reload();
     this.isVisible = true;
     this.btnDisable = false;
+  }
+  employeeCallback(event: any) {
+    if (this.employeeData) {
+      for (let emp of this.employeeData) {
+        if (event.value === emp.name) {
+          this.sameName = false;
+          break;
+        } else {
+          this.sameName = true;
+        }
+      }
+      return this.sameName
+    } else {
+      return true;
+    }
   }
 }
