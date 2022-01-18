@@ -26,7 +26,7 @@ export const COMMON_MSG = {
   designationPlaceholder: "Designation*",
   rolesPlaceholder: "Roles and Responsibilies*",
   empProjectDetailsPlaceholder: "Project Details*",
-  loginUser: "loginUser",
+  loginUsers: "loginUsers",
   email: "email",
   dobAgeLimit: 18,
   Login: "Login",
@@ -88,6 +88,7 @@ export const COMMON_MSG = {
   taskPlaceholder: "Task",
   Save: "Save",
   standupStatus: "standupStatus",
+  user: "user",
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",
