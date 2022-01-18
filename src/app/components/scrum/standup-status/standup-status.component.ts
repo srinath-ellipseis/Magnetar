@@ -1,6 +1,6 @@
-import { formatDate } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { COMMON_MSG, Validation_MSG } from "src/app/common/messages/common-msg";
+import { LoginOptions } from "src/app/models/login.model";
 import { Department, Employee } from "src/app/models/scrum.model";
 
 @Component({
@@ -30,6 +30,7 @@ export class StandupStatusComponent implements OnInit {
   status: any = [];
   weekData: any = [];
   isEnableDate: any;
+  loginUser: LoginOptions = {};
   constructor() {
     this.isEnableDate = new Date(this.todayDate).toLocaleDateString();
     var firstDayInWeek = this.todayDate.getDate() - this.todayDate.getDay() + 1;
@@ -63,10 +64,24 @@ export class StandupStatusComponent implements OnInit {
     );
     this.employeeData = JSON.parse(localStorage.getItem(COMMON_MSG.employee)!);
     this.mainData = JSON.parse(localStorage.getItem(COMMON_MSG.standupStatus)!);
+    this.loginUser = JSON.parse(localStorage.getItem(COMMON_MSG.user)!);
     this.dataWithDates();
   }
 
   ngOnInit(): void {}
+  statusDisable(date: Date) {
+    if (this.loginUser.email === "services@ellipseis.com") {
+      if (new Date(date).getTime() <= new Date(this.isEnableDate).getTime()) {
+        return false;
+      } else {
+        return true;
+      }
+    } else if (date === this.isEnableDate) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   onLoading() {
     setTimeout(() => {
       this.loadingVisible = false;
@@ -176,7 +191,7 @@ export class StandupStatusComponent implements OnInit {
     }
   }
   newDates() {
-    if(this.employeeData){
+    if (this.employeeData) {
       for (let emp of this.employeeData) {
         this.weekData.push({
           id: emp.id,

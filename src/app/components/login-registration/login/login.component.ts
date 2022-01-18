@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.userData = JSON.parse(localStorage.getItem(COMMON_MSG.loginUser)!);
+    this.userData = JSON.parse(localStorage.getItem(COMMON_MSG.loginUsers)!);
     if (this.userData) {
       for (let item of this.userData) {
         this.loginData.push({
@@ -40,14 +40,19 @@ export class LoginComponent implements OnInit {
         }
       }
       yourNewData.push(this.loginDetails);
-      localStorage.setItem(COMMON_MSG.loginUser, JSON.stringify(yourNewData));
+      localStorage.setItem(COMMON_MSG.loginUsers, JSON.stringify(yourNewData));
     }
-    if(this.loginDetails.email === "srinath.bandreddi@ellipseis.com" && this.loginDetails.password === "Sri1234"){
+    if (
+      (this.loginDetails.email === "srinath.bandreddi@ellipseis.com" &&
+        this.loginDetails.password === "Sri1234") ||
+      (this.loginDetails.email === "services@ellipseis.com" &&
+        this.loginDetails.password === "Admin1234")
+    ) {
+      localStorage.setItem(COMMON_MSG.user, JSON.stringify(this.loginDetails));
       this.router.navigate(["/landing"]);
-    }else{
+    } else {
       this.isVisible = true;
     }
-    
   }
   valueChanged(event: any, text: string) {
     if (text === COMMON_MSG.email) {

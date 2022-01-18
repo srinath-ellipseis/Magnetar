@@ -1,6 +1,6 @@
 <div class="container-fluid bgImg">
   <div class="row margin">
-    <div class="row">
+    <div class="row m-l-10">
       <div class="row">
         <dx-load-panel
           #loadPanel
@@ -31,10 +31,13 @@
         <div class="row headerText">
           <h3>Standup Status</h3>
         </div>
-        <div class="row m-t-10" *ngIf="!employeeData">
-          <span class="emptyText">Department and Employee Data are Mandatory for StandUp Status page</span>
+        <div class="row m-t-10 m-l-10" *ngIf="!employeeData">
+          <span class="emptyText"
+            >Department and Employee Data are Mandatory for StandUp Status
+            page</span
+          >
         </div>
-        <div class="row" *ngIf="employeeData">
+        <div class="row m-l-10" *ngIf="employeeData">
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -78,7 +81,7 @@
               <dxi-column dataField="monday" caption="Monday">
                 <dxi-column
                   [caption]="mondayDate"
-                  dataField="monday.date"
+                  dataField=""
                   cellTemplate="monTemplate"
                 ></dxi-column>
               </dxi-column>
@@ -131,7 +134,7 @@
                       [placeholder]="COMMON_MSG.taskPlaceholder"
                       valueChangeEvent="change"
                       [(value)]="cell.data.monday.value"
-                      [disabled]="cell.data.monday.date != isEnableDate"
+                      [disabled]="statusDisable(cell.data.monday.date)"
                     >
                     </dx-text-box>
                   </div>
@@ -144,7 +147,7 @@
                       [placeholder]="COMMON_MSG.taskPlaceholder"
                       valueChangeEvent="change"
                       [(value)]="cell.data.tuesday.value"
-                      [disabled]="cell.data.tuesday.date != isEnableDate"
+                      [disabled]="statusDisable(cell.data.tuesday.date)"
                     >
                     </dx-text-box>
                   </div>
@@ -157,7 +160,7 @@
                       [placeholder]="COMMON_MSG.taskPlaceholder"
                       valueChangeEvent="change"
                       [(value)]="cell.data.wednesday.value"
-                      [disabled]="cell.data.wednesday.date != isEnableDate"
+                      [disabled]="statusDisable(cell.data.wednesday.date)"
                     >
                     </dx-text-box>
                   </div>
@@ -170,7 +173,7 @@
                       [placeholder]="COMMON_MSG.taskPlaceholder"
                       valueChangeEvent="change"
                       [(value)]="cell.data.thursday.value"
-                      [disabled]="cell.data.thursday.date != isEnableDate"
+                      [disabled]="statusDisable(cell.data.thursday.date)"
                     >
                     </dx-text-box>
                   </div>
@@ -183,7 +186,7 @@
                       [placeholder]="COMMON_MSG.taskPlaceholder"
                       valueChangeEvent="change"
                       [(value)]="cell.data.friday.value"
-                      [disabled]="cell.data.friday.date != isEnableDate"
+                      [disabled]="statusDisable(cell.data.friday.date)"
                     >
                     </dx-text-box>
                   </div>
@@ -196,7 +199,7 @@
                       [placeholder]="COMMON_MSG.taskPlaceholder"
                       valueChangeEvent="change"
                       [(value)]="cell.data.saturday.value"
-                      [disabled]="cell.data.saturday.date != isEnableDate"
+                      [disabled]="statusDisable(cell.data.saturday.date)"
                     >
                     </dx-text-box>
                   </div>
@@ -209,7 +212,7 @@
                       [placeholder]="COMMON_MSG.taskPlaceholder"
                       valueChangeEvent="change"
                       [(value)]="cell.data.sunday.value"
-                      [disabled]="cell.data.sunday.date != isEnableDate"
+                      [disabled]="statusDisable(cell.data.sunday.date)"
                     >
                     </dx-text-box>
                   </div>
