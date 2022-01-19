@@ -89,3 +89,6 @@
 .cursorPoint {
   cursor: pointer;
 }
+::ng-deep.dx-drawer-content {
+  overflow: unset;
+}

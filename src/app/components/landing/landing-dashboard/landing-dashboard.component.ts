@@ -37,6 +37,8 @@ export class LandingDashboardComponent implements OnInit {
       this.route.navigate(["landing/scrum/employee"]);
     } else if (page === "standup") {
       this.route.navigate(["landing/scrum/standup-status"]);
+    } else if (page === "sprintplanning") {
+      this.route.navigate(["landing/scrum/sprint-planning"]);
     }
     this.isDrawerOpen = !this.isDrawerOpen;
   }
