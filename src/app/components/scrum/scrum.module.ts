@@ -7,12 +7,14 @@ import { ScrumRoutingModule } from "./scrum-routing.module";
 import { DevExtremeModuleModule } from "src/app/common/modules/dev-extreme.module";
 import { CommonComponentModule } from "src/app/common/common.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { SprintPlanningComponent } from "./sprint-planning/sprint-planning.component";
 
 @NgModule({
   declarations: [
     DepartmentComponent,
     EmployeeComponent,
     StandupStatusComponent,
+    SprintPlanningComponent,
   ],
   imports: [
     CommonModule,

@@ -89,6 +89,17 @@ export const COMMON_MSG = {
   Save: "Save",
   standupStatus: "standupStatus",
   user: "user",
+  empTypePlaceholder: "Employee Type*",
+  empType: "empType",
+  storePointPlaceholder: "Store Point",
+  PTOPlaceholder: "PTO",
+  percentagePlaceholder: "Percentage",
+  leavePlans: "leavePlans",
+  leavesPlaceholder: "Leaves",
+  sprintPlane: "sprintPlane",
+  statusPlaceholder: "Status",
+  priorityPlaceholder: "Priority",
+  sprintUserStories: "sprintUserStories",
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",
@@ -145,8 +156,11 @@ export const Validation_MSG = {
   departmentRequired: "Department is required",
   employeeRequired: "Employee is required",
   dateCompare: "This date is already existed in ",
-  departmentCompare: "Department Name should not be same with previous department names",
-  employeeCompare: "Employee Name should not be same with previous employee names",
+  departmentCompare:
+    "Department Name should not be same with previous department names",
+  employeeCompare:
+    "Employee Name should not be same with previous employee names",
+  empTypeRequired: "Employee Type is required",
 };
 export const DropdownValues = {
   genders: ["Male", "Female", "Others"],
@@ -161,6 +175,11 @@ export const DropdownValues = {
   ],
   gpaCodes: ["Grade", "Percentage", "GPA"],
   roles: ["Student", "Employee", "Client/Vendor"],
+  empType: ["FTE", "PTE"],
+  capacity: [
+    { id: 1, empType: "FTE", storyPoints: 20 },
+    { id: 2, empType: "PTE", storyPoints: 10 },
+  ],
   securityQuestions: [
     { id: 1, name: "What is your date of birth?", disabled: false },
     { id: 2, name: "What is your favourite city?", disabled: false },

@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { COMMON_MSG, Validation_MSG } from "src/app/common/messages/common-msg";
+import {
+  COMMON_MSG,
+  DropdownValues,
+  Validation_MSG,
+} from "src/app/common/messages/common-msg";
 import { Department, Employee } from "src/app/models/scrum.model";
 
 @Component({
@@ -10,7 +14,7 @@ import { Department, Employee } from "src/app/models/scrum.model";
 export class EmployeeComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
   error_Msg = Validation_MSG;
-  btnDisable: boolean = false;
+  empType = DropdownValues.empType;
   isVisible: boolean = false;
   departmentData: Department[];
   selectedDepartment: any;
@@ -18,7 +22,8 @@ export class EmployeeComponent implements OnInit {
   submitedData: Employee = {};
   employeeArray: Employee[] = [];
   employeeData: Employee[] = [];
-  sameName:boolean = false;
+  sameName: boolean = false;
+  selectedEmpType: string = "";
   constructor() {
     this.employeeCallback = this.employeeCallback.bind(this);
     this.departmentData = JSON.parse(
@@ -31,6 +36,7 @@ export class EmployeeComponent implements OnInit {
           id: emp.id,
           department: emp.department,
           name: emp.name,
+          empType: emp.empType,
         });
       }
     }
@@ -43,11 +49,8 @@ export class EmployeeComponent implements OnInit {
       this.employeeName = event.value;
     } else if (text === COMMON_MSG.departments) {
       this.selectedDepartment = event.value;
-    }
-    if (this.employeeName != "" && this.selectedDepartment != "") {
-      this.btnDisable = true;
-    } else {
-      this.btnDisable = false;
+    } else if (text === COMMON_MSG.empType) {
+      this.selectedEmpType = event.value;
     }
   }
   empSubmit(event: any) {
@@ -56,6 +59,7 @@ export class EmployeeComponent implements OnInit {
       id: newId,
       department: this.selectedDepartment,
       name: this.employeeName,
+      empType: this.selectedEmpType,
     };
     this.employeeArray.push(this.submitedData);
     localStorage.setItem(
@@ -64,7 +68,6 @@ export class EmployeeComponent implements OnInit {
     );
     window.location.reload();
     this.isVisible = true;
-    this.btnDisable = false;
   }
   employeeCallback(event: any) {
     if (this.employeeData) {
@@ -76,7 +79,7 @@ export class EmployeeComponent implements OnInit {
           this.sameName = true;
         }
       }
-      return this.sameName
+      return this.sameName;
     } else {
       return true;
     }
