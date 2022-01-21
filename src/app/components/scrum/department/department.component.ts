@@ -15,7 +15,7 @@ export class DepartmentComponent implements OnInit {
   departmentArray: Department[] = [];
   submitedData: Department = {};
   departmentData: Department[] = [];
-  sameName:boolean = false;
+  sameName: boolean = false;
   constructor() {
     this.departmentCallback = this.departmentCallback.bind(this);
     this.departmentData = JSON.parse(
@@ -33,7 +33,7 @@ export class DepartmentComponent implements OnInit {
 
   ngOnInit(): void {}
   valueChanged(event: any) {
-    this.departmenName = event.value;
+    this.departmenName = event.value.toUpperCase();
   }
   submit() {
     let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
@@ -59,7 +59,7 @@ export class DepartmentComponent implements OnInit {
           this.sameName = true;
         }
       }
-      return this.sameName
+      return this.sameName;
     } else {
       return true;
     }

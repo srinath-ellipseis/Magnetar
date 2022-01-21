@@ -100,6 +100,8 @@ export const COMMON_MSG = {
   statusPlaceholder: "Status",
   priorityPlaceholder: "Priority",
   sprintUserStories: "sprintUserStories",
+  checkIn: "Check In",
+  checkOut: "Check Out",
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",
@@ -176,6 +178,7 @@ export const DropdownValues = {
   gpaCodes: ["Grade", "Percentage", "GPA"],
   roles: ["Student", "Employee", "Client/Vendor"],
   empType: ["FTE", "PTE"],
+  priority: ["High", "Medium", "Low"],
   capacity: [
     { id: 1, empType: "FTE", storyPoints: 20 },
     { id: 2, empType: "PTE", storyPoints: 10 },
