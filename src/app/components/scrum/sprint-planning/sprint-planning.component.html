@@ -167,13 +167,13 @@
                   displayFormat="Total:{0}"
                 >
                 </dxi-total-item>
-                <dxi-total-item
+                <!-- <dxi-total-item
                   column="Percentage"
                   summaryType="sum"
                   valueFormat="percent"
                   [customizeText]="calculatePercentage"
                 >
-                </dxi-total-item>
+                </dxi-total-item> -->
               </dxo-summary>
             </dx-data-grid>
           </div>
@@ -181,7 +181,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <dx-button
-                [text]="COMMON_MSG.Save"
+                [text]="COMMON_MSG.Next"
                 type="success"
                 (onClick)="sprintPlaneSubmit()"
               >
@@ -211,6 +211,7 @@
               <dxi-column
                 dataField="name"
                 caption="Employee"
+                cellTemplate="name"
                 [width]="200"
               ></dxi-column>
               <dxi-column
@@ -218,13 +219,6 @@
                 alignment="center"
                 cellTemplate="tasks"
               ></dxi-column>
-              <dxi-column
-                dataField="status"
-                alignment="center"
-                cellTemplate="status"
-                [width]="150"
-              >
-              </dxi-column>
               <dxi-column
                 dataField="storyPoints"
                 alignment="center"
@@ -239,6 +233,19 @@
                 [width]="150"
               >
               </dxi-column>
+              <dxi-column
+                dataField="status"
+                alignment="center"
+                cellTemplate="status"
+                [width]="150"
+              >
+              </dxi-column>
+              <div *dxTemplate="let cell of 'name'">
+                <div>
+                  <p>{{ cell.value }}</p>
+                  <p>{{ addStoryPoints(cell) }}</p>
+                </div>
+              </div>
               <div *dxTemplate="let cell of 'tasks'">
                 <div *ngFor="let item of cell.data.tasks">
                   <div class="dx-field m-b-10">
@@ -275,6 +282,7 @@
                         [placeholder]="COMMON_MSG.storePointPlaceholder"
                         valueChangeEvent="change"
                         [(value)]="item.storyPoint"
+                        (onValueChanged)="storyPointChanged()"
                       >
                       </dx-text-box>
                     </div>
@@ -285,12 +293,14 @@
                 <div *ngFor="let item of cell.data.priority">
                   <div class="dx-field m-b-10">
                     <div class="dx-field-value width100">
-                      <dx-text-box
+                      <dx-select-box
+                        [dataSource]="priority"
                         [placeholder]="COMMON_MSG.priorityPlaceholder"
-                        valueChangeEvent="change"
+                        valueChangeEvent="keyup"
                         [(value)]="item.priority"
+                        [searchEnabled]="true"
                       >
-                      </dx-text-box>
+                      </dx-select-box>
                     </div>
                   </div>
                 </div>

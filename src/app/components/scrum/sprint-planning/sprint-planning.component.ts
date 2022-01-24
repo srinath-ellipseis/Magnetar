@@ -15,6 +15,7 @@ export class SprintPlanningComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
   error_Msg = Validation_MSG;
   capacityData = DropdownValues.capacity;
+  priority = DropdownValues.priority;
   btnDisable: boolean = false;
   leavePlanesToast: boolean = false;
   sprintPlaneToast: boolean = false;
@@ -127,7 +128,23 @@ export class SprintPlanningComponent implements OnInit {
   calculatePercentage(data: any) {
     return `Total: ${(data.value * 100 * 100) / 100} %`;
   }
-
+  addStoryPoints(data: any) {
+    let totalPoints = 0;
+    for (let item of this.sprintPlane) {
+      if (item.name === data.value) {
+        let currentPoints: number = 0;
+        for (let p of data.data.storyPoints) {
+          let points: number = +p.storyPoint;
+          currentPoints = currentPoints + points;
+        }
+        totalPoints = item.storyPoint - currentPoints;
+      }
+    }
+    return `Available story points = ${totalPoints}`;
+  }
+  storyPointChanged() {
+    this.sprintUserStories = this.sprintUserStories;
+  }
   leavesTap() {
     this.leavesTab = true;
     this.sprintTab = false;
@@ -154,12 +171,11 @@ export class SprintPlanningComponent implements OnInit {
   }
 
   sprintPlaneSubmit() {
-    this.loadingVisible = true;
     localStorage.setItem(
       COMMON_MSG.sprintPlane,
       JSON.stringify(this.sprintPlane)
     );
-    this.sprintPlaneToast = true;
+    this.loadingVisible = true;
     this.leavesTab = false;
     this.sprintTab = false;
     this.userStoryTab = true;

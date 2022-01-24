@@ -51,6 +51,10 @@ const routes: Routes = [
       {
         path: 'scrum',
         loadChildren: () =>import('./components/scrum/scrum.module').then((m) => m.ScrumModule)
+      },
+      {
+        path: 'attendance',
+        loadChildren: () =>import('./components/attendance/attendance.module').then((m) => m.AttendanceModule)
       }
     ]
   },

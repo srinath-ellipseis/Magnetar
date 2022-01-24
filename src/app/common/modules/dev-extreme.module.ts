@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import {
   DxAccordionModule,
   DxAutocompleteModule,
@@ -15,6 +14,7 @@ import {
   DxMenuModule,
   DxNumberBoxModule,
   DxPopupModule,
+  DxProgressBarModule,
   DxRadioGroupModule,
   DxResponsiveBoxModule,
   DxScrollViewModule,
@@ -58,7 +58,7 @@ import {
     DxDataGridModule,
     DxTextAreaModule,
     DxResponsiveBoxModule,
-    DxAutocompleteModule
+    DxAutocompleteModule,
   ],
   exports: [
     DxButtonModule,
@@ -91,7 +91,8 @@ import {
     DxToolbarModule,
     DxToastModule,
     DxTreeListModule,
-    DxSpeedDialActionModule
+    DxSpeedDialActionModule,
+    DxProgressBarModule,
   ],
   providers: [],
   bootstrap: [],
