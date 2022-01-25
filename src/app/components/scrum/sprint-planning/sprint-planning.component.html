@@ -1,0 +1,325 @@
+<div class="container-fluid bgImg">
+  <div class="row margin">
+    <div class="row m-l-10">
+      <div class="row">
+        <dx-load-panel
+          #loadPanel
+          shadingColor="rgba(0,0,0,0.4)"
+          [(visible)]="loadingVisible"
+          [showIndicator]="true"
+          [showPane]="true"
+          [shading]="true"
+          [closeOnOutsideClick]="false"
+          (onShown)="onLoading()"
+        >
+        </dx-load-panel>
+        <dx-toast
+          [(visible)]="leavePlanesToast"
+          type="success"
+          message="Leave Planes Updated"
+        >
+        </dx-toast>
+        <dx-toast
+          [(visible)]="sprintPlaneToast"
+          type="success"
+          message="Sprint Plane Updated"
+        >
+        </dx-toast>
+        <dx-toast
+          [(visible)]="sprintUserStoriesToast"
+          type="success"
+          message="Sprint UserStories Updated"
+        >
+        </dx-toast>
+      </div>
+      <div class="row padding0 headerStyle">
+        <div class="col-md-2 padding-t-10"></div>
+        <div class="col-md-8 headerText">
+          <img src="assets/images/magnetar_logo.png" />
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row topNavigateCard">
+        <p>
+          <a
+            *ngIf="leavesTab || sprintTab || userStoryTab"
+            (click)="leavesTap()"
+          >
+            Leaves
+          </a>
+          <a *ngIf="sprintTab || userStoryTab" (click)="sprintTap()">
+            > Sprint Capacity
+          </a>
+          <a *ngIf="userStoryTab"> > Planing</a>
+        </p>
+      </div>
+      <div
+        class="row mainCard"
+        *ngIf="leavesTab && !sprintTab && !userStoryTab"
+      >
+        <div class="row headerText">
+          <h3>Leave Plans</h3>
+        </div>
+        <div class="row m-l-10">
+          <div class="row m-t-10">
+            <dx-data-grid
+              id="gridContainer"
+              [dataSource]="leavePlans"
+              keyExpr="id"
+              [showRowLines]="true"
+              [showBorders]="true"
+            >
+              <dxi-column dataField="department" [groupIndex]="0"></dxi-column>
+              <dxi-column dataField="name" caption="Employee"></dxi-column>
+              <dxi-column dataField="empType" alignment="center"></dxi-column>
+              <dxi-column
+                dataField="leaves"
+                alignment="center"
+                cellTemplate="leaves"
+              >
+              </dxi-column>
+              <div *dxTemplate="let cell of 'leaves'">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.leavesPlaceholder"
+                      valueChangeEvent="change"
+                      [(value)]="cell.data.leaves"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+            </dx-data-grid>
+          </div>
+          <div class="row m-t-10">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <dx-button
+                [text]="COMMON_MSG.Save"
+                type="success"
+                (onClick)="leaveSubmit()"
+              ></dx-button>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row mainCard"
+        *ngIf="sprintTab && !leavesTab && !userStoryTab"
+      >
+        <div class="row m-l-10">
+          <div class="row headerText">
+            <h3>Capacity</h3>
+          </div>
+          <div class="row m-t-10">
+            <dx-data-grid
+              id="capacityContainer"
+              [dataSource]="capacityData"
+              keyExpr="id"
+              [showRowLines]="true"
+              [showBorders]="true"
+            >
+              <dxi-column dataField="empType" alignment="center"></dxi-column>
+              <dxi-column dataField="storyPoints" alignment="center">
+              </dxi-column>
+            </dx-data-grid>
+          </div>
+        </div>
+        <div class="row headerText">
+          <h3>Sprint Capacity Planing</h3>
+        </div>
+        <div class="row m-l-10">
+          <div class="row m-t-10">
+            <dx-data-grid
+              id="gridContainer"
+              [dataSource]="sprintPlane"
+              keyExpr="id"
+              [showRowLines]="true"
+              [showBorders]="true"
+            >
+              <dxi-column dataField="department" [groupIndex]="0"></dxi-column>
+              <dxi-column dataField="name" caption="Employee"></dxi-column>
+              <dxi-column dataField="empType" alignment="center"> </dxi-column>
+              <dxi-column
+                dataField="storyPoint"
+                caption="Story Points"
+                alignment="center"
+              >
+              </dxi-column>
+              <dxi-column
+                dataField="pto"
+                caption="PTO"
+                alignment="center"
+              ></dxi-column>
+              <dxi-column
+                dataField="percentage"
+                dataType="number"
+                format="percent"
+                alignment="center"
+              >
+              </dxi-column>
+              <dxo-summary>
+                <dxi-total-item
+                  column="Story Points"
+                  summaryType="sum"
+                  displayFormat="Total:{0}"
+                >
+                </dxi-total-item>
+                <!-- <dxi-total-item
+                  column="Percentage"
+                  summaryType="sum"
+                  valueFormat="percent"
+                  [customizeText]="calculatePercentage"
+                >
+                </dxi-total-item> -->
+              </dxo-summary>
+            </dx-data-grid>
+          </div>
+          <div class="row m-t-10">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <dx-button
+                [text]="COMMON_MSG.Next"
+                type="success"
+                (onClick)="sprintPlaneSubmit()"
+              >
+              </dx-button>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row mainCard"
+        *ngIf="userStoryTab && !leavesTab && !sprintTab"
+      >
+        <div class="row headerText">
+          <h3>Sprint Userstory and Tasks</h3>
+        </div>
+        <div class="row m-l-10">
+          <div class="row m-t-10">
+            <dx-data-grid
+              id="gridContainer"
+              [dataSource]="sprintUserStories"
+              keyExpr="id"
+              [showRowLines]="true"
+              [showBorders]="true"
+            >
+              <dxi-column dataField="department" [groupIndex]="0"></dxi-column>
+              <dxi-column
+                dataField="name"
+                caption="Employee"
+                cellTemplate="name"
+                [width]="200"
+              ></dxi-column>
+              <dxi-column
+                dataField="tasks"
+                alignment="center"
+                cellTemplate="tasks"
+              ></dxi-column>
+              <dxi-column
+                dataField="storyPoints"
+                alignment="center"
+                cellTemplate="storyPoints"
+                [width]="120"
+              >
+              </dxi-column>
+              <dxi-column
+                dataField="priority"
+                alignment="center"
+                cellTemplate="priority"
+                [width]="150"
+              >
+              </dxi-column>
+              <dxi-column
+                dataField="status"
+                alignment="center"
+                cellTemplate="status"
+                [width]="150"
+              >
+              </dxi-column>
+              <div *dxTemplate="let cell of 'name'">
+                <div>
+                  <p>{{ cell.value }}</p>
+                  <p>{{ addStoryPoints(cell) }}</p>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'tasks'">
+                <div *ngFor="let item of cell.data.tasks">
+                  <div class="dx-field m-b-10">
+                    <div class="dx-field-value width100">
+                      <dx-text-box
+                        [placeholder]="COMMON_MSG.taskPlaceholder"
+                        valueChangeEvent="change"
+                        [(value)]="item.task"
+                      >
+                      </dx-text-box>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'status'">
+                <div *ngFor="let item of cell.data.status">
+                  <div class="dx-field m-b-10">
+                    <div class="dx-field-value width100">
+                      <dx-text-box
+                        [placeholder]="COMMON_MSG.statusPlaceholder"
+                        valueChangeEvent="change"
+                        [(value)]="item.status"
+                      >
+                      </dx-text-box>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'storyPoints'">
+                <div *ngFor="let item of cell.data.storyPoints">
+                  <div class="dx-field m-b-10">
+                    <div class="dx-field-value width100">
+                      <dx-text-box
+                        [placeholder]="COMMON_MSG.storePointPlaceholder"
+                        valueChangeEvent="change"
+                        [(value)]="item.storyPoint"
+                        (onValueChanged)="storyPointChanged()"
+                      >
+                      </dx-text-box>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'priority'">
+                <div *ngFor="let item of cell.data.priority">
+                  <div class="dx-field m-b-10">
+                    <div class="dx-field-value width100">
+                      <dx-select-box
+                        [dataSource]="priority"
+                        [placeholder]="COMMON_MSG.priorityPlaceholder"
+                        valueChangeEvent="keyup"
+                        [(value)]="item.priority"
+                        [searchEnabled]="true"
+                      >
+                      </dx-select-box>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </dx-data-grid>
+          </div>
+          <div class="row m-t-10">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <dx-button
+                [text]="COMMON_MSG.Save"
+                type="success"
+                (onClick)="sprintUserStoriesSubmit()"
+              ></dx-button>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

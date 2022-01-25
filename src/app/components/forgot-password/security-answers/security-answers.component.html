@@ -16,13 +16,11 @@
     <div class="row privacy">
       <form action="your-action" (submit)="onFormSubmit($event)">
         <div class="row padding0 formHeader">
-          <div class="col-md-2 padding-t-10">
-          </div>
+          <div class="col-md-2 padding-t-10"></div>
           <div class="col-md-8 headerText">
             <img src="assets/images/magnetar_logo.png" />
           </div>
-          <div class="col-md-2 padding-t-10 textEnd">
-          </div>
+          <div class="col-md-2 padding-t-10 textEnd"></div>
         </div>
         <div class="row headerText">
           <h3>Security Answers</h3>
@@ -37,7 +35,7 @@
                   valueExpr="name"
                   [placeholder]="COMMON_MSG.questionsPlaceholder"
                   valueChangeEvent="keyup"
-                  (onValueChanged)="q1ValueChanged($event, 'question')"
+                  (onValueChanged)="q1ValueChanged($event)"
                   [searchEnabled]="true"
                   [value]="securityQus1.question"
                   [disabled]="true"
@@ -50,7 +48,7 @@
                 <dx-text-box
                   [placeholder]="COMMON_MSG.queAnsPlaceholder"
                   valueChangeEvent="keyup"
-                  (onValueChanged)="q1ValueChanged($event, 'answer')"
+                  (onValueChanged)="q1ValueChanged($event)"
                 >
                   <dxi-button
                     *ngIf="showValidation1 && ans1Value"
@@ -68,7 +66,7 @@
               </div>
             </div>
           </div>
-          <div class="row ansCard" *ngIf="showQues2">
+          <div class="row ansCard">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -77,7 +75,7 @@
                   valueExpr="name"
                   [placeholder]="COMMON_MSG.questionsPlaceholder"
                   valueChangeEvent="keyup"
-                  (onValueChanged)="q2ValueChanged($event, 'question')"
+                  (onValueChanged)="q2ValueChanged($event)"
                   [searchEnabled]="true"
                   [value]="securityQus2.question"
                   [disabled]="true"
@@ -90,7 +88,7 @@
                 <dx-text-box
                   [placeholder]="COMMON_MSG.queAnsPlaceholder"
                   valueChangeEvent="keyup"
-                  (onValueChanged)="q2ValueChanged($event, 'answer')"
+                  (onValueChanged)="q2ValueChanged($event)"
                 >
                   <dxi-button
                     *ngIf="showValidation2 && ans2Value"
@@ -108,7 +106,7 @@
               </div>
             </div>
           </div>
-          <div class="row ansCard" *ngIf="showQues3">
+          <div class="row ansCard">
             <div class="dx-field">
               <div class="dx-field-value width100">
                 <dx-select-box
@@ -117,7 +115,7 @@
                   valueExpr="name"
                   [placeholder]="COMMON_MSG.questionsPlaceholder"
                   valueChangeEvent="keyup"
-                  (onValueChanged)="q3ValueChanged($event, 'question')"
+                  (onValueChanged)="q3ValueChanged($event)"
                   [searchEnabled]="true"
                   [value]="securityQus3.question"
                   [disabled]="true"
@@ -130,7 +128,7 @@
                 <dx-text-box
                   [placeholder]="COMMON_MSG.queAnsPlaceholder"
                   valueChangeEvent="keyup"
-                  (onValueChanged)="q3ValueChanged($event, 'answer')"
+                  (onValueChanged)="q3ValueChanged($event)"
                 >
                   <dxi-button
                     *ngIf="showValidation3 && ans3Value"

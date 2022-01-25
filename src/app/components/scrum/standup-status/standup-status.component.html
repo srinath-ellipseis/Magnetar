@@ -1,0 +1,238 @@
+<div class="container-fluid bgImg">
+  <div class="row margin">
+    <div class="row m-l-10">
+      <div class="row">
+        <dx-load-panel
+          #loadPanel
+          shadingColor="rgba(0,0,0,0.4)"
+          [(visible)]="loadingVisible"
+          [showIndicator]="true"
+          [showPane]="true"
+          [shading]="true"
+          [closeOnOutsideClick]="false"
+          (onShown)="onLoading()"
+        >
+        </dx-load-panel>
+        <dx-toast
+          [(visible)]="isVisible"
+          type="success"
+          message="Status Updated"
+        >
+        </dx-toast>
+      </div>
+      <div class="row padding0 headerStyle">
+        <div class="col-md-2 padding-t-10"></div>
+        <div class="col-md-8 headerText">
+          <img src="assets/images/magnetar_logo.png" />
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row mainCard">
+        <div class="row headerText">
+          <h3>Standup Status</h3>
+        </div>
+        <div class="row m-t-10 m-l-10" *ngIf="!employeeData">
+          <span class="emptyText"
+            >Department and Employee Data are Mandatory for StandUp Status
+            page</span
+          >
+        </div>
+        <div class="row m-l-10" *ngIf="employeeData">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-2">
+                  <dx-button
+                    icon="back"
+                    stylingMode="text"
+                    (onClick)="preDates()"
+                  >
+                  </dx-button>
+                </div>
+                <div class="col-md-8 dateHeader">
+                  <label>{{ mondayDate }} to {{ sundayDate }}</label>
+                </div>
+                <div class="col-md-2">
+                  <dx-button
+                    icon="chevronnext"
+                    stylingMode="text"
+                    (onClick)="nextDates()"
+                  >
+                  </dx-button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+          <div class="row m-t-10">
+            <dx-data-grid
+              id="gridContainer"
+              [dataSource]="weekData"
+              keyExpr="id"
+              [showBorders]="true"
+            >
+              <dxi-column
+                dataField="department"
+                caption="Department"
+                [groupIndex]="0"
+              ></dxi-column>
+              <dxi-column dataField="name" caption="Employee"></dxi-column>
+              <dxi-column dataField="monday" caption="Monday">
+                <dxi-column
+                  [caption]="mondayDate"
+                  dataField=""
+                  cellTemplate="monTemplate"
+                ></dxi-column>
+              </dxi-column>
+              <dxi-column dataField="tuesday" caption="Tuesday">
+                <dxi-column
+                  [caption]="tuesdayDate"
+                  dataField=""
+                  cellTemplate="tueTemplate"
+                ></dxi-column>
+              </dxi-column>
+              <dxi-column dataField="wednesday" caption="Wednesday">
+                <dxi-column
+                  [caption]="wednesdayDate"
+                  dataField=""
+                  cellTemplate="wedTemplate"
+                ></dxi-column>
+              </dxi-column>
+              <dxi-column dataField="thursday" caption="Thursday">
+                <dxi-column
+                  [caption]="thursdayDate"
+                  dataField=""
+                  cellTemplate="thuTemplate"
+                ></dxi-column>
+              </dxi-column>
+              <dxi-column dataField="friday" caption="Friday">
+                <dxi-column
+                  [caption]="fridayDate"
+                  dataField=""
+                  cellTemplate="friTemplate"
+                ></dxi-column>
+              </dxi-column>
+              <dxi-column dataField="saturday" caption="Saturday">
+                <dxi-column
+                  [caption]="saturdayDate"
+                  dataField=""
+                  cellTemplate="satTemplate"
+                ></dxi-column>
+              </dxi-column>
+              <dxi-column dataField="sunday" caption="Sunday">
+                <dxi-column
+                  [caption]="sundayDate"
+                  dataField=""
+                  cellTemplate="sunTemplate"
+                ></dxi-column>
+              </dxi-column>
+              <div *dxTemplate="let cell of 'monTemplate'">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.taskPlaceholder"
+                      valueChangeEvent="change"
+                      [(value)]="cell.data.monday.value"
+                      [disabled]="statusDisable(cell.data.monday.date)"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'tueTemplate'">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.taskPlaceholder"
+                      valueChangeEvent="change"
+                      [(value)]="cell.data.tuesday.value"
+                      [disabled]="statusDisable(cell.data.tuesday.date)"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'wedTemplate'">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.taskPlaceholder"
+                      valueChangeEvent="change"
+                      [(value)]="cell.data.wednesday.value"
+                      [disabled]="statusDisable(cell.data.wednesday.date)"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'thuTemplate'">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.taskPlaceholder"
+                      valueChangeEvent="change"
+                      [(value)]="cell.data.thursday.value"
+                      [disabled]="statusDisable(cell.data.thursday.date)"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'friTemplate'">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.taskPlaceholder"
+                      valueChangeEvent="change"
+                      [(value)]="cell.data.friday.value"
+                      [disabled]="statusDisable(cell.data.friday.date)"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'satTemplate'">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.taskPlaceholder"
+                      valueChangeEvent="change"
+                      [(value)]="cell.data.saturday.value"
+                      [disabled]="statusDisable(cell.data.saturday.date)"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+              <div *dxTemplate="let cell of 'sunTemplate'">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-text-box
+                      [placeholder]="COMMON_MSG.taskPlaceholder"
+                      valueChangeEvent="change"
+                      [(value)]="cell.data.sunday.value"
+                      [disabled]="statusDisable(cell.data.sunday.date)"
+                    >
+                    </dx-text-box>
+                  </div>
+                </div>
+              </div>
+            </dx-data-grid>
+          </div>
+          <div class="row m-t-10">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <dx-button
+                [text]="COMMON_MSG.Save"
+                type="success"
+                (onClick)="submit()"
+              ></dx-button>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

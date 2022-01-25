@@ -1,0 +1,94 @@
+.main-content {
+  margin-top: 5%;
+  min-height: 486px;
+}
+::ng-deep .dx-toolbar {
+  background-color: #fff;
+  border-bottom: 3px solid #0a61c8;
+  padding: 10px;
+  height: 65px;
+}
+.logo {
+  height: 40px;
+}
+
+::ng-deep .dx-button-mode-text.dx-state-hover,
+::ng-deep .dx-button-mode-text.dx-state-active,
+::ng-deep .dx-button-mode-text.dx-state-focused {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+::ng-deep .dx-icon-menu::before {
+  font-size: 30px;
+}
+.p-l-15 {
+  padding-left: 15px !important;
+}
+.timeStyle {
+  font-size: 15px;
+  margin-right: 10px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+.userName {
+  font-size: 25px;
+  margin-right: 15px;
+}
+.logoutText {
+  font-size: 15px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.sideMenu {
+  background-color: #7bcf9d;
+  color: #fff;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  height: 100%;
+}
+.m-b-20 {
+  margin-bottom: 20px;
+}
+.headerUserIcon {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  border: 2px solid #a79d9d;
+  width: 45px;
+  height: 46px;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+.userIcon {
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 50%;
+  border: 2px solid #a79d9d;
+  width: 70px;
+  height: 70px;
+  padding-top: 13px;
+  padding-left: 18px;
+}
+.userName {
+  margin: 0px;
+  font-size: 18px;
+  font-weight: bold;
+}
+.margin0 {
+  margin: 0px;
+}
+.text-decoration {
+  text-decoration: none;
+}
+.m-t-25 {
+  margin-top: 25px;
+}
+.cursorPoint {
+  cursor: pointer;
+}
+::ng-deep.dx-drawer-content {
+  overflow: unset;
+}

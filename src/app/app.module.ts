@@ -13,6 +13,8 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HomeComponent } from "./components/home/home.component";
 import { ContactUsComponent } from "./components/contact-us/contact-us.component";
+import { LandingModule } from "./components/landing/landing.module";
+import { ErrorComponent } from './components/error/error.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,7 @@ import { ContactUsComponent } from "./components/contact-us/contact-us.component
     FooterComponent,
     HomeComponent,
     ContactUsComponent,
+    ErrorComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { ContactUsComponent } from "./components/contact-us/contact-us.component
     DevExtremeModuleModule,
     FontAwesomeModule,
     CommonComponentModule,
+    LandingModule
   ],
   providers: [],
   bootstrap: [AppComponent],

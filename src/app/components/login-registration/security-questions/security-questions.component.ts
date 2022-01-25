@@ -27,6 +27,9 @@ export class SecurityQuestionsComponent implements OnInit {
   loadingVisible: boolean = true;
   userRole: string;
   securityQuestionsData: SecurityQuestions[];
+  btnDisable: boolean = true;
+  isVisible: boolean = false;
+  showNextBtn: boolean = true;
   constructor(private router: Router) {
     this.userRole = JSON.parse(localStorage.getItem(COMMON_MSG.userRole)!);
     this.securityQuestionsData = JSON.parse(
@@ -44,6 +47,8 @@ export class SecurityQuestionsComponent implements OnInit {
       this.securityQus3.answer = this.securityQuestionsData[2].answer;
       this.showQues2 = true;
       this.showQues3 = true;
+      this.btnDisable = false;
+      this.showNextBtn = false;
       for (let que of this.questions) {
         if (que.name === this.securityQuestionsData[0].question) {
           que.disabled = true;
@@ -65,19 +70,30 @@ export class SecurityQuestionsComponent implements OnInit {
     }, COMMON_MSG.setTimeout2000);
   }
   onFormSubmit(event: any) {
-    this.securityQusArray.push(
-      this.securityQus1,
-      this.securityQus2,
-      this.securityQus3
-    );
-    localStorage.setItem(
-      COMMON_MSG.securityQuestions,
-      JSON.stringify(this.securityQusArray)
-    );
-    if (this.userRole === COMMON_MSG.new) {
-      this.router.navigate(["/login/registration-edu-emp"]);
-    } else {
-      this.router.navigate(["/login/registration-preview"]);
+    if (this.securityQus1.question) {
+      this.showQues2 = true;
+    }
+    if (this.securityQus2.question) {
+      this.showQues3 = true;
+      this.showNextBtn = false;
+    }
+    if (
+      this.securityQus1.question &&
+      this.securityQus2.question &&
+      this.securityQus3.question
+    ) {
+      this.securityQusArray = [];
+      this.securityQusArray.push(
+        this.securityQus1,
+        this.securityQus2,
+        this.securityQus3
+      );
+      localStorage.setItem(
+        COMMON_MSG.securityQuestions,
+        JSON.stringify(this.securityQusArray)
+      );
+      this.btnDisable = false;
+      this.isVisible = true;
     }
   }
   toggleNextBtn() {
@@ -89,8 +105,15 @@ export class SecurityQuestionsComponent implements OnInit {
   backPage() {
     this.router.navigate(["/login/registration-details"]);
   }
-
+  nextPage() {
+    if (this.userRole === COMMON_MSG.new) {
+      this.router.navigate(["/login/registration-edu-emp"]);
+    } else {
+      this.router.navigate(["/login/registration-preview"]);
+    }
+  }
   q1ValueChanged(event: any, text: string) {
+    this.btnDisable = true;
     if (text === COMMON_MSG.question) {
       this.securityQus1.question = event.value;
       for (let que of this.questions) {
@@ -110,6 +133,7 @@ export class SecurityQuestionsComponent implements OnInit {
   }
 
   q2ValueChanged(event: any, text: string) {
+    this.btnDisable = true;
     if (text === COMMON_MSG.question) {
       this.securityQus2.question = event.value;
       for (let que of this.questions) {
@@ -129,6 +153,7 @@ export class SecurityQuestionsComponent implements OnInit {
   }
 
   q3ValueChanged(event: any, text: string) {
+    this.btnDisable = true;
     if (text === COMMON_MSG.question) {
       this.securityQus3.question = event.value;
       for (let que of this.questions) {
@@ -154,11 +179,6 @@ export class SecurityQuestionsComponent implements OnInit {
     ) {
       return false;
     } else {
-      if (this.securityQus1.question && this.securityQus1.answer) {
-        this.showQues2 = true;
-      } else {
-        this.showQues2 = false;
-      }
       return true;
     }
   }
@@ -169,11 +189,6 @@ export class SecurityQuestionsComponent implements OnInit {
     ) {
       return false;
     } else {
-      if (this.securityQus2.question && this.securityQus2.answer) {
-        this.showQues3 = true;
-      } else {
-        this.showQues3 = false;
-      }
       return true;
     }
   }

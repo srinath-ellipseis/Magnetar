@@ -53,6 +53,12 @@
           [message]="error_msg.dateRange"
         >
         </dxi-validation-rule>
+        <dxi-validation-rule
+          type="custom"
+          [validationCallback]="dateCompare"
+          [reevaluate]="true"
+          [message]="error_msg.dateCompare + name"
+        ></dxi-validation-rule>
       </dx-validator>
     </dx-date-box>
   </div>
