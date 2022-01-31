@@ -20,26 +20,19 @@ export class EmployeeComponent implements OnInit {
   selectedDepartment: any;
   employeeName: string = "";
   submitedData: Employee = {};
-  employeeArray: Employee[] = [];
   employeeData: Employee[] = [];
   sameName: boolean = false;
   selectedEmpType: string = "";
+  formVisible: boolean = false;
+  deletePopup: boolean = false;
+  currentDelete: any;
+  isDisable: boolean = false;
   constructor() {
     this.employeeCallback = this.employeeCallback.bind(this);
     this.departmentData = JSON.parse(
       localStorage.getItem(COMMON_MSG.departments)!
     );
     this.employeeData = JSON.parse(localStorage.getItem(COMMON_MSG.employee)!);
-    if (this.employeeData) {
-      for (let emp of this.employeeData) {
-        this.employeeArray.push({
-          id: emp.id,
-          department: emp.department,
-          name: emp.name,
-          empType: emp.empType,
-        });
-      }
-    }
   }
 
   ngOnInit(): void {}
@@ -53,7 +46,7 @@ export class EmployeeComponent implements OnInit {
       this.selectedEmpType = event.value;
     }
   }
-  empSubmit(event: any) {
+  empSubmit() {
     let newId = Math.floor(Math.random() * (1000000 - 100000) + 100000);
     this.submitedData = {
       id: newId,
@@ -61,16 +54,21 @@ export class EmployeeComponent implements OnInit {
       name: this.employeeName,
       empType: this.selectedEmpType,
     };
-    this.employeeArray.push(this.submitedData);
+    if (this.employeeData) {
+      this.employeeData.push(this.submitedData);
+    } else {
+      this.employeeData = [];
+      this.employeeData.push(this.submitedData);
+    }
     localStorage.setItem(
       COMMON_MSG.employee,
-      JSON.stringify(this.employeeArray)
+      JSON.stringify(this.employeeData)
     );
     window.location.reload();
     this.isVisible = true;
   }
   employeeCallback(event: any) {
-    if (this.employeeData) {
+    if (this.employeeData.length != 0) {
       for (let emp of this.employeeData) {
         if (event.value === emp.name) {
           this.sameName = false;
@@ -83,5 +81,57 @@ export class EmployeeComponent implements OnInit {
     } else {
       return true;
     }
+  }
+
+  goToDeletePopup(event: any) {
+    this.deletePopup = true;
+    this.currentDelete = event;
+  }
+  goToForm(event: any, text: string) {
+    console.log(event);
+    this.formVisible = true;
+    if (text === "view") {
+      this.selectedDepartment = event.department;
+      this.employeeName = event.name;
+      this.selectedEmpType = event.empType;
+      this.isDisable = true;
+    } else if (text === "edit") {
+      this.selectedDepartment = event.department;
+      this.employeeName = event.name;
+      this.selectedEmpType = event.empType;
+      let yourNewData = [];
+      for (let i = 0; i < this.employeeData.length; i++) {
+        if (this.employeeData[i].id !== event.id) {
+          yourNewData.push(this.employeeData[i]);
+        }
+      }
+      if (yourNewData) {
+        this.employeeData = [];
+        this.employeeData = yourNewData;
+      } else {
+        this.employeeData = [];
+      }
+    }
+  }
+  closeForm() {
+    this.formVisible = false;
+    window.location.reload();
+  }
+  cancelDeletePopup() {
+    this.deletePopup = false;
+  }
+  deleteForm(event: any) {
+    let yourNewData = [];
+    for (let i = 0; i < this.employeeData.length; i++) {
+      if (this.employeeData[i].id !== event.id) {
+        yourNewData.push(this.employeeData[i]);
+      }
+    }
+    if (yourNewData.length != 0) {
+      localStorage.setItem(COMMON_MSG.employee, JSON.stringify(yourNewData));
+    } else {
+      localStorage.removeItem(COMMON_MSG.employee);
+    }
+    window.location.reload();
   }
 }

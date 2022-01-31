@@ -102,6 +102,8 @@ export const COMMON_MSG = {
   sprintUserStories: "sprintUserStories",
   checkIn: "Check In",
   checkOut: "Check Out",
+  Edit: "Edit",
+  Delete: "Delete"
 };
 export const Validation_MSG = {
   firstNameRequired: "First Name is required",

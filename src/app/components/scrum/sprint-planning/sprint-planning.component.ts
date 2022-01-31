@@ -63,54 +63,10 @@ export class SprintPlanningComponent implements OnInit {
             department: emp.department,
             name: emp.name,
             empType: emp.empType,
-            tasks: [
-              { task: "" },
-              { task: "" },
-              { task: "" },
-              { task: "" },
-              { task: "" },
-              { task: "" },
-              { task: "" },
-              { task: "" },
-              { task: "" },
-              { task: "" },
-            ],
-            status: [
-              { status: "" },
-              { status: "" },
-              { status: "" },
-              { status: "" },
-              { status: "" },
-              { status: "" },
-              { status: "" },
-              { status: "" },
-              { status: "" },
-              { status: "" },
-            ],
-            storyPoints: [
-              { storyPoint: "" },
-              { storyPoint: "" },
-              { storyPoint: "" },
-              { storyPoint: "" },
-              { storyPoint: "" },
-              { storyPoint: "" },
-              { storyPoint: "" },
-              { storyPoint: "" },
-              { storyPoint: "" },
-              { storyPoint: "" },
-            ],
-            priority: [
-              { priority: "" },
-              { priority: "" },
-              { priority: "" },
-              { priority: "" },
-              { priority: "" },
-              { priority: "" },
-              { priority: "" },
-              { priority: "" },
-              { priority: "" },
-              { priority: "" },
-            ],
+            tasks: [{ task: "" }],
+            status: [{ status: "" }],
+            storyPoints: [{ storyPoint: "" }],
+            priority: [{ priority: "" }],
           });
         }
       }
@@ -128,6 +84,7 @@ export class SprintPlanningComponent implements OnInit {
   calculatePercentage(data: any) {
     return `Total: ${(data.value * 100 * 100) / 100} %`;
   }
+  
   addStoryPoints(data: any) {
     let totalPoints = 0;
     for (let item of this.sprintPlane) {
@@ -142,9 +99,11 @@ export class SprintPlanningComponent implements OnInit {
     }
     return `Available story points = ${totalPoints}`;
   }
+
   storyPointChanged() {
     this.sprintUserStories = this.sprintUserStories;
   }
+
   leavesTap() {
     this.leavesTab = true;
     this.sprintTab = false;
@@ -190,7 +149,6 @@ export class SprintPlanningComponent implements OnInit {
         this.storyPoints = 10 - emp.leaves;
       }
       this.percentage = (100 - emp.leaves * 10) / 100;
-
       this.sprintPlane.push({
         id: emp.id,
         department: emp.department,

@@ -11,7 +11,7 @@ import { Department, Employee } from "src/app/models/scrum.model";
 export class AttendanceComponent implements OnInit {
   COMMON_MSG = COMMON_MSG;
   error_Msg = Validation_MSG;
-  btnDisable: boolean = false;
+  checkinBtnDisable: boolean = false;
   isVisible: boolean = false;
   mainData: any = [];
   currentMonDate: any;
@@ -36,10 +36,22 @@ export class AttendanceComponent implements OnInit {
   checkInSec: any;
   differenceBw: any;
   inProgress = false;
-  seconds: number = 10;
-  maxValue: number = 10;
+  seconds: number = 0;
+  maxValue: number = 0;
+  minValue: number = 0;
   intervalId: any;
+  withShadingOptionsVisible: boolean = true;
+  startValue: Date;
+  endValue: Date;
+  selectedStartValue: Date;
+  selectedEndValue: Date;
   constructor() {
+    let chartStartTime = this.todayDate.setHours(0, 0, 0, 0);
+    let chartEndTime = this.todayDate.setHours(23, 59, 59, 999);
+    this.startValue = new Date(chartStartTime);
+    this.endValue = new Date(chartEndTime);
+    this.selectedStartValue = new Date();
+    this.selectedEndValue = new Date();
     this.isEnableDate = new Date(this.todayDate).toLocaleDateString();
     this.loginUser = JSON.parse(localStorage.getItem(COMMON_MSG.user)!);
     var firstDayInWeek = this.todayDate.getDate() - this.todayDate.getDay() + 1;
@@ -73,6 +85,7 @@ export class AttendanceComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
   onLoading() {
     setTimeout(() => {
       this.loadingVisible = false;
@@ -190,7 +203,7 @@ export class AttendanceComponent implements OnInit {
           name: this.loginUser.email,
           weekName: week.day,
           date: week.date,
-          bar: "",
+          bar: { startTime: "", endTime: "" },
           checkIn: this.checkInTime,
           checkOut: this.checkOutTime,
           difference: "",
@@ -198,11 +211,20 @@ export class AttendanceComponent implements OnInit {
       }
     }
   }
+
   checkInTap() {
+    this.checkinBtnDisable = !this.checkinBtnDisable;
     this.checkInHours = new Date().getHours();
     this.checkInMin = new Date().getMinutes();
     this.checkInSec = new Date().getSeconds();
+    this.selectedStartValue = new Date();
     this.checkInTime = new Date().toLocaleTimeString();
+    this.minValue =
+      ((this.checkInHours * 3600 + this.checkInMin * 60 + this.checkInSec) /
+        24) *
+      60 *
+      60 *
+      100;
     let currentdata = [];
     for (let day of this.weekData) {
       if (day.date === this.isEnableDate) {
@@ -211,7 +233,7 @@ export class AttendanceComponent implements OnInit {
           name: day.name,
           weekName: day.weekName,
           date: day.date,
-          bar: day.bar,
+          bar: { startTime: this.selectedStartValue, endTime: this.selectedStartValue },
           checkIn: this.checkInTime,
           checkOut: day.checkOut,
           difference: day.difference,
@@ -222,17 +244,10 @@ export class AttendanceComponent implements OnInit {
     }
     this.weekData = [];
     this.weekData = currentdata;
-    if (this.inProgress) {
-      clearInterval(this.intervalId);
-    } else {
-      if (this.seconds === 0) {
-        this.seconds = 10;
-      }
-      this.intervalId = setInterval(() => this.timer(), 1000);
-    }
-    this.inProgress = !this.inProgress;
   }
   checkOutTap() {
+    this.checkinBtnDisable = !this.checkinBtnDisable;
+    this.selectedEndValue = new Date();
     this.checkOutTime = new Date().toLocaleTimeString();
     let checkOutHours = new Date().getHours();
     let checkOutMin = new Date().getMinutes();
@@ -249,7 +264,7 @@ export class AttendanceComponent implements OnInit {
           name: day.name,
           weekName: day.weekName,
           date: day.date,
-          bar: day.bar,
+          bar: { startTime: this.selectedStartValue, endTime: this.selectedEndValue },
           checkIn: day.checkIn,
           checkOut: this.checkOutTime,
           difference: this.differenceBw,
@@ -260,15 +275,5 @@ export class AttendanceComponent implements OnInit {
     }
     this.weekData = [];
     this.weekData = currentdata;
-  }
-  timer() {
-    this.seconds--;
-    if (this.seconds == 0) {
-      this.inProgress = !this.inProgress;
-      clearInterval(this.intervalId);
-    }
-  }
-  format(value: any) {
-    return `Loading: ${value * 100}%`;
   }
 }
