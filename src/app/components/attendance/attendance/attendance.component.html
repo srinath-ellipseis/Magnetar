@@ -27,6 +27,7 @@
             <dx-button
               [text]="COMMON_MSG.checkIn"
               (onClick)="checkInTap()"
+              [disabled]="checkinBtnDisable"
             ></dx-button>
           </div>
           <div class="col-md-4 headerText">
@@ -36,6 +37,7 @@
             <dx-button
               [text]="COMMON_MSG.checkOut"
               (onClick)="checkOutTap()"
+              [disabled]="!checkinBtnDisable"
             ></dx-button>
           </div>
         </div>
@@ -87,14 +89,14 @@
                 [width]="150"
               ></dxi-column>
               <dxi-column
-                dataField="bar"
-                cellTemplate="barTemplate"
-                alignment="center"
-              ></dxi-column>
-              <dxi-column
                 dataField="checkIn"
                 alignment="center"
                 [width]="150"
+              ></dxi-column>
+              <dxi-column
+                dataField="bar"
+                cellTemplate="barTemplate"
+                alignment="center"
               ></dxi-column>
               <dxi-column
                 dataField="checkOut"
@@ -108,17 +110,23 @@
               ></dxi-column>
 
               <div *dxTemplate="let cell of 'barTemplate'">
-                <dx-progress-bar
-                  #progressBar
-                  id="progress-bar-status"
-                  width="100%"
-                  [class.complete]="progressBar.value == maxValue"
-                  [min]="0"
-                  [max]="maxValue"
-                  [statusFormat]="format"
-                  [value]="maxValue - seconds"
+                <dx-range-selector
+                  id="range-selector"
+                  [value]="[cell.data.bar.startTime, cell.data.bar.endTime]"
+                  title=""
+                  [disabled]="true"
                 >
-                </dx-progress-bar>
+                  <dxo-scale
+                    [startValue]="startValue"
+                    [endValue]="endValue"
+                    minorTickInterval="minute"
+                    tickInterval="hour"
+                    minRange="hour"
+                    maxRange="day"
+                  >
+                    <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+                  </dxo-scale>
+                </dx-range-selector>
               </div>
             </dx-data-grid>
           </div>

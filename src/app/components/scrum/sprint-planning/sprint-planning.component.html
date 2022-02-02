@@ -99,6 +99,7 @@
                 [text]="COMMON_MSG.Save"
                 type="success"
                 (onClick)="leaveSubmit()"
+                [disabled]="leaveBtnDisable"
               ></dx-button>
             </div>
             <div class="col-md-4"></div>
@@ -244,6 +245,9 @@
                 <div>
                   <p>{{ cell.value }}</p>
                   <p>{{ addStoryPoints(cell) }}</p>
+                  <dx-button text="Add"
+                  type="success"
+                  (onClick)="addRow(cell)"[disabled]="addBtnDisable(cell)"></dx-button>
                 </div>
               </div>
               <div *dxTemplate="let cell of 'tasks'">
