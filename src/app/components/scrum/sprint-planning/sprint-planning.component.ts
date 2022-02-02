@@ -30,7 +30,8 @@ export class SprintPlanningComponent implements OnInit {
   leavesTab: boolean = true;
   sprintTab: boolean = false;
   userStoryTab: boolean = false;
-
+  leaveBtnDisable: boolean = false;
+ 
   constructor() {
     this.employeeData = JSON.parse(localStorage.getItem(COMMON_MSG.employee)!);
     this.leavePlans = JSON.parse(localStorage.getItem(COMMON_MSG.leavePlans)!);
@@ -39,37 +40,9 @@ export class SprintPlanningComponent implements OnInit {
     );
     if (this.leavePlans) {
       this.getSprintPlaning();
+      this.leaveBtnDisable = false;
     } else {
-      this.leavePlans = [];
-      if (this.employeeData) {
-        for (let emp of this.employeeData) {
-          this.leavePlans.push({
-            id: emp.id,
-            department: emp.department,
-            name: emp.name,
-            empType: emp.empType,
-            leaves: 0,
-          });
-        }
-      }
-      this.getSprintPlaning();
-    }
-    if (!this.sprintUserStories) {
-      this.sprintUserStories = [];
-      if (this.employeeData) {
-        for (let emp of this.employeeData) {
-          this.sprintUserStories.push({
-            id: emp.id,
-            department: emp.department,
-            name: emp.name,
-            empType: emp.empType,
-            tasks: [{ task: "" }],
-            status: [{ status: "" }],
-            storyPoints: [{ storyPoint: "" }],
-            priority: [{ priority: "" }],
-          });
-        }
-      }
+      this.leaveBtnDisable = true;
     }
   }
 
@@ -84,7 +57,7 @@ export class SprintPlanningComponent implements OnInit {
   calculatePercentage(data: any) {
     return `Total: ${(data.value * 100 * 100) / 100} %`;
   }
-  
+
   addStoryPoints(data: any) {
     let totalPoints = 0;
     for (let item of this.sprintPlane) {
@@ -99,7 +72,24 @@ export class SprintPlanningComponent implements OnInit {
     }
     return `Available story points = ${totalPoints}`;
   }
-
+  addBtnDisable(data: any) {
+    let totalPoints = 0;
+    for (let item of this.sprintPlane) {
+      if (item.name === data.value) {
+        let currentPoints: number = 0;
+        for (let p of data.data.storyPoints) {
+          let points: number = +p.storyPoint;
+          currentPoints = currentPoints + points;
+        }
+        totalPoints = item.storyPoint - currentPoints;
+      }
+    }
+    if (totalPoints <= 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   storyPointChanged() {
     this.sprintUserStories = this.sprintUserStories;
   }
@@ -168,4 +158,6 @@ export class SprintPlanningComponent implements OnInit {
     );
     this.sprintUserStoriesToast = true;
   }
+
+  addRow(event: any) {}
 }

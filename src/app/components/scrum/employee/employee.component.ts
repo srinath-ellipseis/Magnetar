@@ -27,12 +27,91 @@ export class EmployeeComponent implements OnInit {
   deletePopup: boolean = false;
   currentDelete: any;
   isDisable: boolean = false;
+  leavePlans: any = [];
+  sprintUserStories: any = [];
   constructor() {
     this.employeeCallback = this.employeeCallback.bind(this);
     this.departmentData = JSON.parse(
       localStorage.getItem(COMMON_MSG.departments)!
     );
     this.employeeData = JSON.parse(localStorage.getItem(COMMON_MSG.employee)!);
+    this.leavePlans = JSON.parse(localStorage.getItem(COMMON_MSG.leavePlans)!);
+    this.sprintUserStories = JSON.parse(
+      localStorage.getItem(COMMON_MSG.sprintUserStories)!
+    );
+    if (this.employeeData) {
+      let yourNewLeaveData = [];
+      let yourNewSprintData = [];
+      let newEmp = false;
+      for (let item of this.employeeData) {
+        newEmp = true;
+        if (this.leavePlans) {
+          for (let leave of this.leavePlans) {
+            if (item.name !== leave.name && newEmp) {
+              newEmp = false;
+              yourNewLeaveData.push({
+                id: item.id,
+                department: item.department,
+                name: item.name,
+                empType: item.empType,
+                leaves: 0,
+              });
+            } else if(item.name === leave.name && newEmp){
+              newEmp = false;
+              yourNewLeaveData.push(leave);
+            }
+          }
+        } else {
+          yourNewLeaveData.push({
+            id: item.id,
+            department: item.department,
+            name: item.name,
+            empType: item.empType,
+            leaves: 0,
+          });
+        }
+
+        if (this.sprintUserStories) {
+          for (let user of this.sprintUserStories) {
+            if (item.name !== user.name) {
+              yourNewSprintData.push({
+                id: item.id,
+                department: item.department,
+                name: item.name,
+                empType: item.empType,
+                tasks: [{ task: "" }],
+                status: [{ status: "" }],
+                storyPoints: [{ storyPoint: "" }],
+                priority: [{ priority: "" }],
+              });
+              return;
+            } else {
+              yourNewSprintData.push(user);
+              return;
+            }
+          }
+        } else {
+          yourNewSprintData.push({
+            id: item.id,
+            department: item.department,
+            name: item.name,
+            empType: item.empType,
+            tasks: [{ task: "" }],
+            status: [{ status: "" }],
+            storyPoints: [{ storyPoint: "" }],
+            priority: [{ priority: "" }],
+          });
+        }
+      }
+      localStorage.setItem(
+        COMMON_MSG.leavePlans,
+        JSON.stringify(yourNewLeaveData)
+      );
+      localStorage.setItem(
+        COMMON_MSG.sprintUserStories,
+        JSON.stringify(yourNewSprintData)
+      );
+    }
   }
 
   ngOnInit(): void {}
