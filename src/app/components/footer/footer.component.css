@@ -16,12 +16,13 @@ footer {
   font-size: 22px;
   width: 41px;
   text-align: center;
+  
   text-decoration: none;
   margin: 5px 15px;
   border-radius: 30%;
 }
 .insta{
-  margin: 5px 15px;
+  margin: 5px 10px;
 }
 img {
   margin-top: -8px;
