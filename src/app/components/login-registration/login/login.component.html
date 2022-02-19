@@ -69,10 +69,11 @@
             </div>
           </form>
           <div class="mx-auto">
-            <button class="btn" type="default" (click)="forgotPage()">
+
+            <button class="btn float-start" data-bs-toggle="modal" data-bs-target="#forgotPassword">
               Forgot Password?
             </button>
-            <button class="btn" type="default" (click)="signupPage()">
+            <button class="btn float-end" type="default" (click)="signupPage()">
               Sign Up
             </button>
           </div>
@@ -81,6 +82,49 @@
   </div>
 </div>
 </div>
+</div>
+<div class="modal" id="forgotPassword">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Forgot Password?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="dx-fieldset mb-4">
+          <div class="dx-field">
+            <div class="dx-field-value width100">
+              <dx-autocomplete
+              [placeholder]="COMMON_MSG.emailPlaceholder"
+              [value]="emailValue"
+              [dataSource]="loginData"
+              displayExpr="email"
+              valueExpr="email"
+              (onValueChanged)="valueChanged($event, 'email')"
+            >
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  [message]="error_msg.emailRequired"
+                ></dxi-validation-rule>
+                <dxi-validation-rule
+                  type="email"
+                  [message]="error_msg.mailError"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-autocomplete>
+            </div>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Request Password Reset</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 <!-- <div class="container-fluid bgImg">
