@@ -45,3 +45,7 @@ export interface EduDetails {
   city?: string;
   zipcode?: string;
 }
+export interface SecurityQuestions {
+  question?: any;
+  answer?: any;
+}

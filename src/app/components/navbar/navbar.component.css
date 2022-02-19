@@ -1,9 +1,8 @@
 .main-nav {
   border-bottom: 3px solid #0a61c8;
-  padding: 10px 10px 0px 10px;
+  padding: 10px;
   background-color: #fff;
   vertical-align: middle;
-  height: 75px;
 }
 .navbar {
   align-items: flex-end;
@@ -76,6 +75,8 @@
 .navbar-light .navbar-toggler:hover {
   color: #fa8936;
 }
-img {
-  width: 65%;
+@media (min-width: 320px) and (max-width: 480px) {
+  .logo img{
+    width: 200px;
+  }
 }

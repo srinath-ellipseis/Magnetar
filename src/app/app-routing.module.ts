@@ -2,7 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
+import { LandingDashboardComponent } from './components/landing/landing-dashboard/landing-dashboard.component';
 
 const routes: Routes = [
   { 
@@ -31,10 +33,32 @@ const routes: Routes = [
       {
         path: 'partners',
         loadChildren: () =>import('./components/partners/partners.module').then((m) => m.PartnersModule)
+      },
+      {
+        path: 'forgot',
+        loadChildren: () =>import('./components/forgot-password/forgot-password.module').then((m) => m.ForgotPasswordModule)
       }
     ]
   },
-  { path: '**', redirectTo: '' }
+  { 
+    path: 'landing',
+    component: LandingDashboardComponent,
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: () =>import('./components/landing/landing.module').then((m) => m.LandingModule)
+      },
+      {
+        path: 'scrum',
+        loadChildren: () =>import('./components/scrum/scrum.module').then((m) => m.ScrumModule)
+      },
+      {
+        path: 'attendance',
+        loadChildren: () =>import('./components/attendance/attendance.module').then((m) => m.AttendanceModule)
+      }
+    ]
+  },
+  { path: '**', component: ErrorComponent}
 ];
 
 @NgModule({

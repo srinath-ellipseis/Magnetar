@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { COMMON_MSG } from "src/app/common/messages/common-msg";
+import { COMMON_MSG, Validation_MSG } from "src/app/common/messages/common-msg";
 import {
   EduDetails,
   EmpDetails,
   PersonalDetails,
+  SecurityQuestions,
 } from "src/app/models/login.model";
 
 @Component({
@@ -13,11 +14,15 @@ import {
   styleUrls: ["./registration-preview.component.css"],
 })
 export class RegistrationPreviewComponent implements OnInit {
+  error_msg = Validation_MSG;
+  isVisible: boolean = false;
   loadingVisible: boolean = true;
   detailsData: PersonalDetails;
   educationData: EduDetails[];
   employeeData: EmpDetails[];
   backBtnTooltip: boolean = false;
+  userRole: string;
+  securityQuestionsData: SecurityQuestions[];
   constructor(private router: Router) {
     this.educationData = JSON.parse(
       localStorage.getItem(COMMON_MSG.educationForm)!
@@ -27,6 +32,10 @@ export class RegistrationPreviewComponent implements OnInit {
     );
     this.detailsData = JSON.parse(
       localStorage.getItem(COMMON_MSG.personalDetalis)!
+    );
+    this.userRole = JSON.parse(localStorage.getItem(COMMON_MSG.userRole)!);
+    this.securityQuestionsData = JSON.parse(
+      localStorage.getItem(COMMON_MSG.securityQuestions)!
     );
   }
 
@@ -53,12 +62,19 @@ export class RegistrationPreviewComponent implements OnInit {
     this.goToEduEmpPage();
   }
   backPage() {
-    this.goToEduEmpPage();
+    if (this.userRole === COMMON_MSG.new) {
+      this.router.navigate(["/login/registration-edu-emp"]);
+    } else {
+      this.router.navigate(["/login/security"]);
+    }
   }
   toggleBackBtn() {
     this.backBtnTooltip = !this.backBtnTooltip;
   }
   registrationBtn() {
-    alert(COMMON_MSG.Success);
+    this.isVisible = true;
+  }
+  goToSecurityPage() {
+    this.router.navigate(["/login/security"]);
   }
 }

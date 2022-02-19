@@ -1,4 +1,89 @@
-<div class="container-fluid bgImg">
+<div class="bgImg">
+<div class="container">
+  <div class="row d-flex justify-content-center mt-10 login">
+    <div class="col-lg-4 col-md-6 col-sm-6">
+      <div class="card shadow">
+        <div class="card-title text-center border-bottom">
+          <h3 class="p-3">Sign In</h3>
+        </div>
+        <dx-toast
+        [(visible)]="isVisible"
+        type="error"
+        message="Email and Password not valid"
+      >
+      </dx-toast>
+        <div class="card-body">
+          <form action="your-action" (submit)="onFormSubmit($event)">
+            <div class="dx-fieldset">
+              <dx-validation-summary id="summary"></dx-validation-summary>
+            </div>
+            <div class="dx-fieldset mb-4">
+                <div class="dx-field">
+                  <div class="dx-field-value width100">
+                    <dx-autocomplete
+                    [placeholder]="COMMON_MSG.emailPlaceholder"
+                    [value]="emailValue"
+                    [dataSource]="loginData"
+                    displayExpr="email"
+                    valueExpr="email"
+                    (onValueChanged)="valueChanged($event, 'email')"
+                  >
+                    <dx-validator>
+                      <dxi-validation-rule
+                        type="required"
+                        [message]="error_msg.emailRequired"
+                      ></dxi-validation-rule>
+                      <dxi-validation-rule
+                        type="email"
+                        [message]="error_msg.mailError"
+                      ></dxi-validation-rule>
+                    </dx-validator>
+                  </dx-autocomplete>
+                  </div>
+                </div>
+              <div class="mb-4">
+                <app-input-password
+                [passwordValue]="passwordValue"
+                [placeholder]="COMMON_MSG.passwordPlaceholder"
+                (value)="valueChanged($event, 'password')"
+              ></app-input-password>
+              </div>
+              <div class="mb-4">
+                  <div class="dx-field">
+                    <dx-check-box
+                    [value]="isChecked"
+                    [text]="COMMON_MSG.rememberMe"
+                    (onValueChanged)="checkedValue($event)"
+                  ></dx-check-box>
+                  </div>
+                </div>
+              <div class="d-grid">
+                  <dx-button
+                    id="button"
+                    text="Sign in"
+                    type="submit"
+                    [useSubmitBehavior]="true"
+                  >
+                  </dx-button>
+                </div>
+            </div>
+          </form>
+          <div class="mx-auto">
+            <button class="btn" type="default" (click)="forgotPage()">
+              Forgot Password?
+            </button>
+            <button class="btn" type="default" (click)="signupPage()">
+              Sign Up
+            </button>
+          </div>
+         </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<!-- <div class="container-fluid bgImg">
   <div class="row margin">
     <div class="row padding0">
       <div class="login-header">
@@ -13,13 +98,15 @@
           </div>
           <div class="dx-fieldset">
             <div class="row margin-b-15">
-              <div class="dx-field">
+              <div class="dx-field col-12">
                 <div class="dx-field-value width100">
-                  <dx-text-box
+                  <dx-autocomplete
                     [placeholder]="COMMON_MSG.emailPlaceholder"
-                    valueChangeEvent="keyup"
+                    [value]="emailValue"
+                    [dataSource]="loginData"
+                    displayExpr="email"
+                    valueExpr="email"
                     (onValueChanged)="valueChanged($event, 'email')"
-                    autocomplete="off"
                   >
                     <dx-validator>
                       <dxi-validation-rule
@@ -31,12 +118,13 @@
                         [message]="error_msg.mailError"
                       ></dxi-validation-rule>
                     </dx-validator>
-                  </dx-text-box>
+                  </dx-autocomplete>
                 </div>
               </div>
             </div>
             <div class="row margin-b-15">
               <app-input-password
+                [passwordValue]="passwordValue"
                 [placeholder]="COMMON_MSG.passwordPlaceholder"
                 (value)="valueChanged($event, 'password')"
               ></app-input-password>
@@ -45,11 +133,11 @@
               <div class="col-md-12">
                 <div class="dx-field">
                   <dx-check-box
-                  class="whiteColor"
-                [value]="isChecked"
-                [text]="COMMON_MSG.rememberMe"
-                (onValueChanged)="checkedValue($event)"
-              ></dx-check-box>
+                    class="whiteColor"
+                    [value]="isChecked"
+                    [text]="COMMON_MSG.rememberMe"
+                    (onValueChanged)="checkedValue($event)"
+                  ></dx-check-box>
                 </div>
               </div>
             </div>
@@ -71,7 +159,7 @@
       </div>
       <div class="row">
         <div class="col-md-6 textCenter">
-          <button class="btn whiteColor" type="default">
+          <button class="btn whiteColor" type="default" (click)="forgotPage()">
             Forgot Password?
           </button>
         </div>
@@ -83,4 +171,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

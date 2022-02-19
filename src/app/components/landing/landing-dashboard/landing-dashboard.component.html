@@ -1,0 +1,95 @@
+<dx-toolbar>
+  <dxi-item location="before" widget="dxButton" [options]="menuOptions">
+  </dxi-item>
+  <dxi-item location="before" locateInMenu="never">
+    <div *dxTemplate class="p-l-15">
+      <a routerLink="home">
+        <img class="logo" src="../../../assets/images/magnetar_logo.png" />
+      </a>
+    </div>
+  </dxi-item>
+  <dxi-item location="after" widget="dxButton">
+    <div *dxTemplate>
+      <div class="toolbar-label timeStyle">{{ time }}</div>
+    </div>
+  </dxi-item>
+  <dxi-item location="after">
+    <div *dxTemplate>
+      <div class="headerUserIcon" (click)="userTap()">
+        <p>SB</p>
+      </div>
+    </div>
+  </dxi-item>
+</dx-toolbar>
+<dx-drawer
+  openedStateMode="overlap"
+  position="left"
+  revealMode="slide"
+  template="template"
+  [(opened)]="isDrawerOpen"
+  [closeOnOutsideClick]="true"
+>
+  <div
+    *dxTemplate="let data of 'template'"
+    style="width: 200px"
+    class="sideMenu"
+  >
+    <div class="row m-b-20">
+      <label (click)="routerLink('holidaysList')">Holidays List</label>
+    </div>
+    <div class="row m-b-20">
+      <label (click)="routerLink('department')">Department</label>
+    </div>
+    <div class="row m-b-20">
+      <label (click)="routerLink('employee')">Employee</label>
+    </div>
+    <div class="row m-b-20">
+      <label (click)="routerLink('standup')">Standup Status</label>
+    </div>
+    <div class="row m-b-20">
+      <label (click)="routerLink('sprintplanning')">Sprint Planning</label>
+    </div>
+    <div class="row m-b-20">
+      <label (click)="routerLink('attendance')">Attendance</label>
+    </div>
+  </div>
+  <div id="content" class="dx-theme-background-color">
+    <router-outlet></router-outlet>
+  </div>
+</dx-drawer>
+
+<dx-popup
+  [width]="380"
+  [height]="200"
+  [showTitle]="false"
+  [dragEnabled]="false"
+  [closeOnOutsideClick]="true"
+  [showCloseButton]="false"
+  container=".dx-viewport"
+  [(visible)]="logoutVisible"
+>
+  <dxo-position at="right top" my="right top" of="#content"> </dxo-position>
+  <div *dxTemplate="let data of 'content'">
+    <div class="row">
+      <div class="col-md-8">
+        <p>{{ COMMON_MSG.companyFullName }}</p>
+      </div>
+      <div class="col-md-4 textEnd">
+        <p (click)="logout()" class="cursorPoint">Sign out</p>
+      </div>
+    </div>
+    <div class="row m-t-25">
+      <div class="col-md-4">
+        <div class="userIcon">
+          <p>SB</p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <p class="userName">Srinath Bandreddi</p>
+        <p class="margin0">srinath.bandreddi@ellipseis.com</p>
+        <a href="" class="text-decoration">View account</a><br />
+        <a href="" class="text-decoration">My Office profile</a>
+      </div>
+    </div>
+  </div>
+</dx-popup>

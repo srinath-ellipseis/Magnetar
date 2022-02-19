@@ -1,12 +1,34 @@
-.main-content-margin {
+.main-content {
   margin-top: 5%;
-  margin-bottom: 7%;
-  min-height: 444px;
+  min-height: 486px;
+  /* margin-bottom: 20%; */
 }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .main-content {
+    margin-top: 7%;
+  }
+} 
+@media (min-width: 481px) and (max-width: 768px) {
+  .main-content {
+    margin-top: 10%;
+  }
+}
+@media (min-width: 412px) and (max-width: 480px) {
+  .main-content {
+    margin-top: 19%;
+  }
+} 
+@media (min-width: 320px) and (max-width: 375px) {
+  .main-content {
+    margin-top: 21%;
+  }
+} 
 
 .footer {
   position:relative;
   left: 0;
   bottom: 0;
-  width: 100%;
+  border-top: 1px dotted #00285d;
+  background-color: #e0e7ff;
+  margin-bottom: 20%;
 }

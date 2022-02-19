@@ -433,7 +433,7 @@ export class RegistrationEduEmpComponent implements OnInit {
   }
 
   backPage() {
-    this.router.navigate(["/login/registration-details"]);
+    this.router.navigate(["/login/security"]);
   }
 
   nextPage() {

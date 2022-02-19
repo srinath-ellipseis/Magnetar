@@ -1,0 +1,71 @@
+.bgImg {
+  background: url("~src/assets/images/img-login.jpg") no-repeat 0 0
+    rgba(0, 0, 0, 0);
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  padding: 10px;
+  min-height: 445px;
+}
+
+.mainCard {
+  height: auto;
+  background: rgba(255, 255, 255, 0.5);
+  color: #000;
+  border-radius: 0px 0px 6px 6px;
+  padding: 15px 0px;
+}
+
+.headerStyle {
+  height: 60px;
+  background-color: #dbdada;
+  border-radius: 6px 6px 0 0;
+}
+
+.headerText {
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 5px;
+  padding-top: 10px;
+}
+.headerStyle .headerText img {
+  width: 22%;
+}
+
+.margin {
+  /* width: 60%;
+  margin-left: 20%; */
+  padding: 0px 5%;
+}
+
+.padding0 {
+  padding: 0px;
+}
+a {
+  text-decoration: unset;
+}
+.padding-t-5 {
+  padding-top: 5px;
+}
+.padding-t-10 {
+  padding-top: 10px;
+}
+.m-t-10 {
+  margin-top: 10px;
+  text-align: center;
+}
+.dateHeader {
+  padding-top: 7px;
+  font-size: 17px;
+  font-weight: bold;
+  text-align: center;
+}
+.emptyText {
+  font-size: 20px;
+  color: #ffffff;
+}
+.m-l-10 {
+  margin-left: 10px;
+}

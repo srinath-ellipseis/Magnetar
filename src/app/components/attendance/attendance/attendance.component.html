@@ -1,0 +1,137 @@
+<div class="container-fluid bgImg">
+  <div class="row margin">
+    <div class="row m-l-10">
+      <div class="row">
+        <dx-load-panel
+          #loadPanel
+          shadingColor="rgba(0,0,0,0.4)"
+          [(visible)]="loadingVisible"
+          [showIndicator]="true"
+          [showPane]="true"
+          [shading]="true"
+          [closeOnOutsideClick]="false"
+          (onShown)="onLoading()"
+        >
+        </dx-load-panel>
+      </div>
+      <div class="row padding0 headerStyle">
+        <div class="col-md-2 padding-t-10"></div>
+        <div class="col-md-8 headerText">
+          <img src="assets/images/magnetar_logo.png" />
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row mainCard">
+        <div class="row m-t-10">
+          <div class="col-md-4">
+            <dx-button
+              [text]="COMMON_MSG.checkIn"
+              (onClick)="checkInTap()"
+              [disabled]="checkinBtnDisable"
+            ></dx-button>
+          </div>
+          <div class="col-md-4 headerText">
+            <h3>Attendance</h3>
+          </div>
+          <div class="col-md-4">
+            <dx-button
+              [text]="COMMON_MSG.checkOut"
+              (onClick)="checkOutTap()"
+              [disabled]="!checkinBtnDisable"
+            ></dx-button>
+          </div>
+        </div>
+        <div class="row m-l-10">
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-2">
+                  <dx-button
+                    icon="back"
+                    stylingMode="text"
+                    (onClick)="preDates()"
+                  >
+                  </dx-button>
+                </div>
+                <div class="col-md-8 dateHeader">
+                  <label>{{ mondayDate }} to {{ sundayDate }}</label>
+                </div>
+                <div class="col-md-2">
+                  <dx-button
+                    icon="chevronnext"
+                    stylingMode="text"
+                    (onClick)="nextDates()"
+                  >
+                  </dx-button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4"></div>
+          </div>
+          <div class="row m-t-10">
+            <dx-data-grid
+              id="gridContainer"
+              [dataSource]="weekData"
+              keyExpr="id"
+              [showRowLines]="true"
+              [showBorders]="true"
+            >
+              <dxi-column
+                dataField="weekName"
+                caption=""
+                alignment="center"
+                [width]="150"
+              ></dxi-column>
+              <dxi-column
+                dataField="date"
+                alignment="center"
+                [width]="150"
+              ></dxi-column>
+              <dxi-column
+                dataField="checkIn"
+                alignment="center"
+                [width]="150"
+              ></dxi-column>
+              <dxi-column
+                dataField="bar"
+                cellTemplate="barTemplate"
+                alignment="center"
+              ></dxi-column>
+              <dxi-column
+                dataField="checkOut"
+                alignment="center"
+                [width]="150"
+              ></dxi-column>
+              <dxi-column
+                dataField="difference"
+                alignment="center"
+                [width]="150"
+              ></dxi-column>
+
+              <div *dxTemplate="let cell of 'barTemplate'">
+                <dx-range-selector
+                  id="range-selector"
+                  [value]="[cell.data.bar.startTime, cell.data.bar.endTime]"
+                  title=""
+                  [disabled]="true"
+                >
+                  <dxo-scale
+                    [startValue]="startValue"
+                    [endValue]="endValue"
+                    minorTickInterval="minute"
+                    tickInterval="hour"
+                    minRange="hour"
+                    maxRange="day"
+                  >
+                    <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+                  </dxo-scale>
+                </dx-range-selector>
+              </div>
+            </dx-data-grid>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,10 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {}
 
   goToDetailPage(name: string) {
-    this.router.navigate(["login/registration-details", { key: name }]);
+    localStorage.setItem(
+      COMMON_MSG.userRole,
+      JSON.stringify(name)
+    );
+    this.router.navigate(["login/registration-details"]);
   }
 }

@@ -12,6 +12,12 @@
         (onShown)="onShown()"
       >
       </dx-load-panel>
+      <dx-toast
+        [(visible)]="isVisible"
+        type="success"
+        [message]="detailsData.firstName + ' ' + detailsData.lastName + ' registered successfully.'"
+      >
+      </dx-toast>
     </div>
     <div class="row padding0 previewHeader">
       <div class="col-md-2 padding-t-10">
@@ -100,7 +106,10 @@
             </div>
           </div>
         </div>
-        <div class="card">
+        <div
+          class="card"
+          *ngIf="educationData != null && educationData.length > 0"
+        >
           <div class="card-header textCenter">
             <div class="row">
               <div class="col-md-11 padding-t-5">
@@ -131,10 +140,7 @@
                   <div class="card-header textCenter">
                     <div class="row">
                       <div class="col-md-11 padding-t-5">
-                        <a
-                          data-bs-toggle="collapse"
-                          href="#tab_{{ edu.id }}"
-                        >
+                        <a data-bs-toggle="collapse" href="#tab_{{ edu.id }}">
                           <h5>
                             {{ edu.levelEdu }}
                           </h5>
@@ -231,10 +237,7 @@
                   <div class="card-header textCenter">
                     <div class="row">
                       <div class="col-md-11 padding-t-5">
-                        <a
-                          data-bs-toggle="collapse"
-                          href="#tab_{{ emp.id }}"
-                        >
+                        <a data-bs-toggle="collapse" href="#tab_{{ emp.id }}">
                           <h5>
                             {{ emp.companyName }}
                           </h5>
@@ -294,6 +297,42 @@
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header textCenter">
+            <div class="row">
+              <div class="col-md-11 padding-t-5">
+                <a
+                  class="collapsed"
+                  data-bs-toggle="collapse"
+                  href="#collapseSecurity"
+                >
+                  <h4>Security Questions Details</h4>
+                </a>
+              </div>
+              <div class="col-md-1">
+                <dx-button
+                  icon="edit"
+                  (onClick)="goToSecurityPage()"
+                ></dx-button>
+              </div>
+            </div>
+          </div>
+          <div
+            id="collapseSecurity"
+            class="collapse"
+            data-bs-parent="#mainAccordion"
+          >
+            <div class="card-body">
+              <div
+                class="row margin-b-10"
+                *ngFor="let que of securityQuestionsData"
+              >
+                <span class="question">{{ que.question }}</span>
+                <span>{{ que.answer }}</span>
               </div>
             </div>
           </div>
